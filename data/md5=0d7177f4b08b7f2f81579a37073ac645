@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<title>content-addressable storage</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				The previous e-mail I sent out had a subject line of "[msr.sigcf] newsletter begin" and a body containing a paragraph whose MD5 hash is <i>7fa1bc0919c3e84ddfd8bc28d62e01ab</i>.
+				It was sent to one person.
+				I sent it on Thursday, December 5, 2019 at 14:03:03 CST (that is, -0600), or 1575576183 seconds since A.D. 1970 began.
+			</p>
+			<p>
+				The paragraph can be found in my content-addressable storage, which (at the time of this writing) is mirrored on GitHub and a couple of my webservers at the following URLs:
+			</p>
+			<ul>
+				<li>
+					<a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D7fa1bc0919c3e84ddfd8bc28d62e01ab">
+						https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D7fa1bc0919c3e84ddfd8bc28d62e01ab
+					</a>
+				</li>
+				<li>
+					<a href="http://calcnerd256.dyndns.org:15211/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab">
+						http://calcnerd256.dyndns.org:15211/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+					</a>
+				</li>
+				<li>
+					<a href="http://calcnerd256.dyndns.org:15235/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab">
+						http://calcnerd256.dyndns.org:15235/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+					</a>
+				</li>
+				<li>
+					<a href="https://calcnerd256.dyndns.org:15236/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab">
+						https://calcnerd256.dyndns.org:15236/cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+					</a>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<p>
+				If you aren't currently on my mailing list and want to join it, e-mail me at <a href="mailto:calcnerd256+msr.sigcf@gmail.com">calcnerd256+msr.sigcf@gmail.com</a> and tell me so.
+				Unless you specify otherwise, I'll assume that you wish to remain anonymous, and so I'll include your e-mail address in the "BCC:" field when I send out my occasional newsletter, so that it won't show up in the e-mails that other people receive.
+				If you don't value your privacy, go ahead and let me know, so I can include you in the "TO:" field and everyone can see you and can respond to you when they respond to me.
+			</p>
+		</section>
+		<section>
+			<p>
+				I've sent an e-mail to my old mailing list with a subject line of "[crackpots] new mailing list" and a body paragraph of MD5 <i>0516ace76131b95a7207546edf51e4e2</i> on Thursday, December 5, 2019 at 15:15:48 CST (i.e., -0600), or 1575580548 seconds after the Unix epoch.
+			</p>
+		</section>
+		<section>
+			<p>
+				So, after I sent out that first e-mail to this list, but before I sent out the second one to my old crackpots list, I created some content-addressable storage.
+				I am intentionally using a broken hash so as to remind myself that it is imperfect.
+				I plan to publish whatever I send to this list.
+				Currently, I'm doing that by drafting my e-mails in a text editor, saving them under filenames of their hashes, committing and pushing those files, and then visiting them in a browser and copying them from there into Gmail.
+				This procedure may change in the future, as it is already kind of cumbersome.
+			</p>
+			<p>
+				Content-addressable storage is the idea of locating a file in such a way that anyone who has a copy of the file can use that copy to determine where to look to find the file.
+				It is useful for storing things that might become duplicated, so you can check if the file already exists when you attempt to save a copy of it.
+				It only really works for immutable data, because changing the contents should change the address, so you can't change something in-place.
+				One application of CAS is the InterPlanetary File System, which I don't use.
+				BitTorrent's "magnet" links are also a form of CAS.
+			</p>
+			<p>
+				If you download one of my text files to check its hash and it doesn't match, it may be because I'm using a different encoding or line endings to compose these than my webserver is sending your client.
+				The HTTP specification says that line endings are CRLF, so I think it would be correct for a resource served with a text/* MIMEtype to transform the line breaks to CRLF rather than preserve their exact bytes.
+				Binary MIMEtypes like application/octet-stream are required to preserve this sort of thing, but text ones are free to transform it.
+				There's potential for steganography there.
+			</p>
+			<p>
+				I think I'll publish these e-mails as both text and HTML, so that viewing them in the browser is less painful.
+				On the other hand, maybe CAS shouldn't know about MIMEtypes.
+				I'm afraid to take the pragmatic step of adding a file extension to these filenames, because I'd rather keep them pure in the CAS.
+				I'm worried about automatic MIMEtype detection in my webservers, as at least one of them is Apache, and I'd hate to run afoul of langsec in blindly trusting it to recognize the types of these files by their contents.
+				If I write my own CAS webserver, I'll want to keep its mapping from bag-o'-bytes to MIMEtype somewhere outside of the storage of the bags of bytes themselves but ahead of the part that serves resources with MIMEtypes other than application/octet-stream.
+				I went ahead and made an HTML version of MD5 <i>7fa1bc0919c3e84ddfd8bc28d62e01ab</i> at MD5 <i>b14e0d4b658c26c223b29bd58dba6ad6</i> and of MD5 <i>0516ace76131b95a7207546edf51e4e2</i> at MD5 <i>88680187ed695de946fbdfc5a5ab217d</i>.
+			</p>
+		</section>
+		<section>
+			<p>
+				If I make an unsubstantiated claim and you want me to prove it, just say so in a reply and I'll go try to dig up some evidence for it.
+				I aim to be open to such challenges, even if I don't like them, but I'm not planning to be proactive about citing sources for everything I say.
+				The sooner you challenge me on something I've said, the more likely I am to remember what I meant and to be able to defend it.
+			</p>
+		</section>
+		<section>
+			<p>
+				After I wrote this current e-mail you're reading right now and before I sent it, two more of my friends form the old crackpots mailing list agreed to subscribe to this mailing list.
+				Yay!
+			</p>
+		</section>
+      </body>
+</html>
