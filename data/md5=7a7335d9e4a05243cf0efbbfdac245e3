@@ -1,0 +1,218 @@
+var http = require("http");
+function announceService(upstream, port, callback, failback){
+    var postData = "port=" + port;
+    return http.request(
+	{
+	    method: "POST",
+	    port: upstream,
+	    headers: {
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'Content-Length': postData.length
+	    }
+	},
+	callback
+    ).end(postData);
+}
+function makeLocalServer(handler, port, upstreamPort, callback){
+    var server = http.createServer(handler);
+    server.listen(
+	port,
+	"localhost",
+	function(){
+	    return callback(
+		    +(server.address().port) // in case they passed zero
+	    );
+	}
+    );
+    return server;
+}
+var metadataPath = "/service.json";
+function combineHandler(handler, metadata){
+    return function(req, res){
+	if(metadataPath != req.url)
+	    return handler(req, res);
+	res.setHeader("Content-Type", "application/json");
+	res.end(
+	    JSON.stringify(
+		metadata,
+		null,
+		"\t"
+	    )
+	);
+    }
+}
+function afterAnnounce(response, port, callback, failback){
+    response.resume();
+    if(response.statusCode != 200)
+	return failback(response);
+    response.on(
+	"end",
+	function(){
+	    return callback(port);
+	}
+    );
+}
+function serveLocal(handler, upstream, callback, metadata, failback){
+    if(!failback) failback = function(){};
+    if("object" == typeof metadata)
+	if("include" in metadata)
+	    if(metadata.include instanceof Array)
+		if(
+		    metadata.include.filter(
+			function(s){
+			    return s == "framework";
+			}
+		    ).length
+		){
+		    if(!("Process ID" in metadata))
+			metadata["Process ID"] = process.pid;
+		}
+    return makeLocalServer(
+	combineHandler(handler, metadata),
+	0,
+	upstream,
+	function(port){
+	    return announceService(
+		upstream,
+		port,
+		function(response){
+		    return afterAnnounce(response, port, callback, failback);
+		},
+		failback
+	    );
+	}
+    );
+}
+
+function soak(stream, callback){
+    var body = [];
+    stream.on("data", [].push.bind(body));
+    stream.on(
+	"end",
+	function(){
+	    return callback(body.join(""));
+	}
+    );
+}
+
+function soakHttpGet(uri, callback, failback){
+    return http.get(
+	uri,
+	function(res){
+	    return soak(res, callback);
+	}
+    ).on("error", failback);
+}
+
+function getServices(upstream, callback, failback){
+    return soakHttpGet(
+	"http://localhost:" + (+upstream),
+	function(body){
+	    return callback(
+		body.split("\n").map(
+		    function(line){
+			return line.trim();
+		    }
+		).filter(function(s){return s;})
+	    );
+	},
+	failback
+    );
+}
+function getService(port, callback, failback){
+    return soakHttpGet(
+	"http://localhost:" + (+port) + "/" + metadataPath.split("/").filter(
+	    function(component, i, a){
+		if(component) return true;
+		if(i == a.length - 1) return true;
+		return false;
+	    }
+	).join("/"),
+	function(body){
+	    var j;
+	    try{
+		j = JSON.parse(body);
+	    }
+	    catch(e){
+		return failback(e);
+	    }
+	    return callback(j);
+	},
+	failback
+    );
+}
+
+function getAllServicesMetadata(upstream, callback, failback){
+    return getServices(
+	upstream,
+	function(ports){
+	    var done = ports.map(
+		function(){
+		    return false;
+		}
+	    );
+	    var results = [];
+	    function check(){
+		if(
+		    done.filter(
+			function(d){
+			    return !d;
+			}
+		    ).length
+		)
+		    return;
+		return callback(
+		    results.filter(
+			function(r){
+			    return r.good;
+			}
+		    ).map(
+			function(r){
+			    return r.value;
+			}
+		    )
+		);
+	    }
+	    ports.map(
+		function(p, i, a){
+		    return getService(
+			p,
+			function(metadata){
+			    results[i] = {
+				good: true,
+				value: [p, metadata]
+			    };
+			    done[i] = true;
+			    return check();
+			},
+			function(e){
+			    results[i] = {
+				good: false
+			    };
+			    done[i] = true;
+			    return check();
+			}
+		    )
+		}
+	    );
+	},
+	failback
+    );
+}
+
+
+module.exports.bad = {
+    // these are some really poorly-factored pieces!
+    "announce service": announceService,
+    "make local server": makeLocalServer,
+    "combine handler": combineHandler,
+    "after announce": afterAnnounce,
+    util: {
+	soak: soak,
+	"soak HTTP GET": soakHttpGet
+    },
+    "get all metadata": getAllServicesMetadata
+};
+module.exports.serveLocal = serveLocal;
+module.exports.getServices = getServices;
+module.exports.getService = getService;

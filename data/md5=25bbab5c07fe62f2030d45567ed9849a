@@ -1,0 +1,221 @@
+<html>
+	<head>
+		<title>service directory</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				Good morning, everybody.
+				I hope today finds you well.
+			</p>
+		</section>
+		<section>
+			<p>
+				Last time on <i>MSR/SIG-cf.</i>, we talked about content-addressable storage.
+				The subject line was "[msr.sigcf] content-addressable storage" and the text of (most of) the body had an MD5 of <i>34595f59d553480fe5a1ad8913e919e8</i>.
+				An HTML version of that same text has an MD5 version of <i>0d7177f4b08b7f2f81579a37073ac645</i> and can be found at such places as <a href="http://archive.is/FyoSb">http://archive.is/FyoSb</a> and <a href="http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a> and <a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645">https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645</a>.
+				I sent it on Thursday, December 5, 2019 at 17:58:32 CST (i.e., -0600) or 1575590312 seconds after the epoch.
+			</p>
+		</section>
+		<section>
+			<p>
+				After I finalized what I was going to send, but before I sent it, another one of my friends from my old crackpots mailing list agreed to subscribe.
+				I wasn't able to include him in the count, because I had already sealed the envelope (as it were) on what I was sending.
+			</p>
+		</section>
+		<section>
+			<p>
+				The name for this mailing list alludes to the likes of <i>SIGGRAPH</i> and <i>SIGPLAN</i>.
+				I don't really know what it takes to be an official "Special Interest Group" in the <i>ACM</i>, but I don't need to be official just to copy the style of their names.
+				Nor do Tom7 and his friends over at <i>SIGBOVIK</i>.
+				They do really impressive stuff, and I kind of envy their abilities.
+				I can't say I vouch for all of their style, though.
+				<a href="http://www.sigbovik.org/">http://www.sigbovik.org/</a> if you want to drink from the firehose, or <a href="https://www.youtube.com/user/suckerpinch/">https://www.youtube.com/user/suckerpinch/</a> if you want it slightly more digestibly.
+			</p>
+			<p>
+				The "Conferring" part of <i>SIG-cf.</i>, I wanted to combine the idea of a "conference" of professionals with the idea of "see also" (as that's what "cf." stands for: "confer").
+				The idea of a meeting of the minds and also the idea of a reference to another work.
+			</p>
+			<p>
+				I put my name at the beginning so that anyone else who wants to run one of these can build their own without feeling like they're stepping on my toes.
+				Just fork it whenever you want.
+				Namespaces.
+				</p>
+		</section>
+		<section>
+			<p>
+				The preamble at the beginning of these e-mails comes from the fact that I can't very well include that metadata in the e-mail that it's about, because all of that is inside the string that I'm hashing.
+				So I include it the next time, instead.
+			</p>
+		</section>
+		<section>
+			<p>
+				I'm currently ignoring the fact that I don't feel like I can really get started on anything until I have a sane storage solution.
+				Storage as in bytes on disk.
+				Maybe we'll go into detail on that soon.
+			</p>
+		</section>
+		<section>
+			<p>
+				Instead of making a nice concrete foundation upon which I can build programs, I'm trying to focus on building castles in the sky: protocols instead of implementations.
+				If I'm careful about making good interfaces, then I can potentially swap out implementations later.
+				Then I can choose to make a bad implementation that's good enough for now and come back later to make a better one.
+				Perfect is the enemy of good, so anything that lets you delay an attempt at perfection can help you get real results faster.
+				And real results make more convincing arguments for why other people should use your software than any "it's gonna be great when I finally write it, honest" that you can come up with.
+				Plus, real results give you feedback about what works and what doesn't.
+				Our attention is limited, and it's pretty likely that any design we come up with is going to be wrong, so getting something out there early to actually use is likely to reveal consequences previously un-considered.
+			</p>
+			<p>
+				That said, the project I'm currently working on instead of storage also doesn't have a good interface, let alone a good implementation.
+				I'm hoping I can make do with a bad implementation of a bad version of the interface for a good concept and then re-write it later.
+				We'll see.
+			</p>
+			<p>
+				This project is called "service directory" (because naming things is hard).
+				Like most of my projects, it's a webserver.
+				Service directory wants to be kind of like DNS, conceptually.
+			</p>
+			<p>
+				I write a lot of small webservers.
+				They can't all listen on port 80.
+				It can be hard to keep track of which port has which project listening on it.
+			</p>
+		</section>
+		<section>
+			<p>
+				Okay, my audience is a little too varied in terms of what I can assume they already know about this stuff.
+				That makes it hard to decide where to start.
+				If I start two levels below your understanding, you're going to find it insulting.
+				If I start two levels above, it's not going to feel like English.
+				So, what I think I'll do is mix and match insultingly condescending explanations for absolute beginners with highly technical, specialized descriptions for insiders already in the know.
+				If you see something you don't understand, just ask and I'll try to re-explain it in a follow-up issue.
+			</p>
+		</section>
+		<section>
+			<p>
+				So, a webserver.
+				Or, in my case, a bunch of them.
+				You know what a browser is, and you know that there are webpages out there.
+				Those pages have addresses, and you usually don't type the addresses these days, because you use a search engine to find what you're looking for.
+				Probably Google.
+				The address of a page on the World-Wide Web has a part of it that names what computer it comes from and a part that tells that computer what page to get.
+				When you visit a page, a program on your computer has a conversation with a program on another computer.
+				First, it needs to know how to start talking to that other computer, and then it needs to know what to say to it.
+				The part of the address that says what computer holds the page you want has some indirection to it: the Domain Name System associates these human-readable names with fixed-sized, numerical addresses.
+				Then the Internet Protocol lets your computer send small pieces of information to the computer assigned to that address.
+				Transport Control Protocol lets the program on your computer treat that packet-based interaction with another computer as a continuous conversation.
+				There are multiple programs running on a single computer, and many of them may provide services that you might want to talk to.
+				So there are 64 thousand (actually 65,536, but who's counting?) "ports" associated with each IP address, so you can carry on multiple conversations at once between two computers and have the different programs talk only to the ones they mean to talk to.
+				Some of these ports are permanently assigned to certain protocols.
+				Port 80 is reserved for HTTP, the protocol that the Web uses.
+				That's fine if you only have one webserver on one IP address or domain name.
+				I have several, so I don't use port 80 for all of them.
+				How can I keep track?
+			</p>
+		</section>
+		<section>
+			<p>
+				I wrote all of the above (except for the greeting) before going to sleep, with the expectation that I'd pick up where I left off in the morning.
+				Then I woke up feeling like talking about other things.
+				Then I sat down to write those and forgot them all.
+			</p>
+			<p>
+				When I wrote the greeting, I remembered a greeting from a video by a guy who calls himself Ze Frank.
+				In his video about where ideas come from, he opened with "Good morning, sports racers!", and I thought that was very funny for some reason.
+				It has language that may not be appropriate for all audiences, but here it is if you want to watch it: <a href="https://www.youtube.com/watch?v=0sHCQWjTrJ8">https://www.youtube.com/watch?v=0sHCQWjTrJ8</a>
+			</p>
+		</section>
+		<section>
+			<p>
+				So, a bunch of webservers.
+				There's a little poem in the style of Dr. Seuss that talks about network stuff, but it's mostly nonsense that's half technical and half non-sequitur.
+				My attempt to break down what I meant by "listen on a port" last night reminded me of it.
+				I don't know the origin of the poem, but <a href="http://archive.is/3HRoR">http://archive.is/3HRoR</a> has a copy of it.
+			</p>
+			<p>
+				Anyway, a bunch of webservers.
+				I like to make webservers.
+				I like to take things that shouldn't be webservers and make webservers for them.
+				I want to get to the point where I can do all of my computer-ing in a Web browser.
+				As I said last night, these webservers can't all listen on port 80.
+				The libraries I use for making them listen on a TCP port for incoming connections, these libraries let me specify which port I want to listen on, or they let me say port 0 if I don't care which one to use, and then they'll assign one at (seemingly) random in that case.
+				The client needs to know what port to connect on, so even if I ask for port 0 and get a random port, I need a way to know what port the library assigned to the server.
+				If I were starting all of these servers by hand, it might make sense for me to maintain a text file associating their ports to the service they provide.
+				Then, I could consult that file whenever I want to connect to a service I'm running.
+				However, I'd like to be able to have some of my servers create other servers.
+				They would then need to edit that file, or I would need to restrict the contexts in which they starte servers, to restrict it to those contexts in which I can go edit the file.
+				If other programs are going to edit the port listing file, I would need to tell each of them where it is, and they would have to make sure not to try to edit it simultaneously.
+				Instead, I could wrap that file in a webserver.
+				This isn't how I came up with the idea for a service-directory webserver; in fact, I didn't think about using a flat file for it until last night.
+			</p>
+			<p>
+				The good version of service directory would be a bunch of servers, running on different machines on my network, each of which maintains a list of what services it knows about (including each other), each of them checking to see if their list continues to be accurate (by occasionally asking each service it knows about if it still exists), and each of them telling the others about which services it knows about.
+				A service would announce itself to any one of the service directories, and then they would all know about it (eventually); and, when that service dies, each service directory would (eventually) learn of its death and stop reporting on its existence.
+				Anyone who wants to know about a service could ask any service directory, and (under normal circumstances) they would all give the same answer.
+			</p>
+			<p>
+				The bad version of service directory only knows about services running on its own machine.
+				It only knows port numbers, not the names of services.
+				It checks a service by making an HTTP GET request to "/" on that service's alleged port.
+				It does no other authentication of either the services it reports on nor of the rumormongers who tell it what services exist.
+				Anybody can tell this bad service directory that there is a service listening on some port, just by making an HTTP POST request saying so; the program making the claim can do so on behalf of another service, and service directory can't tell the difference.
+				Instead of discriminating when being told about a port, service directory checks the port later to see if there's a webserver there, before it tells anybody else that there is.
+			</p>
+			<p>
+				A client of the bad version of service directory can only find out from that service directory what local ports have webservers listening on them (and have been reported to the service directory and checked by it).
+				It doesn't know what services those webservers are running.
+				To find that out, it asks the webserver on a well-known path for a resource describing the service.
+				In the bad version, I'm using /service.json (and, yes, unfortunately, I went with JSON).
+				I write most of my webservers in NodeJS, because it gives me the level of control that I want without making me think about the things I don't care to control, and that makes it pretty trivial to read and write JSON.
+				I wrote a little client library for the bad version of service directory in NodeJS, and it automatically handles the resource at /service.json and gives other clients tools for getting those from port numbers.
+				All of this needs to be re-done for the good version of service directory.
+			</p>
+			<p>
+				Part of why the bad version of service directory uses port numbers instead of URLs for services is that I didn't want to have to support domain names.
+				When I started writing service directory, I tried to read the specification for Internet domain names, and I noticed that it alluded to the ARPA specification, which I started trying to read, but then I got bogged down and stopped and decided to punt on that for now.
+				The "for now" kept going, and maybe it's time to try again.
+				Another option would be to extend from port numbers not all the way to URLs nor even to domain names but at least to IPv4 addresses.
+				Then I could have services that aren't on the same computer as the directory without having to support all legal domain names.
+			</p>
+			<p>
+				The bad version of service directory has source code with MD5 <i>27d1add0cdd37630ceb1f1a456f0be95</i> and a version number of 0.0.1, which is my placeholder for "maximally unstable" versions of things.
+				It depends upon the existence of a file called "client.js" in the same directory as it, and that one has MD5 <i>7a7335d9e4a05243cf0efbbfdac245e3</i> in my snapshot.
+				Version 0.0.1 can also be expressed underneath any other version, such as 2.3.1.0.0.1, if I want to start breaking things after version 2.3.1 without creating version 2.3.2 yet.
+				Maximally unstable means that there might be multiple published implementations under the same version number that are mutually incompatible.
+				Normally, under semantic versioning, the first number (the 2 in the 2.3.1 example above) is the one that needs to change if you are introducing a breaking change.
+				That's the "major" version number.
+				https://semver.org/ describes how people normally do this sort of thing, but I do it a little differently (as you can see with my 2.3.1.0.0.1 example).
+			</p>
+		</section>
+		<section>
+			<p>
+				Blah blah blah, nobody cares about the details of service directory.
+				I want it, and I'm building it so I can use it.
+				I plan to build a lot of things around it.
+				Service discovery is central to what I call "<i>guerrilla</i> computing" (though maybe I should call it "<i>guerrilla</i> networking" instead; I don't know).
+				I've noticed that a lot of organizations operate under the assumption that they control their own networks.
+				End users tend to not have as much control as that.
+				We do things on laptops and phones in coffee shops sometimes.
+				What would it look like if your company had to operate under circumstances like that?
+				If you couldn't assume that the network was friendly.
+				Imagine that your local Starbucks doesn't specifically want to prevent you from running servers on their network, but they also aren't interested in supporting you in your efforts to do so, and maybe they put a casual effort into shutting you down but aren't obsessed with it.
+				What, then, would it look like for you to use them as your ISP if you wanted to run a secure, distributed collection of services that your friends can access from around the world?
+				Maybe you're also in bodily danger, so you don't want to stay in one place, so this set of services that provide critical infrastructure for your friends needs to be able to pack up and move every few hours to find another network to tolerate you.
+				That's the world in which service discovery is crucial.
+				We don't live in that world, but the tactics that would be required there are still possible here, so why should we get fat and take for granted that we can afford big air-conditioned server racks and ISPs who are willing to take our money?
+			</p>
+			<p>
+				Anyway, I've rambled at length this morning, and you have other things to work on.
+				I'll send out another one of these at some point in the future.
+				Probably sooner than you'd like.
+				Maybe I'll talk more about what file storage looks like in a <i>guerrilla</i> network.
+				It ain't IPFS (though it may use it for transport).
+			</p>
+		</section>
+		<section>
+			<p>
+				I crave your feedback.
+				Give me something to respond to so that I'm not just talking about what interests me.
+			</p>
+	</body>
+</html>

@@ -1,0 +1,188 @@
+var http = require("http");
+var clientLib = require("./client.js");
+
+function Service(port){
+    this.port = +port;
+    this.announced = [];
+    this.checkbacks = [];
+    this.failures = [];
+}
+Service.prototype.announce = function(){
+    this.announced.push(new Date());
+    return this;
+};
+Service.prototype.failedp = function(){
+    if(!(this.failures.length)) return false;
+    var latestFailure = this.failures[this.failures.length - 1].time;
+    if(!("confirmed" in this)) return true;
+    if(+latestFailure > +(this.confirmed)) return true;
+    return false;
+};
+Service.prototype.activep = function(){
+    if(!("confirmed" in this)){
+	this.check();
+	return false;
+    }
+    var stale = +(new Date()) - +(this.confirmed);
+    if(stale > 1000 * 60 * 5)
+	this.check();
+    if(!this.failedp())
+	return true;
+    if(stale > 1000)
+	this.check();
+    return false;
+};
+Service.prototype.endCheck = function(){
+    this.checkbacks = [];
+    delete this.checking;
+};
+Service.prototype.onResponse = function(res){
+    this.confirmed = new Date();
+    this.endCheck();
+};
+Service.prototype.onError = function(error){
+    this.failures.push({error: error, time: new Date()});
+    this.endCheck();
+};
+Service.prototype.check = function(callback){
+    if(callback)
+	this.checkbacks.push(callback);
+    if("checking" in this) return;
+    this.checking = true;
+    http.get(
+	"http://localhost:" + (+(this.port)),
+	this.onResponse.bind(this)
+    ).on("error", this.onError.bind(this));
+};
+
+function Services(){
+    this.ports = {};
+}
+Services.prototype.lookup = function(port){
+    var p = +port;
+    if(p in this.ports) return this.ports[p];
+    return this.ports[p] = new Service(p);
+}
+Services.prototype.noDebug = !false;
+Services.prototype.debug = function(){
+    if(this.noDebug) return;
+    console.log(this.ports);
+};
+Services.prototype.getPorts = function(){
+    return Object.keys(
+	this.ports
+    );
+};
+
+function Conversation(services, request, response){
+    this.services = services;
+    this.request = request;
+    this.response = response;
+}
+Conversation.prototype.soak = function(callback){
+    clientLib.bad.util.soak(this.request, callback);
+    return this;
+}
+Conversation.prototype.parsePostForm = function(callback){
+    return this.soak(
+	function(payload){
+	    return callback(
+		payload.split("&").map(
+		    function(kv){
+			return kv.split("=");
+		    }
+		)
+	    );
+	}
+    );
+};
+Conversation.prototype.GET = function(){
+    this.response.setHeader("Content-Type", "text/plain");
+    if(!false)
+	this.services.debug();
+    var that = this;
+    return this.response.end(
+	this.services.getPorts().filter(
+	    function(x){
+		return that.services.lookup(+x).activep();
+	    }
+	).sort(
+	    function(a, b){
+		return +a - +b;
+	    }
+	).map(
+	    function(x){
+		return +x + "\r\n";
+	    }
+	).join("")
+    );
+};
+Conversation.prototype.POST = function(){
+    var that = this;
+    this.parsePostForm(
+	function(args){
+	    var portargs = args.filter(
+		function(kv){
+		    return "port" == kv[0];
+		}
+	    );
+	    if(!portargs.length) return;
+	    return that.services.lookup(+(portargs[0][1])).announce();
+	}
+    );
+    return this.GET();
+}
+Conversation.prototype.handleRequest = function(){
+    if("POST" == this.request.method)
+	return this.POST();
+    return this.GET();
+};
+
+function Server(services, port){
+    this.services = services;
+    this.port = port;
+}
+Server.prototype.handle = function(req, res){
+    return (
+	new Conversation(this.services, req, res)
+    ).handleRequest();
+};
+Server.prototype.init = function(){
+    var service;
+    function failback(){}
+    var metadata = {
+	name: "service directory",
+	version: [0, 0, 1],
+	include: ["framework"]
+    };
+    service = clientLib.bad["make local server"](
+	clientLib.bad["combine handler"](
+	    this.handle.bind(this),
+	    metadata
+	),
+	this.port,
+	this.port,
+	function(port){
+	    return clientLib.bad["announce service"](
+		port,
+		port,
+		function(response){
+		    return clientLib.bad["after announce"](
+			response,
+			port,
+			function(){
+			    console.log("listening at http://localhost:" + port);
+			},
+			failback
+		    );
+		},
+		failback
+	    );
+	}
+    );
+};
+Server.make = function(){
+    return new this(new Services(), +(process.argv[2]));
+};
+
+Server.make().init();
