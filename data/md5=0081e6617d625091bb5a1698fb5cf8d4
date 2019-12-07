@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<title>guerrilla storage</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				My last e-mail had a subject line of "[msr.sigcf] service directory" and a body with an MD5 of <i>cef9302ad99e7ffbde660579c7fb962b</i>.
+				An HTML version of it has an MD5 of <i>25bbab5c07fe62f2030d45567ed9849a</i>.
+				These can be found in my content-addressable storage described in an e-mail I sent out with an MD5 of <i>0d7177f4b08b7f2f81579a37073ac645</i>, which is served up at such URLs as <a href="http://archive.is/FyoSb">http://archive.is/FyoSb</a> and <a href="http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a> and <a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645">https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645</a>.
+			</p>
+			<p>
+				I sent that e-mail on Friday, December 6, 2019 at 09:04:39 CST (<i>i.e.</i>, -0600) or 1575644679.
+				It contains at least one typo: I referred to the message digest of a previous e-mail as its "version" instead of, say, its "hash" or "digest" or even "address".
+				I also forgot to italicize the "<i>id est</i>" abbreviation in the HTML version.
+				<i>C'est la vie</i>.
+			</p>
+		</section>
+		<section>
+			<p>
+				I got some feedback from a previous e-mail.
+				In response to the one about content-addressable storage with an MD5 of <i>0d7177f4b08b7f2f81579a37073ac645</i>, someone said:
+			</p>
+			<blockquote>
+				<p>
+					The section with four paragraphs that were separated by single linebreaks only was difficult to read.
+					When I reached the end of a line, I had a hard time finding the start of the next line among the many lines of the section.
+					I found I could remedy this somewhat by making the window narrower.
+				</p>
+				<p>
+					I also found your topic changes uncomfortable.
+					In hindsight, I see that you used a double line break (section break in HTML) to indicate a change in subject, but in my first read-through, each topic change caught me by surprise. I found myself wanting to recommend that you use headers to declare topics, but now I'm not sure whether that's a good idea.
+					To come up with a solution would require me to understand what my issue was with the topic changes, and at the moment I'm not certain about that.
+					Perhaps it's a clash between your writing style and what I'm used to from clickbait writers, which is certainly not a situation in which I would want you to conform to the other party.
+				</p>
+			</blockquote>
+			<p>
+				I asked permission before publishing that response.
+			</p>
+		</section>
+		<section>
+			<p>
+				I'm taking suggestions for better names for this newsletter.
+				I'm not married to the name I've given it; it's basically just a placeholder.
+				That said, I'm going to resist the temptation to frequently rename it, so whatever I change its name to will stick for awhile even if we come up with a better one soon after.
+			</p>
+		</section>
+		<section>
+			<p>
+				A few more of my friends have been willing to join this e-mail list.
+			</p>
+		</section>
+		<section>
+			<p>
+				A more polite name than the "<i>guerrilla</i> computing" I mentioned in my previous e-mail has occurred to me: "trustless networking" probably raises fewer hackles.
+				An alternate scenario for it has also come to mind: rather than a coffee shop, imagine you had an agreement with a friend to host each other's hardware.
+				Can you minimize the amount of damage your friend can do if they become your enemy when your computers are at their house and you aren't?
+				It is commonly understood that if an attacker gains physical access to your computer, you can assume that computer to be compromised.
+				Another way of looking at that is that, once you take possession of your computer that you own, you can be sure that you own it and nobody else does.
+				Big tech companies are making progress at changing that.
+				Perhaps we can use some of the same tactics to protect our own ownership of our computers as their manufacturers use to prevent us from owning our own property.
+				Storage is an area that needs special attention for this purpose.
+			</p>
+			<p>
+				I want to be able to do in a network setting what I can do today on my own computer.
+				On my computer, I can create a file without having to think about whether or not anyone else will ever see it.
+				It is private by default, and it only becomes public when I say so.
+				The disk sits inside my computer, and as long as nobody gets into my machine, I can know that irrevocably deleting my information is within the same reach as irrevocably destroying the disk is.
+				Now, some of that still isn't as easy as I'd like it to be.
+				It doesn't take physical access to exfiltrate data from my system, as it tends to stay online, so all someone would need to do is pwn my machine and then ask it to send my data wherever it wants.
+				An air gap would fix that, but I'm not interested in that level of inconvenience.
+				Solid-state drives aren't as easy to erase for reuse as ye olde spinnin' rust, but I'm sure a microwave oven could make the data go away forever if I didn't want to reuse the disk.
+				To get the level of security that I take for granted on a local machine, a remote system would need to be far more secure&mdash; just to get the same level.
+				I would basically need to be able to afford to "lose" a disk not just in the sense of "I don't have it anymore" but also in the sense of "somebody else has it now" too.
+				If I want to store secrets on the network, I need data to be secure at rest.
+			</p>
+			<p>
+				There's a kind of encryption based on the exclusive-OR operation (which basically takes the bitwise parity of its inputs: an odd number of inputs being "on" causes the output to be "on", and an even number makes it be "off").
+				It's called the one-time pad, and it has some strengths and weaknesses I'm not sure I've seen in any other form of encryption.
+				The two biggest weaknesses I know of in the OTP system are that you have to transfer as much pad material as there is plaintext.
+				That's two weaknesses: one about space and the other about time.
+				All a one-time pad system can really do for you is let you time-shift when it is that you use a different secure channel to transfer the pad material instead of the plaintext.
+				For some applications, though, that's all you need.
+				If you are two military spies, you can probably arrange a secure drop of terabytes of pad material, or maybe even an occasional in-person transfer, and that's enough to buy you that much secure transfer at a later time over any insecure channel.
+				But only once.
+				The "one-time" part of a one-time pad means you must never re-use the pad material.
+				The strength of an OTP system is that, if your random number generator is good enough, and if you never leak the pad, then your ciphertext is completely useless to the attacker.
+				All Eve (that's what cryptographers tend to name the evesdropper when Alice and Bob are trying to communicate securely) knows is the length of your message, and you can always mask that by padding (though you can't make it shorter) ... oops, namespace collision: "padding" and "pad" aren't the same thing here.
+				Anyway, there are ways to hide the length of your messages.
+				For a message of length n bits, all 2^n bitstrings of that length are equally likely for a given ciphertext Eve can get her hands on.
+				This makes it pretty secure at rest!
+				The problem for using an OTP system for cold storage is that you have to then store an equal amount of pad material somewhere secure as the amount of ciphertext you publish.
+				You might as well just store the plaintext instead of the pad, if you're going to do that.
+			</p>
+			<p>
+				I am thinking, though, that maybe it's okay to have pad material that isn't perfectly random, as long as its randomness is cryptographically secure.
+				If you can implement a CSPRNG (cryptographically-secure random number generator), then maybe you can store the seed instead of the sequence it generates.
+				Then, instead of having to have as much secure storage as insecure storage, you can store for each file or block or whatever unit of plaintext&mdash; you can securely store for each of those only the seed that generates the pad that you XOR against the plaintext to generate the ciphertext.
+				Then you can publish the ciphertext, as far as anyone cares.
+				Nobody can do anything with the ciphertext except infer the existence of the plaintext (and completely compromise it if they ever crack your secure granary).
+				Furthermore, once you have enough of these seeds stored and associated with the addresses of their corresponding ciphertexts, you can bundle up that collection into some data structure, which then becomes a plaintext you wish to protect, and then you only need to securely store the seed that protects that plaintext.
+				Granted, it'll be slow to traverse that tree to get at one of the leaves that has the plaintext you actually want, but this is an unbounded solution to store an unlimited amount of secrets in cold storage, so I'd say pick your battles.
+				If you need it to be fast, cache the parts you use more often somewhere closer to you, like on the client computer that you already trust for local things anyway.
+				Y'know, where the secret seed storage is.
+				A system like that then contains two kinds of disks: ones that you publish and one that you don't.
+			</p>
+			<p>
+				I want a CSPRNG that I can implement by myself.
+				One that can fit in my head, that I can understand well enough to write code for without a reference.
+				One that, once I learn it, I could write it in assembly on a novel architecture if you handed me a brand new computer without an Internet connection.
+				Maybe on a computer I build myself from components large enough to visually inspect but too small to hide a spying device inside of.
+				I thought that Wolfram's automata were a good candidate for that, but a friend of mine convinced me that they are actually reversible.
+				There may be some novel way to use them that prevents that from being a problem, but I got too spooked by that revelation to want to continue down that path at this time.
+			</p>
+			<p>
+				There's probably plenty more to say about storage, but nothing is coming to mind right now, so I'll leave it at that.
+			</p>
+		</section>
+		<section>
+			<p>
+				Maybe next time I'll talk about my reverse proxy and what that affords me.
+			</p>
+		</section>
+		<section>
+			<p>
+				I like hearing from you, so don't hesitate to respond to anything I've said here or even to say anything on any other topic.
+			</p>
+		</section>
+		<section>
+			<p>
+				I'm up writing this later than I mean to be, because I don't want to leave one of these partially completed overnight like last time.
+			</p>
+ 		</section>
+	</body>
+</html>
