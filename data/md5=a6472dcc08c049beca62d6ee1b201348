@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>services calendar and static</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				My last e-mail had a subject line of "[msr.sigcf] reverse proxy" and a body with an MD5 of <i>c3ab479a5a38f497d048ba748955c180</i>.
+				An HTML version has an MD5 of <i>49c2096c4c95307db1e603e4566a82cc</i>.
+				These can be found in my content-addressable storage described in an e-mail I sent out with an MD5 of <i>0d7177f4b08b7f2f81579a37073ac645</i>, which is served up at such URLs as <a href="http://archive.is/FyoSb">http://archive.is/FyoSb</a> and <a href="http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a> and <a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645">https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645</a> and <a href="http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a>.
+			</p>
+			<p>
+				I sent this last e-mail on Saturday, December 7, 2019 at 10:51:44 CST (<i>i.e.</i>, -0600) or 1575737504 seconds.
+			</p>
+		</section>
+		<section>
+			<p>
+				The last e-mail I sent out had some typos that are bothering me.
+				I ended a sentence with a URL and didn't put a space between the URL and the period.
+				I meant to at least say "seconds" after the timestamp.
+				I wanted to include another archival URL for my e-mail about CAS, but I forgot to.
+				It's <a href="http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a>.
+				I also said "as described" in a way that was ambiguous and wish that I had instead said "which is described" there.
+				I mentioned some topics that might be worth talking about.
+				Other topics include Category Theory, idempotent behavior, and diagonalization.
+			</p>
+		</section>
+		<section>
+			<p>
+				I got a non-anonymous reply to one of my posts!
+				In reply to the one about <i>guerrilla</i> storage with an MD5 of <i>0081e6617d625091bb5a1698fb5cf8d4</i>, my wife had this to say:
+				<blockquote>
+					<p>
+						I noticed that "<i>C'est la vie</i>" wasn't italicized, but then I remembered that this was the plaintext version, and confirmed that with you in person.
+					</p>
+					<p>
+						When saying what CSPRNG stands for, you neglected to say what the P stands for.
+					</p>
+					<p>
+						<blockquote>
+							All Eve (that's what cryptographers tend to name the evesdropper when Alice and Bob are trying to communicate securely) knows&hellip;
+						</blockquote>
+						At the point that you realized you needed to explain "Eve", you could have chosen not to use it.
+						This inline explanation is really clunky.
+					</p>
+					<p>
+					<blockquote>
+						&hellip;and you can always mask that by padding (though you can't make it shorter) ... oops, namespace collision: "padding" and "pad" aren't the same thing here.
+						Anyway&hellip;
+					</blockquote>
+					Is this stream-of-consciousness style something you want?
+					You don't have to tell me (though I guess I would prefer that you did); it's more important that you decide.
+					</p>
+				</blockquote>
+				And she even gave me permission to publish her reply and to attribute it to her.
+			</p>
+			<p>
+				Upon reading her reply, I noticed that I had misspelled "eavesdropper" because I had the name "Eve" in my head when I was writing it.
+			</p>
+		</section>
+		<section>
+			<p>
+				On to the show.
+			</p>
+			<p>
+				I suggested that I'll talk about applications of my (reverse) proxy, and that still sounds like a good idea, so that's what I'll do.
+			</p>
+			<p>
+				Application the first: Gregorian calendar.
+			</p>
+			<p>
+				I like URLs.
+				I think more things should use URLs as first-class objects.
+				I want to support the use of URLs in my projects.
+				I like the idea of RDF, so I'd like to build applications that use triples of URLs to build other data structures.
+			</p>
+			<p>
+				Sometimes I want to use a date or a time as a value.
+				Sometimes I want to use one where a URL would make sense to use.
+				I might even want to link to a whole month for something.
+				If I had a general-purpose application for annotating other webpages with comments stored at URLs, I might want to make my agenda into a set of comments on the day ahead, and so I'd want to make a page for that day or for a time during that day.
+				I've made things like that in the past, without URLs for everything, and it was a pain to manually create all the days as time went on.
+				It would be nice to have a webserver that serves up an infinite structure of time for me, giving each meaningful unit its own page with its own URL.
+				It would only need to create the pages as I request them, and then it could forget them immediately.
+				I live in a society that uses the Gregorian calendar, so that's the calendar I think in, so it would be nice if the pages this server shows me correspond to that.
+				I also use computers, where integer timestamps are convenient.
+				The Unix epoch was the midnight between 1969 and 1970, in Universal Coordinated Time.
+				It would be nice if I could easily convert the pages on my calendar server into intervals of seconds relative to that epoch.
+			</p>
+			<p>
+				I wrote that calendar webserver.
+				I implemented it in NodeJS, mostly just wrapping an existing JS library.
+				All the hyperlinks on every page are relative, so it can portably graft into any webserver via my proxy, and all the links will still work, except for upward links if they point above the grafting cut.
+				Now, if I want to make a JS-heavy front-end that uses AJAX to traverse the structure of the pages in my calendar, I can just graft it into another spot on the same webserver's tree of resources.
+				If I want to link to a date or time or even month, I can just make a relative hyperlink starting from the root of that namespace.
+				I could have implemented this as a separate webserver, running on a fixed computer with a fixed domain name, but then I would need to use DNS and pay forever to keep ownership of a domain name and keep it online forever so that the links I make to it never fail, in case someone else is depending on them.
+				Tim Berners-Lee says that cool URIs don't change.
+				If I delay publishing my calendar until a later time when I know where it will go, then I can make a better choice later.
+				My local proxy can have relative URLs that will be portable whenever I end up with a domain name, if I ever do.
+				If I don't, maybe I can keep my proxy dancing and convince other people to run their own proxies, and maybe we can share services in such a way as to allow them to always see my services on a particular hostname regardless of what the public DNS says.
+				I wouldn't want them to have to trust me to graft my services directly into their local namespaces, though.
+				I also made my calendar webserver announce itself to service directory (which is described in a previous e-mail with an MD5 of <i>25bbab5c07fe62f2030d45567ed9849a</i>), so I can have it start on a random port and things (like the proxy) can simply find it through that indirection.
+			</p>
+		</section>
+		<section>
+			<p>
+				Application number the second one: static files.
+			</p>
+			<p>
+				Before I wrote this version of my proxy, I wrote a bad one.
+				This one was ad-hoc, and it started out with a few static files, finitely enumerated.
+				I then found that I wanted to graft a whole directory onto its namespace and have every subdirectory resolve automatically when I add new files, without having to restart the proxy.
+				I knew I was going to want to keep the proxy general, so I made a separate webserver for static files and gave it its own configuration.
+				Eventually, I made some bad decisions for how that should be implemented, and I ended up with a big, complicated mess.
+				Oh, and I also grafted the root of my filesystem in there, for good measure.
+				When I came back and wrote the simpler proxy, I wanted to preserve all the old behavior for my static webserver so as not to break my existing workflows.
+				I wrote what I'm calling a "scab" here: some glue code that cleanly implements some ugly logic, with the expectation that one day it will evaporate when I refactor its components away.
+				That's working well for now, but I want to re-write it soon.
+				I also, of course, want to integrate it with service directory.
+				The current scab actually uses service directory to graft the Gregorian calendar into its namespace, and I'd like it to do so with the static fileserver also, and I'd like the static fileserver to get its configuration from a service known to the directory as well.
+				I find it very convenient to just make a new directory, open a file in a text editor, and link to it from elsewhere in my filesystem and know that I can follow that link from a page my proxy serves.
+				I can put any JS I want on that page and know that it will have access to everything on my proxy.
+				My proxy only responds to requests that come from the loopback interface on my machine, so I don't have to think too hard about accidentally exposing it to the outside world.
+			</p>
+		</section>
+		<section>
+			<p>
+				There's an unlimited amount of more to say about these things, but I'm trying to keep these shorter.
+				I know you guys have lives, and I would like for you to be able to read what I write without it taking up an inordinate amount of your time.
+			</p>
+		</section>
+		<section>
+			<p>
+				As always, I welcome any feedback you may have.
+			</p>
+		</section>
+	</body>
+</html>
