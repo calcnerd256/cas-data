@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>typos and digest</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				My last e-mail had a subject line of "[msr.sigcf] services calendar and static" and a body with an MD5 of <i>a49410041c48c4cf311b2c59851c878c</i>.
+				An HTML version has an MD5 of <i>a6472dcc08c049beca62d6ee1b201348</i>.
+				These can be found in my content-addressable storage described in an e-mail I sent out with an MD5 of <i>0d7177f4b08b7f2f81579a37073ac645</i>, which is served up at such URLs as <a href="http://archive.is/FyoSb">http://archive.is/FyoSb</a> and <a href="http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a> and <a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645">https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645</a> and <a href="http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a>.
+				I sent this last e-mail on Saturday, December 7, 2019 at 17:24:23 CST (<i>i.e.</i>, -0600) or 1575761063 seconds: that's /calendar/Gregorian/AD/2019/12/7/23/24/23/ on my local proxy.
+			</p>
+		</section>
+		<section>
+			<p>
+				I found a defect in my calendar's implementation, thanks to my attempt to use it to write about the time of a previous e-mail.
+			</p>
+			<p>
+				I found a typo in a previous e-mail while trying to write today's digest of last week's e-mails.
+				In the one about service directory with an MD5 of <i>25bbab5c07fe62f2030d45567ed9849a</i>, I said "starte" (probably because I had said "started" and then changed it to present tense).
+				In the one about my reverse proxy with an MD5 of <i>49c2096c4c95307db1e603e4566a82cc</i>, I managed to misspell "mediates" as "midates".
+			</p>
+		</section>
+		<section>
+			<p>
+				I didn't write anything today.
+				Sorry.
+				I did, however, finish last week's digest.
+				Its MD5 is <i>f3bf56252657268fa076f2024a05aef8</i>.
+			</p>
+		</section>
+	</body>
+</html>

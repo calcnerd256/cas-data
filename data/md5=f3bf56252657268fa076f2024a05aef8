@@ -1,0 +1,885 @@
+Here's what I've published last week.
+
+by day, minute:
+ [ /calendar/Gregorian/AD/2019/12/5/6/ , /calendar/Gregorian/AD/2019/12/6/6/ )
+  /calendar/Gregorian/AD/2019/12/5/20/26/
+   /cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+  /calendar/Gregorian/AD/2019/12/5/21/11/
+   /cas/md5=0516ace76131b95a7207546edf51e4e2
+  /calendar/Gregorian/AD/2019/12/5/22/30/
+   /cas/md5=b14e0d4b658c26c223b29bd58dba6ad6
+  /calendar/Gregorian/AD/2019/12/5/22/37/
+   /cas/md5=88680187ed695de946fbdfc5a5ab217d
+  /calendar/Gregorian/AD/2019/12/5/23/46/
+   /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+   /cas/md5=34595f59d553480fe5a1ad8913e919e8
+ [ /calendar/Gregorian/AD/2019/12/6/6/ , /calendar/Gregorian/AD/2019/12/7/6/ )
+  /calendar/Gregorian/AD/2019/12/6/14/59/
+   /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+   /cas/md5=27d1add0cdd37630ceb1f1a456f0be95
+   /cas/md5=7a7335d9e4a05243cf0efbbfdac245e3
+   /cas/md5=cef9302ad99e7ffbde660579c7fb962b
+  /calendar/Gregorian/AD/2019/12/7/3/43/
+   /cas/md5=0081e6617d625091bb5a1698fb5cf8d4
+   /cas/md5=0b5fcef85b8fecdeeb425634dc14c238
+ [ /calendar/Gregorian/AD/2019/12/7/6/ , /calendar/Gregorian/AD/2019/12/8/6/ )
+  /calendar/Gregorian/AD/2019/12/7/16/48/
+   /cas/md5=49c2096c4c95307db1e603e4566a82cc
+   /cas/md5=c3ab479a5a38f497d048ba748955c180
+  /calendar/Gregorian/AD/2019/12/7/23/21/
+   /cas/md5=a49410041c48c4cf311b2c59851c878c
+   /cas/md5=a6472dcc08c049beca62d6ee1b201348
+
+by MIME type:
+ text/plain
+  /cas/md5=0516ace76131b95a7207546edf51e4e2
+  /cas/md5=0b5fcef85b8fecdeeb425634dc14c238
+  /cas/md5=34595f59d553480fe5a1ad8913e919e8
+  /cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+  /cas/md5=a49410041c48c4cf311b2c59851c878c
+  /cas/md5=c3ab479a5a38f497d048ba748955c180
+  /cas/md5=cef9302ad99e7ffbde660579c7fb962b
+ text/html
+  /cas/md5=0081e6617d625091bb5a1698fb5cf8d4
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=49c2096c4c95307db1e603e4566a82cc
+  /cas/md5=88680187ed695de946fbdfc5a5ab217d
+  /cas/md5=a6472dcc08c049beca62d6ee1b201348
+  /cas/md5=b14e0d4b658c26c223b29bd58dba6ad6
+ application/javascript
+  /cas/md5=27d1add0cdd37630ceb1f1a456f0be95
+  /cas/md5=7a7335d9e4a05243cf0efbbfdac245e3
+
+by e-mail:
+ [msr.sigcf] newsletter begin
+  /calendar/Gregorian/AD/2019/12/5/20/3/3/
+  /cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+  /cas/md5=b14e0d4b658c26c223b29bd58dba6ad6
+ [crackpots] new mailing list
+  /calendar/Gregorian/AD/2019/12/5/21/15/48/
+  /cas/md5=0516ace76131b95a7207546edf51e4e2
+  /cas/md5=88680187ed695de946fbdfc5a5ab217d
+ [msr.sigcf] content-addressable storage
+  /calendar/Gregorian/AD/2019/12/5/23/58/32/
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=34595f59d553480fe5a1ad8913e919e8
+ [msr.sigcf] service directory
+  /calendar/Gregorian/AD/2019/12/6/15/4/39/
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=27d1add0cdd37630ceb1f1a456f0be95
+  /cas/md5=7a7335d9e4a05243cf0efbbfdac245e3
+  /cas/md5=cef9302ad99e7ffbde660579c7fb962b
+ [msr.sigcf] guerrilla storage
+  /calendar/Gregorian/AD/2019/12/7/3/46/34/
+  /cas/md5=0081e6617d625091bb5a1698fb5cf8d4
+  /cas/md5=0b5fcef85b8fecdeeb425634dc14c238
+ [msr.sigcf] reverse proxy
+  /calendar/Gregorian/AD/2019/12/7/16/51/44/
+  /cas/md5=49c2096c4c95307db1e603e4566a82cc
+  /cas/md5=c3ab479a5a38f497d048ba748955c180
+ [msr.sigcf] services calendar and static
+  /calendar/Gregorian/AD/2019/12/7/23/24/23/
+  /cas/md5=a49410041c48c4cf311b2c59851c878c
+  /cas/md5=a6472dcc08c049beca62d6ee1b201348
+
+topics by e-mail:
+ newsletter begin
+  first
+  future planning
+  greeting
+  me
+  msr.sigcf
+  my name
+  name
+  namespace
+  newsletter
+  newsletter issue
+  occasional newsletter
+  special interest group
+  sticky names
+ new mailing list
+  dead community
+  desire
+  inform
+  mailing list
+  personal
+  software
+  solicitation
+  start anew
+  subscription
+  time
+  to bounce an idea off an audience
+  update frequency
+  value judgment
+  verbal processor
+ content-addressable storage
+  abductive reasoning
+  accountability
+  anonymity
+  Apache webserver
+  assumption
+  audience
+  backed by evidence
+  bitrot
+  BitTorrent
+  blind carbon-copy
+  blind trust
+  boundaries
+  browser
+  byte
+  byte-level preservation
+  calcnerd256.dyndns.org
+  carriage return, line feed
+  /cas/md5=0516ace76131b95a7207546edf51e4e2
+  /cas/md5=7fa1bc0919c3e84ddfd8bc28d62e01ab
+  /cas/md5=88680187ed695de946fbdfc5a5ab217d
+  /cas/md5=b14e0d4b658c26c223b29bd58dba6ad6
+  cite a source
+  clipboard
+  communication
+  community
+  content-addressable storage
+  content type inference
+  convenience
+  crackpots mailing list
+  cryptographically broken
+  CST
+  deduplication
+  desire
+  different people
+  duplication
+  e-mail
+  e-mail body
+  e-mail subject line
+  emotion
+  extrinsic metadata
+  fear
+  file
+  file extension
+  filename
+  file storage
+  filing a file in a filesystem
+  git
+  git commit
+  GitHub
+  git push
+  Google Gmail
+  happy
+  hash
+  hash as checksum
+  HTML
+  HTTP
+  human frailty
+  immutability
+  inconvenient workflow
+  inform
+  in-place mutation
+  intention
+  invariance
+  IPFS
+  langsec
+  line endings
+  locating a file
+  magnet link
+  mailing list
+  MD5
+  memento mori
+  memory
+  MIME type
+  mirrored storage
+  msr.sigcf
+  multiple copies of a file
+  multiple options
+  multiple people
+  mutability
+  my CAS webserver
+  my contact information
+  my content-addressable storage
+  my domain name
+  my e-mail address
+  newsletter issue
+  occasional newsletter
+  open to rebuke
+  perfection
+  practical
+  preference
+  previous e-mail
+  privacy
+  proactive
+  proof
+  proxy webserver
+  public
+  publish
+  remind
+  reply
+  request
+  sequence
+  singular
+  speculation
+  steganography
+  storage
+  subscribtion
+  temporal attenuation
+  text editor
+  text encoding
+  text file
+  text/* MIMEtype
+  time
+  universal
+  Unix epoch
+  URL
+  value judgment
+  violate
+  webserver
+  willing
+ service directory
+  abbreviation
+  abductive reasoning
+  ACM
+  allegation
+  alternate reality
+  a mapping
+  an implementation of an interface
+  announce
+  anthropomorphism
+  apathy
+  arbitrary
+  archive.is
+  ARPA
+  assumption
+  attention
+  audience
+  authenticate
+  bad version
+  breaking change
+  broadcast
+  browser
+  browser UI
+  build what you want to have
+  busy
+  calcnerd256.dyndns.org
+  careful planning
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=27d1add0cdd37630ceb1f1a456f0be95
+  /cas/md5=34595f59d553480fe5a1ad8913e919e8
+  /cas/md5=7a7335d9e4a05243cf0efbbfdac245e3
+  client library
+  client/server
+  coffee shop
+  collaboration
+  communication
+  compromise
+  computer hardware
+  concrete
+  concurrent modification of mutable state
+  condescend
+  confer
+  conference
+  configuration
+  configuration text file
+  consensus
+  consent
+  content-addressable storage
+  continuity
+  control
+  crackpots mailing list
+  CST
+  cuss
+  death of a process
+  debate
+  default
+  delay
+  delegate
+  denial
+  dependencies
+  desire
+  discern
+  DNS
+  domain name
+  Dr. Seuss
+  e-mail body
+  e-mail subject line
+  English
+  envelope
+  eventual consistency
+  expectations
+  expense
+  exponent
+  feedback
+  file mutex locks
+  file storage
+  firm foundation
+  fluent
+  forget
+  format
+  friend
+  future planning
+  geodiversity
+  GitHub
+  Google
+  greeting
+  guerrilla computing
+  hostname
+  HTML
+  HTTP
+  HTTP GET
+  HTTP method
+  HTTP POST
+  HTTP request
+  human frailty
+  hyperlink
+  ideas
+  ignorance
+  inappropriate
+  informavore
+  inner circle
+  interface
+  internetworking
+  invocable name
+  IP address
+  IPFS
+  IPv4
+  ISP
+  JSON
+  knowledge
+  laptop
+  late binding
+  limitation
+  major version
+  manual operation
+  maximal instability
+  MD5
+  message length
+  morning
+  msr.sigcf
+  multiple computers
+  multiple implementations
+  multiple projects
+  multiple users
+  multiple webservers
+  my domain name
+  my name
+  my way of doing things
+  name
+  namespace
+  naming convention
+  network
+  network packet
+  network port
+  newsletter issue
+  Node JS
+  nomad
+  organize
+  overnight
+  ownership
+  peer-to-peer network
+  perfectionism
+  persecution
+  phone number
+  placeholder
+  plan for the worst
+  poetry
+  port assignment
+  preamble
+  preference
+  previous e-mail
+  protocol
+  public business
+  pun
+  random
+  rate limit
+  request
+  respect
+  restate
+  restrict to a context
+  retrospect
+  revisit
+  rework
+  re-write
+  root path
+  rumor
+  search engine
+  self-aware
+  self-sealing
+  semantic versioning
+  sequence
+  server port
+  service directory
+  service discovery
+  service name
+  service provider
+  SIGBOVIK
+  SIGGRAPH
+  SIGPLAN
+  sky castle
+  sleep
+  smartphone
+  software library
+  solipsism
+  special interest group
+  sports racers
+  stale cache
+  Starbucks
+  storage
+  subcreation
+  subscribe
+  TCP
+  territory
+  The Sorcerer's Apprentice
+  time
+  to bounce an idea off an audience
+  to create a process instance
+  to drink from a firehose
+  to fork a project
+  to get bogged down
+  tolerance
+  Tom7
+  to punt for now
+  to repeat an unverified rumor
+  to seal an envelope
+  to take something for granted
+  to vouch for another author
+  typo
+  unintended consequences
+  unity
+  universal interface
+  Unix epoch
+  upon waking
+  URL
+  URL path
+  v0.0.1
+  value judgment
+  verify
+  version number
+  vertex-transitive
+  voluntary exchange
+  Web
+  Web resource
+  webserver
+  well-known value
+  wellness
+  worst of both worlds
+  wrap with a webserver
+  YouTube
+  Ze Frank
+ guerrilla storage
+  affordances
+  air gap
+  Alice
+  alternate use
+  anonymity
+  archive.is
+  assembly language
+  assumption
+  audience
+  available directions in which to make progress
+  block storage
+  Bob
+  boolean
+  build your own computer
+  cache
+  calcnerd256.dyndns.org
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=cef9302ad99e7ffbde660579c7fb962b
+  churn
+  ciphertext
+  coherence
+  commitment
+  common knowledge
+  component size
+  compression
+  compromise
+  computer
+  conformity
+  consent
+  content-addressable storage
+  convenient
+  crack
+  cryptographer
+  cryptographically secure
+  CSPRNG
+  CST
+  cybersecurity
+  data structure
+  delete
+  dependencies
+  desire
+  devoted to destruction
+  diagonalization
+  discomfort
+  disk storage
+  eavesdrop
+  e-mail body
+  e-mail subject line
+  emotion
+  encryption
+  Eve
+  exfiltration
+  expectations
+  exponential
+  fear
+  feedback
+  fight fire with fire
+  file system
+  fits in mind
+  friend
+  future planning
+  GitHub
+  granary
+  GUI
+  hardware
+  hardware bugging
+  hash
+  hindsight
+  HTML
+  i.e.
+  implementation
+  indifferent
+  infer
+  information leak
+  insecure channel
+  instruction-set architecture
+  introspection
+  irrevocable
+  italics
+  late binding
+  length padding
+  locality
+  location
+  MD5
+  message length
+  microwave oven
+  military
+  more to say
+  msr.sigcf
+  my domain name
+  name
+  namespace collision
+  network
+  newsletter issue
+  novelty
+  OEM
+  one-time pad
+  online
+  on-topic
+  optimization
+  ownership
+  pad material
+  paragraph
+  parity
+  physical access
+  pick your battles
+  placeholder
+  plaintext
+  previous e-mail
+  priorities
+  privacy
+  pseudorandom number generator
+  public
+  publish
+  pwn
+  random
+  random number generator
+  random seed
+  rate limit
+  readability
+  recursion
+  reduction
+  relationship
+  rendezvous
+  repeat effort
+  reskinning
+  reuse
+  reversable computing
+  reverse proxy
+  sarcasm
+  section
+  section heading
+  secure at rest
+  secure channel
+  secure communication
+  secure drop
+  secure storage
+  security
+  seed storage
+  session
+  side channel
+  sleep
+  slow
+  solid-state drive
+  space and time
+  spinning rust
+  stop somewhere
+  storage
+  storage capacity
+  strengths and weaknesses
+  subscriber
+  technology companies
+  terabyte
+  time-shift
+  to become aware of something
+  train of thought
+  traversal
+  trust
+  trusted storage
+  typo
+  typography
+  uncertainty
+  Unix epoch
+  unlimited
+  URL
+  useless
+  user freedom
+  value judgment
+  whitespace
+  Wolfram automaton
+  XOR
+ reverse proxy
+  all but finitely many
+  ambiguity
+  ambiguity resolution
+  ambivalence
+  archive.is
+  audience
+  bet
+  biased preferences
+  broken hyperlink
+  browser
+  browser-based application
+  caching Web proxy
+  calcnerd256.dyndns.org
+  /cas/md5=0081e6617d625091bb5a1698fb5cf8d4
+  /cas/md5=0b5fcef85b8fecdeeb425634dc14c238
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  CDN
+  command-line arguments
+  configuration
+  configuration file
+  configurator
+  consequence
+  content-addressable storage
+  context
+  convention
+  CORS
+  creeping featurism
+  CST
+  delegate
+  delegation of choice
+  digest
+  directory
+  domain
+  do one thing well
+  drama
+  e-mail body
+  e-mail subject line
+  escrow
+  etiquette
+  feedback
+  finite collection
+  finite lookup table
+  forgetfulness
+  forwarding Web proxy
+  future planning
+  general case
+  GitHub
+  guerrilla storage
+  GUI
+  hierarchical namespace
+  hostname
+  HTML
+  HTTP request
+  HTTP response
+  human frailty
+  ignorance
+  ignore distinction
+  implementation
+  infinite structure
+  insecure by default
+  interpersonal communication protocol
+  inter-process communication
+  isomorphism
+  late binding
+  launch script
+  least power
+  Lisp
+  making up for something
+  mathetes
+  MD5
+  mediation
+  metonymy
+  mislead
+  monolith
+  multiple webservers
+  music
+  my domain name
+  my proxy
+  nag
+  namespace
+  namespace grafting
+  newsletter
+  no obligation
+  objectively verify
+  offense
+  open lines of communication
+  pairwise complexity
+  path component
+  path separator
+  polyglot
+  power creep
+  prefix
+  previous e-mail
+  proxy applications
+  proxy webserver
+  recursion
+  relative path
+  reuse without rewrite
+  reverse proxy
+  risk mitigation
+  Sam Bleckley
+  same origin
+  secret
+  self-reference
+  service directory
+  simplified name
+  solicitation
+  static content
+  synecdoche
+  tag
+  TCP proxy
+  test-driven development
+  tinyletter.com
+  topics
+  to vouch for another author
+  tradeoffs
+  transform hyperlinks
+  transforming Web proxy
+  tree grafting
+  typo
+  Unix epoch
+  Unix philosophy
+  un-ring a bell
+  upstream
+  URL
+  URL path
+  URL query
+  vulnerability class
+  Web
+  webserver
+  Web standards bloat
+  Web standards bodies
+  wild west
+ services calendar and static
+  acronym
+  ad-hocracy
+  agenda
+  AJAX
+  ambiguity
+  annotation
+  anonymity
+  archive
+  archive.is
+  archive.org
+  attack surface
+  backwards compatibility
+  bad version
+  boycott DNS
+  busy
+  calcnerd256.dyndns.org
+  calendar
+  /cas/md5=0081e6617d625091bb5a1698fb5cf8d4
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=49c2096c4c95307db1e603e4566a82cc
+  /cas/md5=c3ab479a5a38f497d048ba748955c180
+  Category Theory
+  change without restart
+  comment
+  configuration
+  configurator
+  consent
+  content-addressable storage
+  continuity of functionality
+  convenient
+  cool URIs
+  creeping featurism
+  CST
+  dancing proxy
+  date-time
+  desire
+  diagonalization
+  discomfort
+  DNS
+  don't make me think
+  e-mail body
+  e-mail subject line
+  feedback
+  first-class objects
+  funny title
+  future planning
+  general case
+  GitHub
+  glue code
+  grafting cut
+  Gregorian calendar
+  guerrilla storage
+  hard coded
+  HTML
+  hyperlink
+  idempotence
+  indirection
+  infinite data structures
+  in-person communication
+  integration
+  italics
+  JS
+  late binding
+  loopback
+  manual operation
+  MD5
+  much to say
+  multiple domains
+  multiple webservers
+  my domain name
+  my proxy
+  my wife
+  namespace grafting
+  Node JS
+  perpetual payments
+  plaintext
+  portable relative URLs
+  prediction
+  previous e-mail
+  proxy applications
+  publish
+  random port
+  RDF
+  refactor
+  relative hyperlink
+  reverse proxy
+  re-write
+  rich JS UI
+  scab
+  service directory
+  Sir Tim Berners-Lee
+  societal defaults
+  spider
+  static file server
+  stream of consciousness
+  text editor
+  thin webserver wrapping a library
+  to-do list
+  topics
+  triple
+  trust
+  typo
+  Unix epoch
+  Unix timestamps
+  URL
+  URL spacing
+  UTC
+  value judgment
+  Wayback Machine
+  workflow
