@@ -1,0 +1,166 @@
+<html>
+	<head>
+		<title>proxy configurator</title>
+	</head>
+	<body>
+		<section>
+			<p>
+				I sent out an e-mail with a subject line of "[msr.sigcf] typos and digest" and a body with an MD5 of <i>274c92ade474d3e78a925160b2d217cc</i>, which has an HTML version with an MD5 of <i>eb519e9cc12da53f7b418f89111880b8</i>.
+				These can be found in my content-addressable storage described in an e-mail I sent out with an MD5 of <i>0d7177f4b08b7f2f81579a37073ac645</i>, which is served up at such URLs as <a href="http://archive.is/FyoSb">http://archive.is/FyoSb</a> and <a href="http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a> and <a href="https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645">https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645</a> and <a href="http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645">http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645</a>.
+				I sent it on Sunday, December 8, 2019 at 18:53:48 CST (<i>i.e.</i>, -0600) which is 1575852828 seconds or /calendar/Gregorian/AD/2019/12/9/0/53/48/ .
+			</p>
+		</section>
+		<section>
+			<p>
+				Hey, here's a funny software license: <a href="http://archive.is/cLsCN">http://archive.is/cLsCN</a>.
+			</p>
+			<p>
+				Warning: language, politics, and themes (especially ignore the footnotes and the sidebar, if you aim to avoid the themes).
+				I ain't vouching for that website.
+			</p>
+		</section>
+		<section>
+			<p>
+				I got some feedback.
+				In response to a paragraph about a protocol for preventing chilling effects on negative feedback, near the end of my e-mail about my reverse proxy with an MD5 of <i>49c2096c4c95307db1e603e4566a82cc</i>, someone said:
+				<blockquote>
+					<p>
+						I know writing is a lot of work for you, but when you're pleading with someone, you pretty much have to do it on their terms.
+						I strongly suspect that, if someone reads this far, they will take the beginning of this section as a relief from all kinds of technical details, but when they get to "I know that you know that you suspect" they'll become frustrated.
+						I imagine they'll have a thought like "Bets? Secrecy escrow? You haven't even convinced me that this paragraph is worth my time. When you're asking for favors, don't make me solve a word problem just to understand what you're asking for."
+					</p>
+				</blockquote>
+			</p>
+			<p>
+				Agree?
+				Advice for how I can avoid causing this problem in the future?
+				Help me make this the newsletter you want to read.
+			</p>
+		</section>
+		<section>
+			<p>
+				I got a new subscriber.
+			</p>
+		</section>
+		<section>
+			<p>
+				I said I might talk about test-driven development, but I'll have to wait until next time, because now I want to talk about a possible implementation of the webserver that my reverse proxy will trust for its configuration.
+			</p>
+			<p>
+				Like I said in an e-mail with an MD5 of <i>49c2096c4c95307db1e603e4566a82cc</i>, my proxy outsources its decision-making to another webserver.
+				That one responds with response bodies that contain only URLs.
+				When the proxy gets a request, it makes a request to that other webserver, which I'm calling its "configurator".
+				The configurator does the thinking to determine where the resource somebody (the ultimate client of this interaction) asked for can be found, and the configurator tells the proxy that URL.
+				Then, the proxy makes another request, this time to the URL the configurator told it.
+				The proxy then forwards the response back to the client.
+				The proxy is simple in that this is all it does.
+				There's plenty of room to make this more complicated without adding features outside of this scope.
+			</p>
+			<p>
+				The configurator can be implemented any way I want, as long as it is a webserver that responds to certain requests with the URLs at which the proxy can find the corresponding resources.
+				It can even be a proxy itself, with its own configurator.
+				That might seem to require an infinite regress of proxies configuring each other, but I might be able to reduce it to just two.
+				In this e-mail, I'll try to figure out how I can do that.
+			</p>
+			<p>
+				Let's name the two proxies involved, or else I'll be calling them "the first proxy" and "the second proxy" or "the downstream proxy" and "the upstream proxy".
+				Nor is one the client and the other the server, as each acts as a client and a server to the other at different times.
+				I think I'll call them the front and the back.
+				The front is the front-end proxy that talks to the ultimate client, and the back is the proxy that serves URLs to the front to act as its configurator.
+			</p>
+			<p>
+				There is nothing illegal about back sending front a URL whose host part is front.
+				This causes an invisible redirect.
+				Under some circumstances, this may be preferred over an HTTP redirect, though I don't know what those circumstances are nor if there are any.
+				There is nothing illegal about back sending front a URL whose host part is back.
+				This would mean that the ultimate client has requested a resource best served with a response from back, which will probably have a URL for its body.
+				There is nothing illegal about back sending front a URL whose host part is back's configurator.
+				This has a similar consequence as back responding to front with a back URL: the ultimate client gets a URL response body.
+				There is nothing illegal about back's configurator responding to back with a URL whose host part is front.
+				This is where the recursion begins.
+				There is nothing illegal about the two that would come up next in that progression, for the same kind of reasons as listed before.
+				What's illegal is structuring these responses in such a way that they never terminate.
+				I won't put anything in place to prevent that, so it's up to the designer of the configurator to be extra-careful to avoid this.
+			</p>
+			<p>
+				What I think I'll do for the configurator is integrate it with the service directory I mentioned in an e-mail with an MD5 of <i>25bbab5c07fe62f2030d45567ed9849a</i>.
+				I'll write a bad one first, and then maybe some day I can write a good one after I figure out what that would look like.
+				The bad one will just let every service graft itself onto the namespace.
+				The good one will need to do security to make sure some rogue actor can't graft itself inappropriately where it doesn't belong by impersonating someone trusted.
+				Somehow.
+			</p>
+			<p>
+				Let's do an example.
+				Suppose my Gregorian calendar I mentioned in an e-mail with an MD5 of <i>a6472dcc08c049beca62d6ee1b201348</i> wants to graft itself into the global namespace.
+				This is actually a bad example, because it reminds me that I probably want to do this extrinsically instead of intrinsically, as the calendar shouldn't have to know about all of this just to serve up its resources.
+				But whatever; I picked it, we're doing this.
+				For the calendar's /service.json , we can include an extra property for where it wants to graft.
+				Let's just call that "prefix" for now, because naming things is hard.
+				The ultimate configurator for the proxy (that is, the one that back uses) integrates with service directory, so it knows what port the calendar is listening on.
+				It asks calendar for the JSON description of its service, and it sees this extra property about grafting.
+				Now it knows, when it sees a URL path coming from front that begins with the calendar's prefix, that back needs to reply to front with a URL that has the suffix of that path appended after the hostname and port of the calendar service.
+				The configurator doesn't talk to front.
+				It talks to back, and it can only talk to back by responding with the URL that back needs to look up to find the URL that front needs to look up.
+				What is that URL in this case?
+				We could allow "data:" URIs, if the implementation I've already written supports them accidentally.
+				I'll have to test it.
+				If it doesn't, we could write another service that supplies that behavior.
+				I'll call it an "echo" service.
+				It can take its information from the URL path and respond with simply that same information.
+				The front server could have the echo server grafted in at /echo/ or something, and the configurator could respond in the following way instead of using a "data:" URI: a URL beginning with front's hostname and port, followed by "/echo/" and then the data that one would put in the "data:" URI.
+				Then, front would ask back where this "/echo/"+stuff URL path resolves, and we would want back to respond with a URL beginning with the host and port of the echo service and ending with the same suffix as front asked for after the "/echo" part.
+				To accomplish that, back would ask the configurator, and now we have a problem.
+				We can't use front to echo the answer to back here, because that would never end.
+				We need to let the configurator know about where the echo service is, so that it can tell back where the echo service is.
+				But that's fine; it's just finitely many things we need to implement inside of the configurator.
+				I believe this suffices.
+				I'll have to try it to see what flaws I'm ignoring.
+				I'm not interested in making it not slow.
+			</p>
+			<p>
+				Prefix grafting is just one way to handle a redirect.
+				I will want to add more, so that services can configure the configurator to direct back to indirect through them, but I believe I can do this without adding more than finitely much code to what I've described above.
+				It basically involves the configurator telling back a URL that starts with one of the delegable services.
+				Then back asks that service about the URL to tell to front, and the service responds in the way I'd like the service to respond to front.
+				Then it's as if front had asked that service directly, so that service can be built to answer the kinds of questions front asks.
+				That basically means that the service then acts as a proxy configurator itself, and it needs only tell back's configurator about it by listing itself as such a service in its JSON metadata.
+			</p>
+			<p>
+				I have another problem, though: telling back, front, and back's configurator about each other.
+				Front gets a hard-coded port number, so it wasn't designed to use service directory.
+				Back, being the same code as front, also receives its port number as a command-line argument.
+				If I pass 0 as the port number, it gets a random one, but it doesn't report that to service directory or to standard output.
+				It also doesn't know how to respond if service directory asks it for its /service.json resource, so it will happily forward that request to its configurator.
+				To make matters worse, if front asks back for /service.json , back can't tell the difference between front asking for that and service directory asking for it, so back won't respond to front with a URL in that case.
+				A defect I fixed recently in my "scab" configurator that I mentioned in an e-mail with an MD5 of <i>a6472dcc08c049beca62d6ee1b201348</i> causes this to fail silently instead of crashing the proxy.
+				What I can do, though, is make the ultimate configurator respond to a request from back for /service.json with a response containing a URL that resolves to a JSON description of back's service.
+				Then, I can have the script that launches these three webservers also tell service directory about back.
+				Then back's configurator can find back from service directory.
+				I will also need to tell back's configurator about front, but I can do that from its command-line arguments, since front's port is known before launching anything.
+			</p>
+			<p>
+				If all I want to do is defer proxy configuration to multiple services, then I don't need all this complexity.
+				I could define an interface by which a service can declare itself to be a proxy configurator and by which it can serve up the configuration for the proxy, and I could write a multiplexing configurator that simply uses service directory to find all of these configurator-able services and combine their results.
+				I could even bake that latter behavior into the proxy itself, so that it uses service directory instead of asking its configurator to do so.
+				However, I'd like to have the ability for an end-user to build configurator-like behavior on top of something that doesn't know to announce it.
+				I'd especially like the static files webserver to be able to be usable as a configurator without it knowing.
+				I also don't want to rewrite my proxy right now.
+				Maybe I should, though.
+				I could call this the "bad" version and come back later to write the "good" version that flexibly allows users to write their own webservers to act as configurators instead of buying in to my service directory idea.
+				Smaller implementations with fewer, simpler dependencies seems like a good rule of thumb, in my opinion.
+			</p>
+			<p>
+				How would you design a grafting proxy?
+			</p>
+		</section>
+		<section>
+			<p>
+				I haven't been getting much feedback on this newsletter.
+				That's fine; I don't mean to demand it.
+				If you're ambivalent about replying, though, then I'd prefer if you'd at least send me a quick message letting me know that you are getting these and whether you're reading them.
+				It's okay if you aren't reading them, but I'd like to know.
+				Of course, if you aren't reading these, then you probably aren't reading this paragraph, so you won't see my request here.
+			</p>
+		</section>
+	</body>
+</html>
