@@ -1,0 +1,50 @@
+I sent out an e-mail with a subject line of "[msr.sigcf] proxy configurator" and a body with an MD5 of ccaa13b3af167a1b01f14e29e52dc7b3, which has an HTML version with an MD5 of bf2cb5d7acaa7881f53cc4d0c9abfe41.  I sent it on Tuesday, December 10, 2019 at 11:29:49 CST (i.e., -0600) or 1575998989 seconds or /calendar/Gregorian/AD/2019/12/10/17/29/49 .
+
+In my previous e-mail, I neglected to mention that an echo server is a pretty dangerous thing to have lying around, as anyone can ask it to send any JS to the page, and that JS will appear to come from the echo server.  It's really easy to get a CORS violation when you've got one of these in the mix.
+
+I got a reply from my friend Lawrence Kincheloe.  He gave me permission to publish his reply.  Here it is:
+> Well, this is a bit of a firehose of information, so most of these are a bit to digest.
+> 
+> My current interests are in distributed, serverless, networks and data storage.
+> 
+> Recently I was made aware of the world of trustless computing through homomorphic encryption, which kinda blew my mind.    https://news.ycombinator.com/item?id=21638639
+> 
+> Several years ago, I implemented a simple bash script based bittorrent distributed file system based on bittorrent sync. It was neat at the time, because it allowed me to asynchronously  publish video files to folders, using the file system analogy.
+> 
+> I'm also working on a project using LoRa wireless, as an off grid, BBS style messaging system, with gateways to the internet as a secondary transportation overlay.
+> https://www.hackster.io/scottpowell69/lora-mesh-chat-5267d9  but ideally open source, which this link is depressingly not.
+> 
+> Also, you might try taking these ideas out into the world as you might find an audience and collaborators in person. I run a makerspace, which is a community center for hackery and geekery of all kinds. Several user groups currently work out of the space. Techlahoma, also has a few channels on their slack which could be good avenues to act as gateway outlets to some of these ideas.
+> 
+> http://colab-ok.com/
+> https://www.techlahoma.org/spaces
+> 
+> I guess what I'm saying is keep working on it and you'll find the best method of expression, and let me know if you need any help!
+Thank you, Lawrence, for your response.
+
+Someone suggested I make a glossary instead of explaining definitions inline.  One thing that will make that easier is if I don't try to make the definition definitive but instead only include the definition as it pertains to the usage of the term in that issue of the newsletter.  Then the glossary is scoped to the issue it appears in, and a different glossary with different definitions for the same word could appear in a different issue.
+
+My friend Sam Bleckley replied as follows:
+> Things, of varying difficulty, that would lead to me reading more of each newsletter:
+> 
+> - Put two newlines between paragraphs. A wall of text is uninviting. 
+> 
+> - Structure (such as bulleted lists, titled sections, etc) can break up the text visually too, while also organizing it for quicker skimming/reading. Saving your readers time in this way is polite. 
+> 
+> - The md5 linked-list metadata can move to the end. Instead, put your most interesting thought that unifies this issue, phrased succinctly, at the beginning.
+> 
+> - Refer to previous emails by subject line, and relegate the associated hash to a parenthetical, or even a footnote. 
+> 
+> - Hardest of all: edit ruthlessly. Have a clear and simple answer why your reader cares about each and every sentence, and don't BS yourself. It's easy to talk yourself into "they care about point A because the won't understand points B or C without it," but every single sentence offers the opportunity for someone to stop reading. 
+> 
+> Not all of these bullets will appeal to you. The hardest part of making something for an audience, in my opinion, is judging when to appeal to yourself and when to appeal to the audience. Too much of the former and they'll walk out of the theater.
+> 
+> S
+I asked him if I could publish his response, with his name, and he said:
+> You may use it however you like (always assume I'm on the record), BUT: dedicating space in your newsletter to discussing the format of the newsletter would definitely be heading in the opposite direction of my last suggestion.
+> 
+> S
+I decided to include it anyway.
+
+Maybe I could publish my rough drafts but not send them out, and I could link to them from their final versions.  I'd need to figure out whether people want to subscribe to this early edition or to the polished-but-later version, and I might want to then maintain two mailing lists if more than zero people preferred the verbose mode.
+I like a lot of these ideas that people have sent me.  I don't know which ones I'm going to implement.  It should go without saying that I didn't implement any of them in this issue of my newsletter.  Maybe, by the next one I send out, the format will be different than it is right now.  Stay tuned.
