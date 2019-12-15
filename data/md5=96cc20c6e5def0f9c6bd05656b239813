@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>paragraph 1 | MD5 4eaa2d17b974764f2dfa6ab63cf58b2b</title>
+	</head>
+	<body>
+		<p>
+			I want
+			to move server.program
+			to another machine.
+		</p>
+		<p>
+			Its MD5
+			is
+			<i>6c4c8123ea1efc8851e333afece5ceba</i>.
+		</p>
+		<p>
+			server.program
+			is
+			a webserver
+			written in
+			a fake Lisp dialect
+			that I haven't implemented yet.
+		</p>
+		<p>
+			It is
+			the server for
+			what I had been calling "<i>concierge</i>",
+			which is
+			my proxy
+			that
+			doesn't know what to proxy
+			and
+			only knows how to proxy.
+		</p>
+		<p>
+			I wrote
+			a NodeJS version of it
+			that supports
+			the structure of
+			the fake Lisp version.
+		</p>
+		<p>
+			This is
+			the thing that talks to scab
+			right now,
+			but I want
+			to clean it up
+			before
+			I bring it over
+			to another computer.
+		</p>
+		<p>
+			server.program
+			should be called
+			concierge.program,
+			since
+			it doesn't
+			live in
+			the concierge directory
+			anymore.
+		</p>
+		<p>
+			But
+			mostly
+			it
+			will be
+			referred to
+			by
+			its hash.
+		</p>
+	</body>
+</html>

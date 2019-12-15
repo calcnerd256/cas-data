@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>provenance | MD5 4eaa2d17b974764f2dfa6ab63cf58b2b</title>
+	</head>
+	<body>
+		<h1>
+			<a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">MD5 4eaa2d17b974764f2dfa6ab63cf58b2b</a>
+		</h1>
+		<h2><i>provenance</i></h2>
+		<ul>
+			<li>
+				The original text
+				of the rough draft
+				of this document
+				had an MD5 of
+				<a href="./md5=7e9d2f6a061b7ad330e1f0173bf69a72">7e9d2f6a061b7ad330e1f0173bf69a72</a>.
+			</li>
+			<li>
+				The HTML version
+				of the rough draft
+				has an MD5 of
+				<a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">4eaa2d17b974764f2dfa6ab63cf58b2b</a>.
+			</li>
+			<li>
+				The first paragraph
+				of that
+				has an MD5 of
+				<a href="./md5=96cc20c6e5def0f9c6bd05656b239813">96cc20c6e5def0f9c6bd05656b239813</a>.
+			</li>
+			<li>
+				My first attempt to revise the rough draft was <a href="./md5=7203d7bf2be27ddb273e87a5c0e95ed2">to extract assertions from it</a>, or "facts" as I was calling them.
+				When that didn't work, I <a href="./md5=dedb14ceb8065a4d010d2dae7b4c2626">tried to label all the nouns</a>.
+				Then I tried <a href="./md5=097eef3fe78229fc09c28cd158d91872#structure">some other approaches</a>, which didn't make it past the first sentence.
+				I did all of this inside of this document, and then I collected snapshots of each of these approaches into their own documents and linked to them here as historical documents.
+				That way, I could start over here without losing those failed attempts.
+				You are not expected to read them, but you may if you wish.
+			</li>
+			<li>
+				I wrote
+				<a href="./md5=582e56dab955c577637cf3bc0bb9e4af">a second draft</a>,
+				but it still wasn't good enough.
+			</li>
+			<li>
+				I realized that the second draft was actually two stories.
+				So I extracted <a href="./md5=4f597aa25b3399440b76ef606de22fdb">the story of my fake Lisp</a> from it.
+				What remained was <a href="./md5=aac1ecd2550bfc4acabecfddb22abf3d">publishing a file to copy it</a>.
+			</li>
+		</ul>
+	</body>
+</html>

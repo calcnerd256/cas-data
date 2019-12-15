@@ -1,0 +1,43 @@
+I took a suggestion to split this into files and metadata.
+
+previous.txt describes the last e-mail I sent out.
+draft.txt is about how much to send this time.  When it says "this one" and "here", it's talking not about itself as a document but about this issue of the newsletter, because I originally wrote it inline inside this document and then moved it into its own file.
+proxy_implementation.txt starts out talking about source code files I am going to publish for my reverse proxy, and then it moves on to talk about a possible future way to edit such source code.
+mailing_list.txt talks about the future direction of this mailing list.
+errata.txt mentions some mistakes I've made in previous files I've published.
+
+A new week, a new digest.
+
+metadata:
+ previous.txt
+  text/plain
+   MD5 2d6a1b360d15d908699d36ad54c52184
+  text/html
+   MD5 92b01a24dbc54183f6c67ebea845db09
+ draft.txt
+  text/plain
+   MD5 aee5c5ad1c67e0f72f39e85ae228a9b3
+  text/html
+   MD5 421934c8c91382e26efb204d11af5698
+ proxy_implementation.txt
+  draft
+   text/plain
+    MD5 7e9d2f6a061b7ad330e1f0173bf69a72
+   text/html
+    MD5 4eaa2d17b974764f2dfa6ab63cf58b2b
+  final
+   text/html
+    MD5 075ab4baf9ff13f02aa36129c32bcea4
+ mailing_list.txt
+  text/plain
+   MD5 ffa5e235b49f05a325b60ecedd4bdc26
+  text/html
+   MD5 7fc5a451f5595b96ccb55f8da07bd8e1
+ errata.txt
+  text/plain
+   MD5 2fefac59679204fa7611e70e7c8d0744
+  text/html
+   MD5 d35ba9ec0db6c8168ce135e35d23bdd9
+ digest
+  text/plain
+   MD5 e04d6781db9c507641eafe4af60eec9c

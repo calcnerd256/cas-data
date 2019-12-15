@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>MD5 7e9d2f6a061b7ad330e1f0173bf69a72</title>
+	</head>
+	<body>
+		<p>
+			I want to move server.program to another machine.
+			Its MD5 is <i>6c4c8123ea1efc8851e333afece5ceba</i>.
+			server.program is a webserver written in a fake Lisp dialect that I haven't implemented yet.
+			It is the server for what I had been calling "<i>concierge</i>", which is my proxy that doesn't know what to proxy and only knows how to proxy.
+			I wrote a NodeJS version of it that supports the structure of the fake Lisp version.
+			This is the thing that talks to scab right now, but I want to clean it up before I bring it over to another computer.
+			server.program should be called concierge.program, since it doesn't live in the concierge directory anymore.
+			But mostly it will be referred to by its hash.
+		</p>
+		<p>
+			After writing the above, I split the NodeJS version of concierge.program into the supporting library and the code that uses that library and has the structure of the fake Lisp version.
+			The MD5 of the code that uses the library is <i>39ebe4324b32ebe8a3768eb35e093c40</i>, and it expects to find the library under ./node_modules/serverlib/index.js .
+			This is easier to work with than the last NodeJS program I brought into an older CAS I had on the target machine, which required me to copy the files to specific places instead of symlinking anything.
+			I might still have to copy the files around, but at least now I won't have to put them in exact relative directories, because node_modules allows me a little more flexibility in how I manage my locations.
+		</p>
+		<p>
+			I do want to, at some point, re-implement the library that supports the NodeJS version of server.program, to make it rely less on NodeJS's libraries such as their HTTP library.
+			But that will have to be another time.
+			For now, just separating out the bad implementation from the thing that uses it will have to suffice.
+		</p>
+		<p>
+			After writing that thought down, I've committed to publishing this imperfect implementation of the library that supports the NodeJS version of concierge.program .
+			This is the easiest way for me to get it into my other machine.
+			SFTP, on the other hand, would require me to stand up and walk across the room, and that's clearly more work than sitting here typing and thinking about decisions for what to publish and when.
+			Obviously.
+			Anyway, the MD5 of this library is <i>2a874208d6d9506a4572acab90eabad8</i>, and I already said where it needs to be stored so that the program that uses it can use it.
+			I've written it against NodeJS version 4.2.6, so I don't know what features of that version it depends upon and how much it would need to be changed to run on a different version.
+			I think the other machine I'm moving it to runs a much more recent version, and I doubt any functionality I'm using is deprecated between those two versions, so I expect it to run just fine when I bring it over.
+		</p>
+		<p>
+			At some point, I want to make the fake Lisp version of concierge be the real one, so that I can run it directly and, if I need to change it, modify it and then run the modified version directly.
+			Better still will be if I can make some alternate UI that presents me the structure of that tiny program and lets me edit it in a maximally fluent way.
+			For instance, the top level is (procedure (parameters ...) (result ...)), so it would be nice if I could design a GUI widget for editing instances of that concept and then have the editor figure out that it should use that GUI for editing that program unless I ask it to go spelunking into the underlying structure.
+			Bonus if I could define multiple and switch between them, with a default one that's always available whether or not any of the special ones match the thing I'm trying to edit.
+			Then people could collaborate on a structure like that, and each can edit it in their favorite editor for that shape.
+			It might be jarring, however, for someone's edit that is natural in their editor to transform the structure into one not recognized by another's editor; then the latter would see the thing they were looking at pop into the default view of it in response to an edit the former made, and the former would see a simple edit within their environment, so there would be a mismatch between how big each of them perceives the change to be, and the one who made the change would see the change as smaller than the other one.
+			Talk about a recipe for stepping on each other's toes!
+		</p>
+	</body>
+</html>

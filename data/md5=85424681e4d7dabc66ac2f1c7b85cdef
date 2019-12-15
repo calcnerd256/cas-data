@@ -1,0 +1,350 @@
+<html>
+	<head>
+		<title>MD5 96cc20c6e5def0f9c6bd05656b239813</title>
+		<style>
+			.noun {
+				border: 1px solid blue;
+				padding: 1px;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>
+			<a href="./md5=96cc20c6e5def0f9c6bd05656b239813">MD5 96cc20c6e5def0f9c6bd05656b239813</a>
+		</h1>
+		A failed attempt.
+		<h2>provenance</h2>
+		<ul>
+			<li>
+				Here are some attempts to refine the paragraph whose rough draft has an MD5 of <a href="./md5=96cc20c6e5def0f9c6bd05656b239813">96cc20c6e5def0f9c6bd05656b239813</a>.
+			</li>
+			<li>
+				That is the first paragraph of the document whose HTML version has an MD5 of <a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">4eaa2d17b974764f2dfa6ab63cf58b2b</a>.
+			</li>
+			<li>
+				That came from a plaintext version with an MD5 of <a href="./md5=7e9d2f6a061b7ad330e1f0173bf69a72">7e9d2f6a061b7ad330e1f0173bf69a72</a>.
+			</li>
+			<li>
+				Most of the content that was going to be on this page was about the first sentence of the paragraph, so now that has <a href="./md5=097eef3fe78229fc09c28cd158d91872">its own page</a>.
+			</li>
+		</ul>
+		<h2>the journey</h2>
+		<p>
+			I tried to take the English prose of the paragraph's rough draft and extract from it all of the things I might want to include in the final version of the document and to separate them from all the things I would want to omit.
+			My hope was that a systematic approach would prevent me from accidentally adding or removing anything and that I would end up with a neat little pile of details on the one hand to reassemble into the outline of the final document and the rest on the other hand to sort and place into an appendix.
+			This way, anybody who wanted to get the whole story could read one final document, and anybody who wanted to check my work could read the primary source to see that it contained no less and no more than the more human-friendly version had.
+		</p>
+		<h2 id="facts">facts</h2>
+		<p>
+			First, I tried extracting "facts" from every sentence of every paragraph of the rough draft.
+			I didn't get all that far.
+			I decided I would want to extract "nouns" for the facts to refer to.
+		</p>
+		<h3>nouns</h3>
+		<ul>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#me">person: me</a>
+		  </li>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#concierge">file: concierge.program</a>
+		  </li>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#redact1">computer: [REDACTED 1]</a>
+		  </li>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#redact2">computer: [REDACTED 2]</a>
+		  </li>
+		  <li>language: fake Lisp</li>
+		  <li>time: now</li>
+		  <li>program: concierge</li>
+		  <li>file: server.js</li>
+		  <li>file: concierge.js</li>
+		  <li>file: serverlib.js</li>
+		  <li>service instance: concierge on [REDACTED 1]:8080</li>
+		  <li>language: NodeJS</li>
+		</ul>
+		<h3>[REDACTED 1] concierge and moving it to [REDACTED 2]</h3>
+		<h4>facts</h4>
+		<ul>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#oldloc">(location-same (location concierge.program) [REDACTED 1])</a>
+		  </li>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#filename">(= (file-name concierge.program) "server.program")</a>
+		  </li>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#newloc">(desire me (location-same (location concierge.program) [REDACTED 2]))</a>
+		  </li>
+		  <li>(= (MD5 concierge.program) "6c4c8123ea1efc8851e333afece5ceba")</li>
+		  <li>(type-same (application-style concierge.program) webserver)</li>
+		  <li>(language-same (language-of concierge.program) fake-lisp)</li>
+		  <li>(= 0 (count (implementations-of fake-lisp)))</li>
+		  <li>(desire me (not (= 0 (count (implementations-of fake-lisp)))))</li>
+		  <li>(= (list concierge.program) (implementations-of concierge))</li>
+		  <li>(= me (author-of concierge))</li>
+		  <li>(type-same (application-style concierge) webproxy)</li>
+		  <li>(not (knows concierge ((webproxy configuration) concierge)))</li>
+		  <li>(only (knows concierge (how webproxy)))</li>
+		  <li>(= me (author-of server.js))</li>
+		  <li>(language-same (language-of concierge.program) nodejs)</li>
+		  <li>
+		    server.js is a program.
+		  </li>
+		  <li>
+		    server.js implements concierge.program .
+		  </li>
+		  <li>
+		    server.js contains the structure of concierge.js .
+		  </li>
+		  <li>
+		    server.js contains the structure of serverlib.js .
+		  </li>
+		  <li>
+		    concierge.js contains the structure of concierge.program .
+		  </li>
+		  <li>
+		    serverlib.js contains support for concierge.js .
+		  </li>
+		</ul>
+		<h4>from rough draft</h4>
+		<h5>current sentence</h5>
+		<ul>
+		  <li>
+		    [REDACTED 1]:8080 runs server.js .
+		  </li>
+		  <li>
+		    scab is the configurator for [REDACTED 1]:8080 .
+		  </li>
+		  <li>
+		    [REDACTED 2] lacks concierge .
+		  </li>
+		  <li>
+		    I want [REDACTED 2] to have the behavior of concierge .
+		  </li>
+		  <li>
+		    I want [REDACTED 2] to have a cleaner version of concierge than server.js .
+		  </li>
+		</ul>
+		<h5>rest of paragraph</h5>
+		<ul>
+		    <li>concierge.program should be called "concierge.program", since it doesn't live in the "concierge" directory anymore.</li>
+		    <li>concierge.program will mostly be referred to by the hash of concierge.program instead of by the name of concierge.program .</li>
+		</ul>
+		<h2 id="nouns">nouns</h2>
+		<p>
+		  Having decided that facts were too hard, I thought I'd try simply collecting all the nouns.
+		  Then I decided that I didn't mind nesting nouns inside of things that behave like nouns.
+		  Then I decided that I didn't mind using a very loose interpretation of the behavior of a noun.
+		  I actually got pretty far through the document before giving up on nouns, but this page is just about the journey with the first paragraph, so the nouns of the other paragraphs aren't included here.
+		  Here it is from within the outline I was attempting:
+		</p>
+		<ul>
+		  <li>
+		    <a href="./md5=097eef3fe78229fc09c28cd158d91872#nouns">
+		      <span class="noun">I</span>
+		      want
+		      <span class="noun">
+			to move
+			<span class="noun">server.program</span>
+			to
+			<span class="noun">another machine</span></span>.
+		    </a>
+		  </li>
+		  <li>
+		    <span class="noun">
+		      <span class="noun">It</span>s
+		      <span class="noun">MD5</span></span>
+		    is
+		    <span class="noun"><i>6c4c8123ea1efc8851e333afece5ceba</i></span>.
+		  </li>
+		  <li>
+		    <span class="noun">server.program</span>
+		    is
+		    <span class="noun">
+		      a
+		      <span class="noun">webserver</span>
+		      written in
+		      <span class="noun">
+			a fake
+			<span class="noun">Lisp</span>
+			<span class="noun">dialect</span>
+			that
+			<span class="noun">I</span>
+			haven't implemented yet.</span>
+		  </li>
+		  <li>
+		    <span class="noun">It</span>
+		    is
+		    <span class="noun">
+		      the
+		      <span class="noun">server</span>
+		      for
+		      <span class="noun">
+			what
+			<span class="noun">I</span>
+			had been calling
+			<span class="noun">"<i>concierge</i>"</span>,
+			which is
+			<span class="noun">
+			  my
+			  <span class="noun">
+			    <span class="noun">proxy</span>
+			    that
+			    doesn't know
+			    <span class="noun">what to proxy</span>
+			    and
+			    only knows
+			    <span class="noun">how to proxy</span></span></span></span></span>.
+		  </li>
+		  <li>
+		    <span class="noun">I</span>
+		    wrote
+		    <span class="noun">
+		      a
+		      <span class="noun">
+			<span class="noun">NodeJS</span>
+			<span class="noun">version</span>
+		      </span>
+		      of
+		      <span class="noun">it</span>
+		    </span>
+		    that
+		    supports
+		    <span class="noun">
+		      the
+		      <span class="noun">structure</span>
+		      of
+		      <span class="noun">
+			the
+			<span class="noun">fake <span class="noun">Lisp</span></span>
+			<span class="noun">version</span></span></span>.
+		  </li>
+		  <li>
+		    <span class="noun">This</span>
+		    is
+		    <span class="noun">
+		      the
+		      <span class="noun">thing</span>
+		      that talks to
+		      <span class="noun">scab</span></span>
+		    right now,
+		    but
+		    <span class="noun">I</span>
+		    want to
+		    clean
+		    <span class="noun">it</span>
+		    up
+		    before
+		    <span class="noun">I</span>
+		    bring
+		    <span class="noun">it</span>
+		    over
+		    to
+		    <span class="noun">
+		      another
+		      <span class="noun">computer</span></span>.
+		  </li>
+		  <li>
+		    <span class="noun">server.program</span>
+		    should be called
+		    <span class="noun">concierge.program</span>,
+		    since
+		    <span class="noun">it</span>
+		    doesn't
+		    live
+		    in
+		    <span class="noun">
+		      the
+		      <span class="noun">concierge</span>
+		      <span class="noun">directory</span></span>
+		    anymore.
+		  </li>
+		  <li>
+		    But
+		    mostly
+		    <span class="noun">it</span>
+		    will
+		    be referred to
+		    by
+		    <span class="noun">
+		      <span class="noun">it</span>s
+		      <span class="noun">hash</span></span>.
+		  </li>
+		</ul>
+		<h2>sentence structure</h2>
+		<p>
+			Then I decided that maybe I should start with idioms and capture the structure top-down instead of bottom-up.
+			I started this on the first sentence of the paragraph and did not finish that sentence.
+			It didn't work.
+			You can see <a href="./md5=097eef3fe78229fc09c28cd158d91872#structure">the results</a> on the page for the first sentence.
+		</p>
+		
+		<h2>original</h2>
+		<p>
+			I want
+			to move server.program
+			to another machine.
+		</p>
+		<p>
+			Its MD5
+			is
+			<a href="./md5=6c4c8123ea1efc8851e333afece5ceba">6c4c8123ea1efc8851e333afece5ceba</a>.
+		</p>
+		<p>
+			server.program
+			is
+			a webserver
+			written in
+			a fake Lisp dialect
+			that I haven't implemented yet.
+		</p>
+		<p>
+			It is
+			the server for
+			what I had been calling "<i>concierge</i>",
+			which is
+			my proxy
+			that
+			doesn't know what to proxy
+			and
+			only knows how to proxy.
+		</p>
+		<p>
+			I wrote
+			a NodeJS version of it
+			that supports
+			the structure of
+			the fake Lisp version.
+		</p>
+		<p>
+			This is
+			the thing that talks to scab
+			right now,
+			but I want
+			to clean it up
+			before
+			I bring it over
+			to another computer.
+		</p>
+		<p>
+			server.program
+			should be called
+			concierge.program,
+			since
+			it doesn't
+			live in
+			the concierge directory
+			anymore.
+		</p>
+		<p>
+			But
+			mostly
+			it
+			will be
+			referred to
+			by
+			its hash.
+		</p>
+	</body>
+</html>

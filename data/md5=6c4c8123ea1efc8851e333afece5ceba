@@ -1,0 +1,31 @@
+(procedure
+ (parameters (port-number (type (number port)))
+	     (upstream (type (string uri))))
+ (result
+  (type (server HTTP))
+  (webserver
+   (listen (port port-number)
+	   (host localhost))
+   (request
+    (procedure
+     (parameters (client-request (type (HTTP request)))
+		 (client (type (channel byte))))
+     (effect
+      (after
+       (write
+	(channel client)
+	(message
+	 (read
+	  (HTTP request
+		(method (get method client-request))
+		(uri (get body
+			  (HTTP request
+				(method GET)
+				(uri (join "/"
+					   upstream
+					   (get uri client-request)))
+				(headers empty)
+				(body empty))))
+		(headers (get headers client-request))
+		(body (get body client-request))))))
+       (close (channel client)))))))))

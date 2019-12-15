@@ -1,0 +1,385 @@
+var http = require("http");
+var url = require("url");
+
+function addHeaders(headers, request){
+    return headers.map(
+	function(kv){
+	    var k = kv[0];
+	    var val = kv[1];
+	    var old = request.getHeader(k);
+	    if(old){
+		if("object" != typeof old)
+		    old = [old];
+		if(!("concat" in old))
+		    old = [old];
+		val = old.concat([val]);
+	    }
+	    return request.setHeader(k, val);
+	}
+    );
+}
+function unflattenPairs(flattened){
+    var result = [];
+    for(var i = 0; i < flattened.length; i += 2)
+	result.push([flattened[i], flattened[i + 1]]);
+    return result;
+}
+
+var localhost = {};
+var GET = {};
+var empty = {};
+
+function ensure_type(value, t){
+    function fail(){
+	throw "unrecognized";
+    }
+    if("object" == typeof value)
+	if("type" in value)
+	    if(JSON.stringify(value.type) == JSON.stringify(t))
+		return true;
+    if(t instanceof Array){
+	var typeTop = t.shift();
+	if("number" == typeTop){
+	    if(1 != t.length) return fail();
+	    if("port" != t.shift()) return fail();
+	    if("" + (+value) != "" + value) return fail();
+	    if(value != Math.floor(value)) return fail();
+	    if(value < 0) return fail();
+	    if(value >= 65536) return fail();
+	    return true;
+	}
+	if("string" == typeTop){
+	    if(1 != t.length) return fail();
+	    if("uri" != t.shift()) return fail();
+	    if("" + value != value) return fail();
+	    return; //TODO: detect URI
+	}
+	return fail();
+    }
+    return fail();
+}
+
+function UpstreamResponse(metadata, body){
+    this.metadata = metadata;
+    this.body = body;
+}
+function webserver(args){
+    var serverType = ["server", "HTTP"];
+    function handle(req, res){
+	var client_request = {
+	    method: req.method,
+	    uri: req.url,
+	    headers: req.headers,
+	    body: {
+		stream: req
+	    },
+	    type: ["HTTP", "request"]
+	};
+	var clientType = ["channel", "byte"];
+	function close(){
+	    res.end();
+	}
+	function write(message, callback){
+	    var simple = true;
+	    if(message instanceof UpstreamResponse)
+		if(res instanceof http.ServerResponse)
+		    simple = false;
+	    if(simple)
+		return res.write(message, callback);
+	    var closed = false;
+	    var trailered = false;
+	    var wrote = false;
+	    function checkFlags(){
+		if(!closed) return;
+		if(!trailered) return;
+		if(!wrote) return;
+		return callback();
+	    }
+	    function fail(error){
+			res.statusCode = 404;
+			res.statusMessage = "NOT FOUND";
+			res.setHeader("Content-Type", "text/plain");
+			res.write("Not Found.\r\n");
+			return callback();
+	    }
+	    var m = message.metadata;
+	    var d = res;
+	    if(!m) return fail();
+	    d.statusCode = m.statusCode;
+	    d.statusMessage = m.statusMessage;
+	    addHeaders(unflattenPairs(m.rawHeaders), d);
+	    message.body.soak(
+		function(data, error){
+		    if(!data)
+			return fail(error); // skips everything else!
+		    return res.write(
+			data,
+			function(){
+			    wrote = true;
+			    return checkFlags();
+			}
+		    );
+		}
+	    );
+	    m.on(
+		"end",
+		function(){
+		    closed = true;
+		    var trailers = unflattenPairs(
+			message.metadata.rawTrailers
+		    );
+		    if(!(trailers.length)){
+			trailered = true;
+			return checkFlags();
+		    }
+		    var d = {};
+		    trailers.map(
+			function(kv){
+			    var k = kv[0];
+			    var v = kv[1];
+			    var old = [];
+			    if(k in d)
+				old = [d[k]];
+			    if(old.length)
+				if(old[0] instanceof Array)
+				    old = old[0]
+			    if(old.length)
+				v = old.concat([v]);
+			    d[k] = v;
+			}
+		    );
+		    res.addTrailers(d); // TODO: consider taking the name literally
+		    trailered = true;
+		    return checkFlags();
+		}
+	    );
+	    return m.on(
+		"close",
+		function(){
+		    closed = true;
+		    return checkFlags();
+		}
+	    );
+	}
+	return args.request(
+	    client_request,
+	    {
+		type: clientType,
+		close: close,
+		write: write
+	    }
+	);
+    }
+    function begin(){
+	var server = http.createServer(handle);
+	if("host" in args.listen){
+	    var host = args.listen.host;
+	    if(localhost == host)
+		host = "localhost";
+	    server.listen(args.listen.port, host);
+	}
+	else
+	    server.listen(args.listen.port);
+	return server;
+    }
+    return {
+	"type": serverType,
+	begin: begin
+    };
+}
+function after(first, second){
+    return first(second);
+}
+function write(args){
+    var channel = args.channel;
+    var read = args.message;
+    return function(afterWrite){
+	function afterRead(result){
+	    return channel.write(result, afterWrite);
+	}
+	return read(afterRead);
+    };
+}
+function read(request){
+    return request.read.bind(request);
+}
+function close(args){
+    var channel = args.channel;
+    return channel.close.bind(channel);
+}
+var lazyBodyType = {};
+function HTTP(dispatch, args){
+    if("request" != dispatch) return;
+
+    var method = args.method;
+    if(GET == method) method = "GET";
+
+    var uri = args.uri;
+
+    var headers = args.headers;
+    if(empty == headers) headers = {};
+
+    var body = args.body;
+    if(empty == body) body = null;
+
+    var chunks = [];
+    var soakers = [];
+    var upHeaders = Object.keys(headers).map(
+	function(k){
+	    return [k, args.headers[k]];
+	}
+    );
+    var soaking = false;
+    var done = false;
+    var soaked = null;
+    var resp = null;
+    function doReq(callback){
+	soaking = true;
+	if(!callback) callback = function(){};
+	function fail(error){
+	    done = true;
+	    soakers.map(
+		function(f){
+		    return f(null, error);
+		}
+	    );
+	    return callback(null, error);
+	}
+	function send(uri, error){
+	    if(error) return fail(error);
+	    var u = url.parse(uri);
+	    var request = http.request(
+		{
+		    protocol: u.protocol,
+		    hostname: u.hostname,
+		    port: u.port,
+		    method: method,
+		    path: u.path,
+		    headers: {}
+		},
+		function(response){
+		    response.on(
+			"data",
+			function(chunk){
+			    chunks.push(chunk);
+			}
+		    );
+		    if(response.statusCode != 200)
+			return fail(response.statusCode);
+		    response.on(
+			"end",
+			function(){
+			    var result = chunks.join("");
+			    soaked = result;
+			    done = true;
+			    return soakers.map(
+				function(f){
+				    return f(result);
+				}
+			    );
+			}
+		    );
+		    return callback(response);
+		}
+	    );
+	    request.on("error", fail);
+	    addHeaders(upHeaders, request);
+	    if(!body)
+		return request.end();
+	    if("stream" in body)
+		return body.stream.pipe(request);
+	    return request.end(body);
+	}
+	if("string" == typeof uri)
+	    return send(uri);
+	if("object" == typeof uri)
+	    if("exactType" in uri)
+		if(lazyBodyType == uri.exactType)
+		    return uri.soak(send);
+	throw "unrecognized URI type";
+    }
+    var bod = {
+	exactType: lazyBodyType,
+	soak: function(callback){
+	    if(done)
+		return callback(soaked);
+	    soakers.push(callback);
+	    if(soaking) return;
+	    return doReq();
+	}
+    };
+    return {
+	body: bod,
+	read: function(callback){
+	    return doReq(
+		function(response, error){
+		    return callback(
+			new UpstreamResponse(response, bod)
+		    );
+		}
+	    );
+	}
+    };
+}
+function get(key, namespace){
+    return namespace[key];
+}
+function join(delimiter, a, b){
+    if("/" != delimiter) return;
+    if(!!false)
+	return a + encodeURIComponent(b);
+    var parts = [].slice.call(arguments, 1).join("/").split("/");
+
+    return parts.filter(
+	function(x, i, a){
+	    if(x) return true;
+	    if(!i) return true;
+	    if(i == a.length - 1) return true;
+	    if(i != 1) return false;
+	    var first = a[0].split(":");
+	    if(first.length != 2) return false;
+	    return first[1] == "";
+	}
+    ).join("/");
+}
+
+function run_top_proc(top_proc){
+	var port_number;
+	var upstream;
+	var args = unflattenPairs(process.argv.slice(2));
+	port_number = +(
+	    (
+		args.filter(
+		    function(kv){
+			return kv[0] == "port-number";
+		    }
+		)[0]
+	    )[1]
+	);
+	upstream = (
+	    args.filter(
+		function(kv){
+		    return kv[0] == "upstream";
+		}
+	    )[0]
+	)[1];
+	var webserver = top_proc(port_number, upstream);
+	ensure_type(webserver, ["server", "HTTP"]);
+	return webserver.begin();
+}
+
+module.exports = {
+    "ensure type": ensure_type,
+    webserver: webserver,
+    localhost: localhost,
+    after: after,
+    write: write,
+    read: read,
+    HTTP: HTTP,
+    get: get,
+    GET: GET,
+    join: join,
+    empty: empty,
+    close: close,
+    "run top-level procedure": run_top_proc
+};

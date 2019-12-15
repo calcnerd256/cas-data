@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>concierge | MD5 582e56dab955c577637cf3bc0bb9e4af</title>
+	</head>
+	<body>
+		<h1>
+	  		<a href="./md5=582e56dab955c577637cf3bc0bb9e4af">MD5 582e56dab955c577637cf3bc0bb9e4af</a>
+		</h1>
+		<i>concierge</i>'s journey
+		<h2>bad proxy &rarr; { <i>concierge</i>, scab }</h2>
+		<p>
+			In <a href="./md5=a6472dcc08c049beca62d6ee1b201348">an e-mail called "services calendar and static"</a>,
+			I described a bad version of <a href="./md5=49c2096c4c95307db1e603e4566a82cc">my proxy</a>
+			and the act of splitting it into
+			<a href="./md5=49c2096c4c95307db1e603e4566a82cc">the smaller proxy</a> called "<i>concierge</i>"
+			and a program called "scab" that tells <i>concierge</i> what its configuration is.
+		</p>
+		<p>
+			It's called <i>concierge</i> because it sits at the front and directs you to someone else based on the authority of yet someone else, and <i>ma&icirc;tre d'</i> is too hard to spell.
+		</p>
+		<h2><i>concierge</i> : (fake Lisp &rarr; NodeJS)</h2>
+		<p>
+			I <a href="./md5=6c4c8123ea1efc8851e333afece5ceba">wrote <i>concierge</i> in a fake version of Lisp</a>.
+			My plan was <a href="./md5=4f597aa25b3399440b76ef606de22fdb">to write some applications in that fake Lisp and then use a real Lisp implementation to translate them into something lower-language</a>.
+		</p>
+		<p>
+			I tried that for a little while.
+			Then I gave up.
+			But I had already written <i>concierge</i> in this fake Lisp, and I wanted to run it.
+			I decided to translate <i>concierge</i> by hand into NodeJS while preserving the structure of the program.
+		</p>
+		<h2>publish <i>concierge</i> &rarr; CAS</h2>
+		<p>
+			It's time to copy <i>concierge</i> over to another computer.
+			I could copy it using <a href="https://linux.die.net/man/1/sftp">sftp(1)</a>, but I want to use <a href="./md5=0d7177f4b08b7f2f81579a37073ac645">my shiny new CAS</a> for it, because <a href="https://en.wikipedia.org/wiki/Law_of_the_instrument">every problem looks like a nail</a> and because I vastly underestimated how much work I would end up putting into doing it this way.
+		</p>
+		<p>
+			I thought publishing would be easy, but I've added other rules that are making it harder.
+			<ul>
+				<li>I had decided that I won't push new files to my public CAS without sending out an e-mail.</li>
+				<li>I had decided that I won't send out a new e-mail until I have something readable.</li>
+				<li>I had decided that I won't throw away the rough draft but will instead show my work and hide it behind a hyperlink.</li>
+			</ul>
+			So, I compared what I thought would be easy to the cost of getting up and walking across the room, and I <a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out">consequently</a> came up with the wrong answer to the question of which one would be easier.
+			I imagined it involving just a little bit of writing about my thought process and then sending out a newsletter.
+		</p>
+		<p>
+			A few days later, I've tried several approaches to try to make my rough draft into something I can send out.
+			I think I'm close to finding one.
+		</p>
+		<h2><i>concierge</i> &rarr; { spec, serverlib }</h2>
+		<p>
+			I ended up choosing to split <i>concierge</i> into
+			<a href="./md5=2a874208d6d9506a4572acab90eabad8">a bad library implementing the primitives</a> and
+			<a href="./md5=39ebe4324b32ebe8a3768eb35e093c40">a nice program using them</a>.
+		</p>
+		<p>
+			The nice program expects to find that library in <a href="https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders">the usual node_modules way</a> under a module called "serverlib", so I'll need to place it there after I get it into my CAS.
+			Last time I did something like this, I had used more specific local filepaths in my call to <a href="https://nodejs.org/api/modules.html#modules_require_id">require()</a>, and so I had to maneuver copies of them into the right place.
+		</p>
+		<p>
+			I was unsure whether I was willing to publish the bad implementation of serverlib,
+			but I have decided that I am.
+		</p>
+		<h2>NodeJS dependency</h2>
+		<p>
+			When I translated <i>concierge</i> into NodeJS, I targeted <a href="https://nodejs.org/dist/v4.2.6/docs/api/">the old version that is installed on that computer</a>.
+			I don't know what features of that version it depends upon and how much it would need to be changed to run on a different version.
+			I think the machine to which I'm copying <i>concierge</i> runs a much more recent version of NodeJS, and I doubt any functionality I'm using is deprecated between those two versions, so I expect it to run just fine when I bring it over.
+		</p>
+		<p>
+			I do want to, at some point, re-implement serverlib, to make it rely less on NodeJS's libraries such as <a href="https://nodejs.org/dist/latest/docs/api/http.html">their HTTP library</a>.
+			But that will have to be another time.
+			For now, just separating out the bad implementation from the thing that uses it will have to suffice.
+		</p>
+	</body>
+</html>

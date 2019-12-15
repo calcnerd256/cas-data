@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>fake Lisp | MD5 582e56dab955c577637cf3bc0bb9e4af</title>
+	</head>
+	<body>
+		<h1>
+	  		<a href="./md5=582e56dab955c577637cf3bc0bb9e4af">MD5 582e56dab955c577637cf3bc0bb9e4af</a>
+		</h1>
+		<h2>fake Lisp</h2>
+		<p>
+			In <a href="./md5=49c2096c4c95307db1e603e4566a82cc">an e-mail called "reverse proxy"</a>, I wrote about a reverse webproxy that only knows how to proxy and doesn't know what to proxy.
+			I implemented it before I wrote about it, and my implementation is called <i>concierge</i>.
+			It's called <i>concierge</i> because it sits at the front and directs you to someone in accordance with the decisions of yet someone else, and <i>ma&icirc;tre d'</i> is too hard to spell.
+		</p>
+		<p>
+			The feature set was small enough that I felt emboldened to write a specification for it.
+			The idea was that I might be able to write a program that automatically writes a program that implements the spec.
+			I <a href="./md5=6c4c8123ea1efc8851e333afece5ceba">wrote the specification as fake Lisp code</a>.
+			Then I set about trying to write the Lisp macros that would transform that code into an implementation that I could actually run.
+		</p>
+		<p>
+			My plan was to write some applications in that fake Lisp and then use a real Lisp implementation to translate them into something lower-language.
+			I thought maybe I could translate them into a lower Lisp or maybe into C or assembly.
+			Or maybe I'd take a detour through <a href="https://nodejs.org/">NodeJS</a> on the way to C or assembly.
+		</p>
+		<p>
+			I got bogged down, as I often do, so I gave up.
+			After a few different attempts to automatically transform my high-level spec into C or assembly, I decided to cheat by using NodeJS.
+		</p>
+		<h2><i>concierge</i>'s transformation</h2>
+		<p>
+			I had already written <i>concierge</i> in my fake Lisp, and I wanted to run it.
+			I decided to translate <i>concierge</i> by hand into NodeJS while preserving the structure of the program.
+			To preserve the structure, I translated the Lisp code directly into NodeJS as if all of its functions pre-existed, and then I wrote functions with those names that would allow the translated structure to execute.
+		</p>
+		<p>
+			Later, I decided that I wanted to copy <i>concierge</i> to another computer by publishing it.
+			I wanted to clean it up a little bit before publishing.
+			I ended up choosing to split it into <a href="./md5=2a874208d6d9506a4572acab90eabad8">a bad library implementing the primitives</a> and <a href="./md5=39ebe4324b32ebe8a3768eb35e093c40">a nice program using them</a>.
+		</p>
+		<p>
+			I do want to re-implement the bad library.
+			I want to make it rely less on NodeJS's libraries such as <a href="https://nodejs.org/dist/latest/docs/api/http.html">their HTTP library</a>.
+			But that rewrite will have to be another time.
+			For now, just separating out the bad implementation from the thing that uses it will have to suffice.
+		</p>
+		<h2>future Lisp</h2>
+		<p>
+			At some point, I want to use the fake Lisp version of <i>concierge</i> as the real one.
+			Then I can run it directly.
+			And, if I need to change it, I will then be able to modify it and run the modified version directly.
+		</p>
+		<p>
+			Better still will be if I can make some alternate UI that presents me the structure of that tiny program and lets me edit it in a maximally fluent way.
+			For instance, the top level is:
+			<pre>(procedure (parameters &hellip;) (result &hellip;))</pre>
+			It would be nice if I could design a GUI widget for editing instances of that concept.
+			Then maybe an editor could figure out that it should use that GUI for editing that program.
+			Unless I ask it to go spelunking into the underlying structure, that is.
+		</p>
+		<p>
+			Bonus if I could define such UIs and switch between them.
+			I would need to have a default one that's always available whether or not any of the special ones match the thing I'm trying to edit.
+		</p>
+		<p>
+			Then, if people could collaborate on a structure like that, each could edit it in their favorite editor for that shape.
+			It might be jarring, however, for someone's edit which is natural in their editor to transform the structure into one not recognized by another's editor.
+			Then the latter would see the thing they were looking at pop into the default view of it in response to an edit the former made, while the former would see a simple edit within their environment.
+			So there would be a mismatch between how big each of them perceives the change to be.
+			The one who made the change would see the change as smaller than the other one would see it.
+			Talk about a recipe for stepping on each other's toes!
+		</p>
+	</body>
+</html>

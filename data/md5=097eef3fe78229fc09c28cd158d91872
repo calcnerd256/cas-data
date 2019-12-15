@@ -1,0 +1,998 @@
+<html>
+	<head>
+		<title>sentence 1 | MD5 96cc20c6e5def0f9c6bd05656b239813</title>
+		<style>
+			.redact {
+				color: black;
+				background: black;
+			}
+			.noun {
+				border: 1px solid blue;
+				padding: 1px;
+				display: inline-block;
+			}
+			.variable {
+				border: 1px solid blue;
+				display: inline-block;
+			}
+			.string {
+				border: 1px solid gray;
+				display: inline-block;
+			}
+			.application {
+				border: 1px solid green;
+				padding: 1px;
+			}
+			.lambda {
+				border: 1px solid orange;
+				padding: 1px;
+			}
+			.lambda-top {
+				display: block;
+			}
+			.lambda-lambda {
+				display: inline;
+			}
+			.lambda-args {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>
+			sentence 1 of
+			<a href="./md5=96cc20c6e5def0f9c6bd05656b239813">MD5 96cc20c6e5def0f9c6bd05656b239813</a>
+		</h1>
+		First attempt.
+		<h2>provenance</h2>
+		<ul>
+			<li>
+				This sentence comes from the paragraph whose rough draft has an MD5 of <a href="./md5=96cc20c6e5def0f9c6bd05656b239813">96cc20c6e5def0f9c6bd05656b239813</a>.
+				It is the first sentence of that paragraph.
+			</li>
+			<li>
+				That paragraph is the first paragraph of a rough draft whose MD5 is <a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">4eaa2d17b974764f2dfa6ab63cf58b2b</a>.
+			</li>
+			<li>
+				That rough draft was derived from the original rough draft of the document, which has an MD5 of <a href="./md5=7e9d2f6a061b7ad330e1f0173bf69a72">7e9d2f6a061b7ad330e1f0173bf69a72</a>.
+			</li>
+		</ul>
+		<h2>the journey</h2>
+		<p>
+			Everything I did to this sentence, I planned to do to the entire document.
+			I thought I could then combine the results of doing so and build a gnarl of data to use as the material from which to build the final version of the document.
+			Each step turned out to be too much, so I kept trying smaller approaches.
+			I've decided to collect the intermediate results here.
+		</p>
+		<h2 id="facts">facts</h2>
+		<p>
+			First, I tried turning the sentence into a set of facts, expressed in some fake dialect of Lisp.
+			I concluded that many facts across the document would likely share nouns, so I chose to make a noun pool.
+		</p>
+		<h3>nouns</h3>
+		Here are the nouns that the facts derived from this sentence use.
+		<ul>
+			<li id="me">person: me</li>
+			<li id="concierge">file: concierge.program</li>
+			<li id="redact1">computer: <span class="redact">[REDACTED 1]</span></li>
+			<li id="redact2">computer: <span class="redact">[REDACTED 2]</span></li>
+		</ul>
+		<h3>facts</h3>
+		<ul>
+			<li id="oldloc">(location-same (location concierge.program) <span class="redact">[REDACTED 1]</span>)</li>
+			<li id="filename">(= (file-name concierge.program) "server.program")</li>
+			<li id="newloc">(desire me (location-same (location concierge.program) <span class="redact">[REDACTED 2]</span>))</li>
+		</ul>
+		<p>
+			Looking back, I didn't even get that right.
+			Nowhere did I assert that the two computers aren't the same one.
+		</p>
+		<h2 id="nouns">nouns</h2>
+		<p>
+			Since that seemed like too much work, I decided to collect all the noun-likes.
+		</p>
+		<p>
+			<span class="noun">I</span>
+			want
+			<span class="noun">
+				to move
+				<span class="noun">server.program</span>
+				to
+				<span class="noun">another machine</span></span>.
+		</p>
+		<p>
+			I didn't get that right, either.
+			At least "machine" there inside of "another machine" should be a noun.
+		</p>
+		<h2 id="structure">sentence structure</h2>
+		<p>
+			Then I decided that maybe I should start with idioms and capture the structure top-down instead of bottom-up.
+			I started this on this sentence and did not finish it.
+			I started it over a few times, trying to re-compute the results of the previous attempt in each subsequent attempt.
+			The first attempt was fully absorbed into the second, so it didn't leave any evidence behind.
+		</p>
+			<table>
+			  <tr>
+			    <th>rule name</th>
+			    <th>shorthand</th>
+			    <th>canonical</th>
+			  </tr>
+			  <tr>
+			    <td>I want</td>
+			    <td>
+			      <span class="string">
+				I
+				want
+				<span class="variable">something</span>
+			      </span>
+			    </td>
+			    <td>
+			      <span class="string">
+				me
+				wants
+				<span class="variable">something</span>
+			      </span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>wants to</td>
+			    <td>
+			      <span class="string">
+				<span class="variable">someone</span>
+				wants to
+				<span class="variable">
+				  do something
+				</span>
+			      </span>
+			    </td>
+			    <td>
+			      <span class="string">
+				<span class="variable">someone</span>
+				wants
+				for
+				<span class="variable">someone</span>
+				to
+				<span class="variable">
+				  do something
+				</span>
+			      </span>
+			    </td>
+			  </tr>
+			</table>
+			<table>
+			  <tr>
+			    <th>before</th>
+			    <th>rule</th>
+			    <th>direction</th>
+			    <th>match</th>
+			    <th>transformation</th>
+			    <th>result</th>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">I want to move server.program to another machine.</span>
+			    </td>
+			    <td>I want</td>
+			    <td>&rarr;</td>
+			    <td>
+			      <div class="application">
+				concatenate
+				<ul>
+				  <li>
+				    <dl>
+				      I want
+				      <dt>
+					<span class="variable">something</span>
+				      </dt>
+				      <dd>
+					<span class="string">to move server.program to another machine</span>
+				      </dd>
+				    </dl>
+				  </li>
+				  <li>
+				    <span class="string">.</span>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <span class="string">me wants to move server.program to another machine</span>
+			    </td>
+			    <td>
+			      <span class="string">me wants to move server.program to another machine.</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">me wants to move server.program to another machine.</span>
+			    </td>
+			    <td>wants to</td>
+			    <td>&rarr;</td>
+			    <td>
+			      <div class="application">
+				concatenate
+				<ul>
+				  <li>
+				    <dl>
+				      wants to
+				      <dt>
+					<span class="variable">someone</span>
+				      </dt>
+				      <dd>
+					<span class="string">me</span>
+				      </dd>
+				      <dt>
+					<span class="variable">do something</span>
+				      </dt>
+				      <dd>
+					<span class="string">
+					  move
+					  server.program
+					  to
+					  another machine
+					</span>
+				      </dd>
+				    </dl>
+				  </li>
+				  <li>
+				    <span class="string">.</span>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <span class="string">
+				me
+				wants for
+				me
+				to
+				move
+				server.program
+				to
+				another machine
+			      </span>
+			    </td>
+			    <td>
+			      <span class="string">
+				me
+				wants for
+				me
+				to
+				move
+				server.program
+				to
+				another machine.
+			      </span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">
+				me
+				wants for
+				me
+				to
+				move
+				server.program
+				to
+				another machine.
+			      </span>
+			    </td>
+			    <td>I want</td>
+			    <td>&larr;</td>
+			    <td>
+			      <div class="application">
+				concatenate
+				<ul>
+				  <li>
+				    <dl>
+				      I want
+				      <dt>
+					<span class="variable">something</span>
+				      </dt>
+				      <dd>
+					<span class="string">for me to move server.program to another machine</span>
+				      </dd>
+				    </dl>
+				  </li>
+				  <li>
+				    <span class="string">.</span>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to move server.program to another machine</span>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to move server.program to another machine.</span>
+			    </td>
+			  </tr>
+			</table>
+			<table>
+			  <tr>
+			    <th>input</th>
+			    <th>match</th>
+			    <th>transform</th>
+			    <th>result</th>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">I want to move server.program to another machine.</span>
+			    </td>
+			    <td>
+			      <span class="string">I want to <span class="variable">perform the action</span>.</span>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to <span class="variable">perform the action</span>.</span>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to move server.program to another machine.</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">I want for me to move server.program to another machine.</span>
+			    </td>
+			    <td>
+			      <span class="string">to move <span class="variable">it</span> to <span class="variable">there</span></span>
+			    </td>
+			    <td>
+			      <span class="string">to move <span class="variable">it</span> from where <span class="variable">it</span> is to <span class="variable">there</span></span>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to move server.program from where server.program is to another machine.</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">I want for me to move server.program from where server.program is to another machine.</span>
+			    </td>
+			    <td>
+			      <span class="string">for <span class="variable">someone</span> to move <span class="variable">it</span></span>
+			    </td>
+			    <td>
+			      <span class="string">for <span class="variable">someone</span> to cause for <span class="variable">it</span> to move</span>
+			    </td>
+			    <td>
+			      <span class="string">I want for me to cause for server.program to move from where server.program is to another machine.</span>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <span class="string">I want for me to cause for server.program to move from where server.program is to another machine.</span>
+			    </td>
+			    <td>
+			      <span class="string">I want for <span class="variable">someone</span> to cause <span class="variable">something</span>.</span>
+			    </td>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <span class="string">
+							<span class="variable">someone</span>
+							causes
+							<span class="variable">event</span>
+						      </span>
+						    </li>
+						    <li>
+						      <span class="string">
+							  <span class="variable">event</span>
+							  causes
+							  <span class="variable">something</span>
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <div class="application">
+							<div class="lambda">
+							  <div class="lambda-top">
+							    <span class="lambda-lambda">&lambda;</span>
+							    <ul class="lambda-args">
+							      <li>
+								<span class="variable">someone</span>
+							      </li>
+							    </ul>
+							  </div>
+							  <hr />
+							  <ul>
+							    <li>
+							      <span class="string">
+								<span class="variable">someone</span>
+								causes
+								<span class="variable">event</span>
+							      </span>
+							    </li>
+							  </ul>
+							</div>
+							<ul>
+							  <li>
+							    <span class="string">me</span>
+							  </li>
+							</ul>
+						      </div>
+						    </li>
+						    <li>
+						      <span class="string">
+							  <span class="variable">event</span>
+							  causes
+							  for server.program to move from where server.program is to another machine
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <div class="application">
+							<div class="lambda">
+							  <div class="lambda-top">
+							    <span class="lambda-lambda">&lambda;</span>
+							    <ul class="lambda-args">
+							      <li>
+								<span class="variable">someone</span>
+							      </li>
+							    </ul>
+							  </div>
+							  <hr />
+							  <ul>
+							    <li>
+							      <span class="string">
+								<span class="variable">someone</span>
+								causes
+								<span class="variable">event</span>
+							      </span>
+							    </li>
+							  </ul>
+							</div>
+							<ul>
+							  <li>
+							    <span class="string">me</span>
+							  </li>
+							</ul>
+						      </div>
+						    </li>
+						    <li>
+						      <span class="string">
+							  <span class="variable">event</span>
+							  causes
+							  for server.program to move from where server.program is to another machine
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <span class="string">for <span class="variable">it</span> to move from <span class="variable">somewhere</span> to <span class="variable">elsewhere</span></span>
+			    </td>
+			    <td>
+			      <span class="string">for the location of <span class="variable">it</span> to change from <span class="variable">somewhere</span> to <span class="variable">elsewhere</span></span>
+			    </td>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <div class="application">
+							<div class="lambda">
+							  <div class="lambda-top">
+							    <span class="lambda-lambda">&lambda;</span>
+							    <ul class="lambda-args">
+							      <li>
+								<span class="variable">someone</span>
+							      </li>
+							    </ul>
+							  </div>
+							  <hr />
+							  <ul>
+							    <li>
+							      <span class="string">
+								<span class="variable">someone</span>
+								causes
+								<span class="variable">event</span>
+							      </span>
+							    </li>
+							  </ul>
+							</div>
+							<ul>
+							  <li>
+							    <span class="string">me</span>
+							  </li>
+							</ul>
+						      </div>
+						    </li>
+						    <li>
+						      <span class="string">
+							  <span class="variable">event</span>
+							  causes
+							  for
+							  the location of server.program
+							  to change
+							  from
+							  where server.program is
+							  to
+							  another machine
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <div class="application">
+							<div class="lambda">
+							  <div class="lambda-top">
+							    <span class="lambda-lambda">&lambda;</span>
+							    <ul class="lambda-args">
+							      <li>
+								<span class="variable">someone</span>
+							      </li>
+							    </ul>
+							  </div>
+							  <hr />
+							  <ul>
+							    <li>
+							      <span class="string">
+								<span class="variable">someone</span>
+								causes
+								<span class="variable">event</span>
+							      </span>
+							    </li>
+							  </ul>
+							</div>
+							<ul>
+							  <li>
+							    <span class="string">me</span>
+							  </li>
+							</ul>
+						      </div>
+						    </li>
+						    <li>
+						      <span class="string">
+							  <span class="variable">event</span>
+							  causes
+							  for
+							  the location of server.program
+							  to change
+							  from
+							  where server.program is
+							  to
+							  another machine
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			    <td>
+			      <span class="string">
+				<span class="variable">something</span>
+				causes
+				for
+				<span class="variable">it</span>
+				to change
+				from
+				<span class="variable">old</span>
+				to
+				another
+				<span class="variable">one</span>
+			      </span>
+			    </td>
+			    <td>
+			      <span class="string">
+				<span class="variable">old</span>
+				is among the instances of
+				<span class="variable">one</span>
+				and
+				<span class="variable">something</span>
+				causes
+				for
+				<span class="variable">it</span>
+				to change
+				from
+				<span class="variable">old</span>
+				to
+				a different
+				<span class="variable">one</span>
+				than
+				<span class="variable">old</span>
+			      </span>
+			    </td>
+			    <td>
+			      <div class="application">
+				<div class="lambda">
+				  <div class="lambda-top">
+				    <span class="lambda-lambda">&lambda;</span>
+				    <ul class="lambda-args">
+				      <li>
+					<span class="variable">someone</span>
+				      </li>
+				      <li>
+					<span class="variable">something</span>
+				      </li>
+				    </ul>
+				  </div>
+				  <hr />
+				  <ul>
+				    <li>
+				      <span class="string">
+					<span class="variable">someone</span>
+					wants
+					<span class="variable">something</span>.
+				      </span>
+				    </li>
+				  </ul>
+				</div>
+				<ul>
+				  <li>
+				    me
+				  </li>
+				  <li>
+				    <div class="application">
+				      &exist;
+				      <ul>
+					<li>
+					  <div class="lambda">
+					    <div class="lambda-top">
+					      <span class="lambda-lambda">&lambda;</span>
+					      <ul class="lambda-args">
+						  <li><span class="variable">event</span></li>
+					      </ul>
+					    </div>
+					    <hr />
+					    <ul>
+					      <li>
+						<div class="application">
+						  and
+						  <ul>
+						    <li>
+						      <div class="application">
+							<div class="lambda">
+							  <div class="lambda-top">
+							    <span class="lambda-lambda">&lambda;</span>
+							    <ul class="lambda-args">
+							      <li>
+								<span class="variable">someone</span>
+							      </li>
+							    </ul>
+							  </div>
+							  <hr />
+							  <ul>
+							    <li>
+							      <span class="string">
+								<span class="variable">someone</span>
+								causes
+								<span class="variable">event</span>
+							      </span>
+							    </li>
+							  </ul>
+							</div>
+							<ul>
+							  <li>
+							    <span class="string">me</span>
+							  </li>
+							</ul>
+						      </div>
+						    </li>
+						    <li>
+						      <span class="string">
+							where server.program is
+							is among the instances of
+							machine
+							and
+							<span class="variable">event</span>
+							causes
+							for
+							the location of server.program
+							to change
+							from
+							where server.program is
+							to
+							a different
+							machine
+							than
+							where server.program is
+						      </span>
+						    </li>
+						  </ul>
+						</div>
+					      </li>
+					    </ul>
+					  </div>
+					</li>
+				      </ul>
+				    </div>
+				  </li>
+				</ul>
+			      </div>
+			    </td>
+			  </tr>
+			</table>
+		<h2>stop</h2>
+		<p>
+			There's a lot to be said for cutting your losses.
+		</p>
+		<h1>the sentence</h1>
+		<p>
+			I want
+			to move server.program
+			to another machine.
+		</p>
+	</body>
+</html>

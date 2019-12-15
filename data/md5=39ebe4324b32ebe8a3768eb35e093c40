@@ -1,0 +1,68 @@
+var serverlib = require("serverlib");
+
+var ensure_type = serverlib["ensure type"];
+var webserver = serverlib.webserver;
+var localhost = serverlib.localhost;
+var after = serverlib.after;
+var write = serverlib.write;
+var read = serverlib.read;
+var HTTP = serverlib.HTTP;
+var get = serverlib.get;
+var GET = serverlib.GET;
+var join = serverlib.join;
+var empty = serverlib.empty;
+var close = serverlib.close;
+
+
+serverlib["run top-level procedure"](
+    function(port_number, upstream){
+	ensure_type(port_number, ["number", "port"]);
+	ensure_type(upstream, ["string", "uri"]);
+	return webserver(
+	    {
+		listen: {
+		    port: port_number,
+		    host: localhost
+		},
+		request: function(client_request, client){
+		    ensure_type(client_request, ["HTTP", "request"]);
+		    ensure_type(client, ["channel", "byte"]);
+		    return after(
+			write(
+			    {
+				channel: client,
+				message: read(
+				    HTTP(
+					"request",
+					{
+					    method: get("method", client_request),
+					    uri: get(
+						"body",
+						HTTP(
+						    "request",
+						    {
+							method: GET,
+							uri: join(
+							    "/",
+							    upstream,
+							    get("uri", client_request)
+							),
+							headers: empty,
+							body: empty
+						    }
+						)
+					    ),
+					    headers: get("headers", client_request),
+					    body: get("body", client_request)
+					}
+				    )
+				)
+			    }
+			),
+			close({channel: client})
+		    );
+		}
+	    }
+	);
+    }
+);

@@ -1,0 +1,215 @@
+Here's what I've published over the course of the last week.
+
+by day, minute:
+ [ /calendar/Gregorian/AD/2019/12/8/6/ , /calendar/Gregorian/AD/2019/12/9/6/ )
+  /calendar/Gregorian/AD/2019/12/9/0/51/
+   /cas/md5=274c92ade474d3e78a925160b2d217cc
+   /cas/md5=eb519e9cc12da53f7b418f89111880b8
+   /cas/md5=f3bf56252657268fa076f2024a05aef8
+ [ /calendar/Gregorian/AD/2019/12/9/6/ , /calendar/Gregorian/AD/2019/12/10/6/ )
+ [ /calendar/Gregorian/AD/2019/12/10/6/ , /calendar/Gregorian/AD/2019/12/11/6/ )
+  /calendar/Gregorian/AD/2019/12/10/17/25/
+   /cas/md5=bf2cb5d7acaa7881f53cc4d0c9abfe41
+   /cas/md5=ccaa13b3af167a1b01f14e29e52dc7b3
+ [ /calendar/Gregorian/AD/2019/12/11/6/ , /calendar/Gregorian/AD/2019/12/12/6/ )
+  /calendar/Gregorian/AD/2019/12/11/23/47/
+   /cas/md5=c8714b8d466f6797a478202e4fa93e26
+   /cas/md5=eb7346bbdeb48cff7a31593ccaec7be8
+ [ /calendar/Gregorian/AD/2019/12/12/6/ , /calendar/Gregorian/AD/2019/12/13/6/ )
+ [ /calendar/Gregorian/AD/2019/12/13/6/ , /calendar/Gregorian/AD/2019/12/14/6/ )
+ [ /calendar/Gregorian/AD/2019/12/14/6/ , /calendar/Gregorian/AD/2019/12/15/6/ )
+
+by MIME type:
+ text/plain
+  /cas/md5=274c92ade474d3e78a925160b2d217cc
+  /cas/md5=ccaa13b3af167a1b01f14e29e52dc7b3
+  /cas/md5=eb7346bbdeb48cff7a31593ccaec7be8
+  /cas/md5=f3bf56252657268fa076f2024a05aef8
+ text/html
+  /cas/md5=bf2cb5d7acaa7881f53cc4d0c9abfe41
+  /cas/md5=c8714b8d466f6797a478202e4fa93e26
+  /cas/md5=eb519e9cc12da53f7b418f89111880b8
+
+by e-mail:
+ [msr.sigcf] typos and digest
+  /calendar/Gregorian/AD/2019/12/9/0/53/48/
+  /cas/md5=274c92ade474d3e78a925160b2d217cc
+  /cas/md5=eb519e9cc12da53f7b418f89111880b8
+  /cas/md5=f3bf56252657268fa076f2024a05aef8
+ [msr.sigcf] proxy configurator
+  /calendar/Gregorian/AD/2019/12/10/17/29/49
+  /cas/md5=bf2cb5d7acaa7881f53cc4d0c9abfe41
+  /cas/md5=ccaa13b3af167a1b01f14e29e52dc7b3
+ [msr.sigcf] feedback
+  /calendar/Gregorian/AD/2019/12/11/23/49/33
+  /cas/md5=c8714b8d466f6797a478202e4fa93e26
+  /cas/md5=eb7346bbdeb48cff7a31593ccaec7be8
+
+topics by e-mail:
+ typos and digest
+  archive.is
+  archive.org
+  calcnerd256.dyndns.org
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=49c2096c4c95307db1e603e4566a82cc
+  /cas/md5=a49410041c48c4cf311b2c59851c878c
+  /cas/md5=a6472dcc08c049beca62d6ee1b201348
+  /cas/md5=f3bf56252657268fa076f2024a05aef8
+  content-addressable storage
+  CST
+  digest
+  e-mail body
+  e-mail subject line
+  find
+  GitHub
+  Gregorian calendar
+  HTML
+  MD5
+  my domain name
+  my proxy
+  previous e-mail
+  service directory
+  software defect
+  typo
+  Unix epoch
+  URL
+  verb tense
+  Wayback Machine
+ proxy configurator
+  accidental feature
+  archive.is
+  archive.org
+  bad version
+  calcnerd256.dyndns.org
+  /cas/md5=0d7177f4b08b7f2f81579a37073ac645
+  /cas/md5=25bbab5c07fe62f2030d45567ed9849a
+  /cas/md5=274c92ade474d3e78a925160b2d217cc
+  /cas/md5=49c2096c4c95307db1e603e4566a82cc
+  /cas/md5=a6472dcc08c049beca62d6ee1b201348
+  /cas/md5=eb519e9cc12da53f7b418f89111880b8
+  chilling effect
+  command-line arguments
+  complexity
+  configuration
+  configurator
+  content-addressable storage
+  crash
+  CST
+  cuss
+  data: URI scheme
+  delay
+  delegation of choice
+  dependency
+  do one thing well
+  efficiency
+  e-mail body
+  e-mail subject line
+  executive decision
+  extrinsic relationship
+  feedback
+  finity
+  GitHub
+  Gregorian calendar
+  hard-coded
+  hazard
+  HTML
+  HTTP echo service
+  humor
+  implementation
+  indirect communication
+  indirection
+  infinite regress
+  initial setup
+  inlining
+  interface
+  inverse filter
+  JSON
+  known port
+  late binding
+  launch script
+  liberty
+  lost information
+  MD5
+  multiple configurators
+  multiplexor
+  my domain name
+  my proxy
+  namespace collision
+  namespace grafting
+  naming things is hard
+  network port
+  non-termination
+  offensive
+  optimization
+  paradox
+  political
+  previous e-mail
+  protocol
+  question
+  random port
+  recursion
+  redirect
+  redirection primitives
+  scab
+  service directory
+  service metadata
+  software licensing
+  speculative feature
+  subscription
+  targeted preimage
+  test-driven development
+  to vouch for anothor author
+  Trilema
+  trust
+  ultimate client
+  ultimate server
+  Unix epoch
+  upstream
+  URL
+  verbal processor
+  Wayback Machine
+  Web resource
+  webserver
+  wrapped packets
+ feedback
+  archive.is
+  archive.org
+  calcnerd256.dyndns.org
+  /cas/md5=bf2cb5d7acaa7881f53cc4d0c9abfe41
+  /cas/md5=ccaa13b3af167a1b01f14e29e52dc7b3
+  content-addressable storage
+  CORS
+  CST
+  danger
+  diagonalization
+  e-mail body
+  e-mail subject line
+  errata
+  feedback
+  firehose
+  GitHub
+  glossary
+  Gregorian calendar
+  HTML
+  HTTP echo server
+  hyperlink
+  idea
+  implementation
+  inline definition
+  JS
+  Lawrence Kincheloe
+  mailing list
+  MD5
+  multiple audiences
+  multiple mailing lists
+  my domain name
+  previous e-mail
+  publish
+  rough draft
+  Sam Bleckley
+  scoped definition
+  security
+  Unix epoch
+  URL
+  Wayback Machine

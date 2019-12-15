@@ -1,0 +1,377 @@
+<html>
+	<head>
+		<title>nouns | MD5 4eaa2d17b974764f2dfa6ab63cf58b2b</title>
+		<style>
+			.noun {
+				border: 1px solid blue;
+				padding: 1px;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>
+			nouns of
+			<a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">MD5 4eaa2d17b974764f2dfa6ab63cf58b2b</a>
+		</h1>
+		<h2>big picture</h2>
+		<p>
+			I was trying to extract information from <a href="./md5=4eaa2d17b974764f2dfa6ab63cf58b2b">the rough draft of a document</a> so that I could build the final version out of those components.
+			First, <a href="./md5=7203d7bf2be27ddb273e87a5c0e95ed2">I tried extracting them as "facts"</a>, but I didn't get very far.
+			I did not finish <a href="md5=85424681e4d7dabc66ac2f1c7b85cdef#facts">extracting facts from the first paragraph</a> before I gave up on that approach.
+			My second approach was to try to label the noun-like parts.
+			I made it much further this time, but I still got bogged down.
+			That's what this page is about.
+			After failing at that, I <a href="./md5=097eef3fe78229fc09c28cd158d91872#structure">tried more things that also didn't work</a>.
+			Those were also <a href="./md5=85424681e4d7dabc66ac2f1c7b85cdef">limited to the first paragraph</a>.
+			The nouns were the only attempt that made it past the first paragraph (other than some residue from the fact extraction), so they get their own page here.
+		</p>
+		<h3>outline</h3>
+		<ul>
+			<h4>publishing my proxy <i>concierge</i> to move it, and dreaming about the future of editing such programs</h4>
+			<li>
+				<h5>[REDACTED 1] concierge and moving it to [REDACTED 2]</h5>
+				cf. <a href="./md5=85424681e4d7dabc66ac2f1c7b85cdef#nouns">paragraph 1 nouns</a>.
+			</li>
+			<li>
+				<h5>split server.js and node_modules</h5>
+				<ul>
+					<li>
+						After writing
+						<span class="noun">the above</span>,
+						<span class="noun">I</span>
+						split
+						<span class="noun">
+							<span class="noun">
+								the
+								<span class="noun">NodeJS</span>
+								<span class="noun">version</span>
+							</span>
+							of
+							<span class="noun">concierge.program</span>
+						</span>
+						into
+						<span class="noun">
+							the
+							supporting
+							<span class="noun">library</span>
+						</span>
+						and
+						<span class="noun">
+							the
+							<span class="noun">code</span>
+							that
+							uses
+							<span class="noun">
+								that
+								<span class="noun">library</span>
+							</span>
+							and
+							has
+							<span class="noun">
+								<span class="noun">
+									the
+									<span class="noun">structure</span>
+								</span>
+								of
+								<span class="noun">
+									the
+									<span class="noun">
+										fake
+										<span class="noun">Lisp</span>
+									</span>
+									<span class="noun">version</span></span></span></span>.
+					</li>
+					<li>
+						<span class="noun">
+							The
+							<span class="noun">MD5</span>
+						</span>
+						of
+						<span class="noun">
+							the
+							<span class="noun">
+								<span class="noun">code</span>
+								that
+								uses
+								<span class="noun">
+									the
+									<span class="noun">library</span>
+								</span>
+							</span>
+						</span>
+						is
+						<span class="noun"><i>39ebe4324b32ebe8a3768eb35e093c40</i></span>,
+						and
+						<span class="noun">it</span>
+						expects to find
+						<span class="noun">
+							the
+							<span class="noun">library</span>
+						</span>
+						under
+						<span class="noun">./node_modules/serverlib/index.js</span>.
+					</li>
+					<li>
+						<span class="noun">This</span>
+						is easier to work with than
+						<span class="noun">
+							the last
+							<span class="noun">
+								<span class="noun">NodeJS</span>
+								<span class="noun">program</span>
+							</span>
+							<span class="noun">I</span>
+							brought into
+							<span class="noun">
+								<span class="noun">
+									an
+									older
+									<span class="noun">CAS</span>
+								</span>
+								<span class="noun">I</span>
+								had
+								on
+								<span class="noun">
+									the
+									<span class="noun">
+										<span class="noun">target</span>
+										<span class="noun">machine</span>
+									</span>
+								</span>
+							</span>
+						</span>,
+						which required
+						<span class="noun">me</span>
+						to copy
+						<span class="noun">
+							the
+							<span class="noun">files</span>
+						</span>
+						to
+						<span class="noun">
+							specific
+							<span class="noun">places</span>
+						</span>
+						instead of
+						<span class="noun">symlink</span>ing
+						<span class="noun">anything</span>.
+					</li>
+					<li>
+						<span class="noun">I</span>
+						might still have to copy
+						<span class="noun">the <span class="noun">files</span></span>
+						around,
+						but
+						at <span class="noun">least</span>
+						now
+						<span class="noun">I</span>
+						won't have to put
+						<span class="noun">them</span>
+						in
+						<span class="noun">
+							exact
+							<span class="noun">
+								relative
+								<span class="noun">directories</span>
+							</span>
+						</span>,
+						because
+						<span class="noun">node_modules</span>
+						allows
+						<span class="noun">me</span>
+						<span class="noun">
+							<span class="noun">
+								<span class="noun">
+									a
+									<span class="noun">little</span>
+								</span>
+								<span class="noun">more</span>
+							</span>
+							<span class="noun">
+								<span class="noun">flexibility</span>
+								in
+								<span class="noun">
+									how
+									<span class="noun">I</span>
+									manage
+									<span class="noun">
+										my
+										<span class="noun">locations</span></span></span></span></span>.
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h5>future plans for a better serverlib.js</h5>
+				<ul>
+					<li>
+						<span class="noun">I</span>
+						do
+						want
+						<span class="noun">
+							to,
+							at
+							<span class="noun">
+								some
+								<span class="noun">point</span></span>,
+							re-implement
+							<span class="noun">
+								<span class="noun">
+									the
+									<span class="noun">library</span>
+								</span>
+								that
+								supports
+								<span class="noun">
+									the
+									<span class="noun">NodeJS</span>
+									<span class="noun">
+										<span class="noun">version</span>
+										of
+										<span class="noun">server.program</span></span></span></span>,
+							to make
+							<span class="noun">it</span>
+							rely less on
+							<span class="noun">
+								<span class="noun">
+									<span class="noun">NodeJS</span>'s
+									<span class="noun">libraries</span>
+								</span>
+								such as
+								<span class="noun">
+									their
+									<span class="noun">
+										<span class="noun">HTTP</span>
+										<span class="noun">library</span></span></span></span></span>.
+					</li>
+					<li>
+						But
+						<span class="noun">that</span>
+						will have
+						<span class="noun">
+							to
+							be
+							<span class="noun">
+								an<span class="noun">other</span>
+								<span class="noun">time</span></span></span>.
+					</li>
+					<li>
+						For
+						<span class="noun">now</span>,
+						<span class="noun">
+							just
+							<span class="noun">
+								separating out
+								<span class="noun">
+									the
+									<span class="noun">
+										bad
+										<span class="noun">implementation</span>
+									</span>
+								</span>
+								from
+								<span class="noun">
+									<span class="noun">
+										the
+										<span class="noun">thing</span>
+									</span>
+									that
+									uses
+									<span class="noun">it</span>
+								</span>
+							</span>
+						</span>
+						will
+						have
+						<span class="noun">
+							to
+							suffice</span>.
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h5>to publish serverlib.js and move it to [REDACTED 2]</h5>
+				<ul>
+					<li>
+						After
+						<span class="noun">
+							writing
+							<span class="noun">that <span class="noun">thought</span></span>
+							down</span>,
+						<span class="noun">I</span>'ve
+						committed
+						<span class="noun">
+							to
+							<span class="noun">
+								publishing
+								<span class="noun">
+									this
+									<span class="noun">
+										<span class="noun">
+											imperfect
+											<span class="noun">implementation</span>
+										</span>
+										of
+										<span class="noun">
+											the
+											<span class="noun">library</span>
+											that
+											supports
+											<span class="noun">
+												the
+												<span class="noun">
+													<span class="noun">NodeJS</span>
+													<span class="noun">version</span>
+												</span>
+												of
+												<span class="noun">concierge.program</span></span></span></span></span></span></span>.
+					</li>
+					<li>
+						This is the easiest way for me to get it into my other machine.
+					</li>
+					<li>
+						SFTP, on the other hand, would require me to stand up and walk across the room, and that's clearly more work than sitting here typing and thinking about decisions for what to publish and when.
+					</li>
+					<li>
+						Obviously.
+					</li>
+					<li>
+						Anyway, the MD5 of this library is <i>2a874208d6d9506a4572acab90eabad8</i>, and I already said where it needs to be stored so that the program that uses it can use it.
+					</li>
+					<li>
+						I've written it against NodeJS version 4.2.6, so I don't know what features of that version it depends upon and how much it would need to be changed to run on a different version.
+					</li>
+					<li>
+						I think the other machine I'm moving it to runs a much more recent version, and I doubt any functionality I'm using is deprecated between those two versions, so I expect it to run just fine when I bring it over.
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h5>future for concierge.program and GUI</h5>
+				<ul>
+					<li>
+						At some point, I want to make the fake Lisp version of concierge be the real one, so that I can run it directly and, if I need to change it, modify it and then run the modified version directly.
+					</li>
+					<li>
+						Better still will be if I can make some alternate UI that presents me the structure of that tiny program and lets me edit it in a maximally fluent way.
+					</li>
+					<li>
+						For instance, the top level is (procedure (parameters ...) (result ...)), so it would be nice if I could design a GUI widget for editing instances of that concept and then have the editor figure out that it should use that GUI for editing that program unless I ask it to go spelunking into the underlying structure.
+					</li>
+					<li>
+						Bonus if I could define multiple and switch between them, with a default one that's always available whether or not any of the special ones match the thing I'm trying to edit.
+					</li>
+					<li>
+						Then people could collaborate on a structure like that, and each can edit it in their favorite editor for that shape.
+					</li>
+					<li>
+						It might be jarring, however, for someone's edit that is natural in their editor to transform the structure into one not recognized by another's editor; then the latter would see the thing they were looking at pop into the default view of it in response to an edit the former made, and the former would see a simple edit within their environment, so there would be a mismatch between how big each of them perceives the change to be, and the one who made the change would see the change as smaller than the other one.
+					</li>
+					<li>
+						Talk about a recipe for stepping on each other's toes!
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+</html>
