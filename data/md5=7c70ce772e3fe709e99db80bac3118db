@@ -1,0 +1,17 @@
+Welcome to the inaugural issue of the firehose.
+This newsletter is a fork of my other newsletter, which goes out less often.
+They both use a technique called "content-addressable storage" (or CAS for short) to publish their contents.
+I already sent out an e-mail to the slower newsletter explaining CAS and my implementation of it.
+At the time of this writing, the contents of that e-mail can be found in a few places, including the following:
+http://archive.is/FyoSb
+http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645
+http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+The short version of it is: if you see a long string of letters and numbers after the acronym "MD5", copy that long string and paste it after "http://calcnerd256.dyndns.org:15211/cas/md5=" into your address bar to visit the referenced document in your browser.
+Since that's kind of onerous, I'm going to make an effort to hyperlink these in the e-mails I send out to the other mailing list.
+But I'll assume that people on the firehose mailing list will let me know if they want me to change how I do things on the firehose list.
+Changes made to the format of the firehose will be subject to debate on the firehose list, so anonymous suggestions made here about here will be published with or without permission, though they will be paraphrased if permission is not granted to publish them as-is.
+The aforementioned debate should not be time-sensitive, so the debate can be had again when new people chime in with their opinions or when people change their minds about their preferences.  Interim decisions will be made with the information available at the time and revised according to how I feel whenever it's time to apply them.
+
+Alright, with that out of the way, let's talk about what I'm working on.
+I mentioned in a previous e-mail on the other list that I wanted to move a file from one computer to another by publishing it.  The file I wanted to move was based on a file with an MD5 of 6c4c8123ea1efc8851e333afece5ceba.  After I published it, I noticed that the indentation mixes spaces and tabs, because that's the default behavior of the text editor I'm using.  I've chosen to remedy this by publishing another version of the file with more consistent spacing.  Its MD5 is e3ac6ac4e9970285c9ca7752665c92a6.
