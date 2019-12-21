@@ -1,0 +1,124 @@
+I talked a little bit about test-driven development (TDD) in a document with an MD5 of c0dad8b213dd3fa646fa340da0278753.
+
+I'm interested in some ways to cheat at test-driven development, to undermine the things that make it work for what it is intended to do and instead exaggerate its secondary benefits.
+
+When I write tests before code, I like that I can run the test suite and know that my code "works" (where "works" just means "passes all tests", not "actually works").
+It helps me move faster, with confidence.
+
+Usually, tests are code.
+Some TDD paradigms use data for tests.
+You might have a table of inputs and outputs, and those are your tests, and you have a test runner that uses the table to decide how to test your program.
+Usually, though, this stuff is written in the same language as your program.
+Regardless of whether your tests are code or data, they tend to be something you add to way more often than you remove from or alter.
+If you change your tests, you change your requirements, especially if you've so radically embraced testing as to say that correctness is defined by your tests.
+If you're an organization with non-programmers making decisions about what the goals are, then the tests are an important way to convince the goalsmiths that the programmers are meeting those goals.
+In that situation, adding tests creates work for programmers, and removing or changing a test is feedback that the goalsmithing stakeholders need to be included on.
+So tests are largely immutable, in an append-only fashion.
+
+If tests are immutable, it's unthinkable to base those "data" tests on data that changes without some kind of review process.
+But let's do that.
+I've started making "data" tests that relate inputs to outputs where the outputs are files.
+I just check that the contents of the file with a certain filename match the output of the program.
+Theoretically, you could make your program pass those tests by having it overwrite the file.
+Don't do that.
+But don't rule it out, either.
+
+Cheating lets you time-travel.
+It lets you skip writing correct code up front and come back later to fix it after you've written something else that you wanted to write first but otherwise couldn't.
+This is related to the concept of "technical debt".
+That's like monetary debt in that you borrow against the future in some way and have to repay it before you can have the results of the whole thing.
+Technical debt is basically a form of cutting corners.
+Also like most monetary debt, technical debt tends to come with compound interest that you have to pay down occasionally.
+Often, you have a choice between "do it right or do it twice".
+Sometimes, doing it twice is worthwhile if it prevents you from slowing down.
+If you're on a team, technical debt that's going to impact other people is a group decision.
+If you trust each other to be responsible with compound interest, then there may not need to be a formal process for establishing that consensus.
+
+If your tests are based on data stored in files and there aren't rules preventing you from changing the data in those files, then a program that was previously considered correct by those tests can become incorrect without any changes to the program.
+This undermines the confidence that tests provide, but that's because we're abusing tests on purpose.
+Usually, tests help you detect when a change to your program accidentally breaks something that worked before.
+These are "regression" tests and don't need to be written before they pass.
+Usually in TDD, you introduce a failing test and then make it pass.
+That makes sure that your test is actually testing something.
+Tests introduced in that way can become regression tests over time, but you could also introduce a regression test in a post-hoc fashion.
+It's a bad idea, because you haven't tested the test, whereas watching it go from red to green tests the test.
+Intentionally introducing a test that is merely a regression test can be useful if you want to enshrine a decision that wasn't intentionally designed, like if the "minimal" code you wrote to pass another test happens to also be correct for the behavior you previously hadn't thought to specify.
+
+One way to use TDD to design a program is to start with an integration test, force it to pass, and then work your way down to unit tests.
+One way to force a test to pass is to cheat by adding a single conditional statement at the top of the function under test.
+For instance, if you had a "factorial" function, you might test that factorial of 3 is 6 and that factorial of 1 is 1 and factorial of 0 is 1.
+You might start with the case for 1 and then realize that you want the 0 case.
+You do the work to make those work, and then you come back and write the 3 case.
+Instead of doing it right, by actually defining a correct implementation of factorial, you might just modify your program so that the old behavior that worked for 0 and 1 is handled by a helper function called "factorial-small" and then rewrite "factorial" to just call factorial-small when its input isn't 3.
+Then you can tell it that, if the input is 3, it should return 6 instead of calling factorial-small.
+This is a terrible way to organize that program, so doing it definitely counts as taking on technical debt.
+But, if you're using TDD not to organize the work and goals of a team of programmers but instead as a way to time travel, then ugly hacks like that can keep you moving forward with momentum that allows you to keep adding features to your program.
+As long as you pay off that debt before anyone else sees your program and before you use it for anything important, the gains in motivation can be worth it.
+Also, sometimes the bad design isn't obviously bad and the right design isn't obviously right, and moving code around like potter's clay can help you discover what you want to build.
+There's a concept called "plan to throw one away" that sort of relates to this.
+If you don't know what you want to make, you likely won't end up making what you want, so you should quickly find out what you want to make; but, sometimes, the fastest way to find out what you want to make is to make something and then find out what's wrong with it, so whatever corners you can cut to write a program that you can complain about, those are the corners you need to cut.
+Just make sure that you never send something to production that contains the fruits of that compromise.
+That debt rots.
+If you plan to throw it away, don't later decide to keep it (without first re-evaluating all the decisions you made, that is).
+
+Speaking of finding out what's wrong with things, I think it helps to think of test-driven development as "defect-driven" development.
+You start with an empty file and identify things that are wrong with it, which you then fix.
+The empty file lacks the features I want my program to have, and so it contains defects that my program lacks.
+Removing those defects corrects the program until it meets my goals.
+
+Another way to use tests to manage complexity is to write tests that insist that your program doesn't have certain features.
+Write a test that demands that your program signals an error on certain inputs that you don't yet wish to support.
+These tests are scaffolding, and they won't remain correct as your program's ambitions grow.
+Tests you plan to delete might be worth storing somewhere other than where you store the tests you want to keep forever.
+
+Some organizations use tests to manage automated deployment of their software.
+They have a program that runs the entire test suite whenever they try to check in their changes to the program-under-test.
+If any of those integration tests fail, they don't build a new compiled version of the software, and they reject the changes that led to the failure.
+If they do all pass, though, then the new version of the software gets automatically installed in the production environment.
+This requires a high level of confidence in one's test suite.
+The tests are a specification for what it means for the program to be correct.
+If a user reports a defect in the program's behavior, then the quality assurance team has to turn that defect report into a failing test that they can then impose on the programmers.
+Effectively, it becomes impossible to accuse the program that passes the whole test suite of misbehaving without admitting that the requirements are wrong.
+This enables programmers to define their success in terms of the test suite and not have to worry about the politics of where the requirements come from.
+Whatever contortions are required to pass all the tests, those are necessary for the goals of those who decide what work is worth paying for.
+If there is harmony between the way the team has structured the program and the needs of the organization, then the new requirements that lead to adding new tests to the test suite will be easy to anticipate and accommodate, and so the amount of effort it takes for the programmers to pass a new test should be small.
+If a new test is hard to pass, the test may be wrong, but it's not the programmers' job to correct bad tests.
+If you often find yourself doing your boss's job, it might be time to fire your boss.
+
+Be careful when combining data tests with the aforementioned divide between programmers and QA.
+If QA can express the goals of the organization in data, then the act of programming might be automatable, and then the programmers will wish that they had been working QA all along when they find themselves replaced.
+Programmers are also stakeholders for their own tools, which means they might be the boss or QA relative to another set of programmers who provide programming tools.
+QA and other goalsmiths are also users, as the tools for managing the workflows and goals and the company's self-awareness are also programs.
+One person could wear all of these hats at different times, but he or she should be careful to bill at the appropriate rate for what hat he or she is wearing and to get permission to do billable work under that hat.
+
+There's a sense in which tests and code-under-test are dual to each other.
+Dual here means a mathematical involution, or a function that is its own inverse: applying it a second time undoes it.
+If you imagine a grid, with rows being tests, columns being versions of the code under test, and cells being red or green (or white if you haven't run the test on that version of the program), then you can visualize some of the consequences of TDD.
+I said that you can refactor the code by writing another version of it that passes the same tests.
+Well, that just means a new column of the table with the same colors in all of its rows as another column.
+The red-green-clean cycle looks like adding a new row that introduces a red cell into the bottom-right corner of the table and then a new column that introduces a green cell into the new bottom-right corner without changing the color of any other row of that new column.
+Tests test code, and code tests tests.
+It may even be possible to say that two tests are equivalent under this system if they pass for the same versions of the codebase.
+Of course, adding new versions of the code may make that cease to be the case.
+
+I had ideas awhile ago about integrating testing into workflow.
+I mentioned above that some organizations use tests to deploy to production, but I also imagine that one could use tests to determine when to commit a new version.
+Imagine an editor that attempts to run all of your tests on every keystroke.
+It's too slow.
+But imagine if it sends the keystroke to another computer on the network that, asynchronously, computes the new version of the codebase and puts that new version into a queue where several computers service the queue in parallel.
+Most keystrokes either don't change the code (e.g., cursor movement) or break it (by introducing a syntax error), so the other computer can put the same old version into the queue (and so the queue-processing computers can recognize that they're already testing it and not start another redundant job) and the tests can fail early on the syntax-error ones.
+But as soon as a version of the code doesn't contain a syntax error, the test runners can treat it as a tentative new version of the codebase.
+Perhaps they would inform the system of this, and the editor could respond to the fact that a keystroke brought us back out of the land of syntax errors and into the world of a valid program.
+Maybe that could inform the "undo" history or otherwise influence the way time is divided up for the user interface.
+Then, the tests could churn away in the background to determine whether this new version is a legitimate refactoring (under that loose definition above) or whether it breaks some regression tests.
+Now, this idea of running the code after every keystroke requires a careful implementation.
+Code with side effects could have unintended consequences if it is run automatically.
+If I were to type "rm -rf /tmp/somedir/", I've typed "rm -rf /" along the way.
+You wouldn't want that to run (let's ignore the safeguards for the sake of illustration).
+But, with proper sandboxing or with a choice of language that prevents side effects in advance, this scheme of running the whole test suite on every keystroke could be possible, though expensive.
+A multi-user editing environment might benefit from having automatic division of time based on passing tests, for instance.
+
+I had more ideas about cheating at TDD, but I can't remember them now.
+Maybe if I get back into my workflow for that, I'll be able to remember the direction I wanted to take it.
+If so, there could be a follow-up to this train of thought.
+These things belong on my old crackpots mailing list, but that's defunct, so I've folded it into sigcf instead.
