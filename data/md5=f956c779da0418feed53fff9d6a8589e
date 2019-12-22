@@ -1,0 +1,35 @@
+I got two new subscribers.  They don't even mind being in the non-anonymous group.
+Since I have a new subscriber, I'll have to again include the part about how to reach the linked files:
+The e-mails I send out in this newsletter contain references to other documents I've published.  A previous e-mail that describes how to access these.  At the time of my writing this, it can be found at some of the following places:
+http://archive.is/FyoSb
+http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645
+http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+The short version of it is: if you see a long string of letters and numbers after the acronym "MD5", copy that long string and paste it after "http://calcnerd256.dyndns.org:15211/cas/md5=" into your address bar to visit the referenced document in your browser.
+Since that's kind of onerous, I'm going to make an effort to hyperlink these in the e-mails I send out to this msr.sigcf mailing list.  That's going to make them not quite match the published versions, which won't be links in the plaintext version and will be relative links in the HTML versions.  Previously, I didn't link them at all, because I hadn't considered what a pain it might be to have to try to use the clipboard to assemble those URLs on a phone.
+
+Maybe, in the future, I should send out the new-subscriber e-mail to each new subscriber instead of including it in the next issue of the newsletter.
+
+I sent several e-mails to the firehose mailing list this week.
+At each step, I maintained a draft of an e-mail to the rest of you, which I used as the starting point for each e-mail I sent to them.
+Then, whenever I sent them an e-mail, I replaced the chunk of the draft to you with a link to the e-mail to them.
+Finally, I sent them the snapshot of the draft that mostly only contained links to other e-mails I had already sent them.
+I sent that one to them and then wrote them an e-mail with an MD5 of f7abbf9b62cca1ee91b23650cb5399db about how I don't think I'm going to have anything ready for you by tomorrow.
+I was hoping to send you at least something each week, but it looks like you're just getting this one and a digest tomorrow.
+I'm thinking about switching to just sending you guys summaries of what I send to them, with links to the raw contents if you really want to go trudge through it.
+When I send those summaries out, anyone who wants to may request that I put some effort into refining a particular one of those topics into something worth reading, and that will help me decide where best to focus my editing effort.
+
+Working backwards from the e-mails I sent out to the firehose, we find:
+the one I linked above, about plans going forward for this mailing list
+the draft of this one: MD5 6ca32be5a1befd1c46e270c290e60638
+information about the previous e-mail I sent you guys: MD5 ad3ef70c12e02e8e3caf449924fc6427
+indentation: MD5 7c70ce772e3fe709e99db80bac3118db
+correction: MD5 abfd799f83810a67ed58683496d40f98
+echo as configurator for concierge: MD5 6bf69789ecce12cf943b88656adee979
+test-driven development: MD5 c0dad8b213dd3fa646fa340da0278753
+cheating at TDD: MD5 70a5d4cf940de6fe7a789757777097f8
+
+Tomorrow, I plan to send you the digest of what I've sent out this week.
+I can't send it out with this e-mail, because it needs to include information about this e-mail that won't exist until this e-mail is sent.
+I won't be including fine-grained topics for each post like I have in the past, because that's just way too much work and probably not worth much anyway.
+I'm not sure whether I'll keep sending out weekly digests, but at this point I think I will.
