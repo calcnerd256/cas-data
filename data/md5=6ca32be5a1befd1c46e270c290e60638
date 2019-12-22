@@ -1,0 +1,23 @@
+I got two new subscribers.  They don't even mind being in the non-anonymous group.
+Since I have a new subscriber, I'll have to again include the part about how to reach the linked files:
+The e-mails I send out in this newsletter contain references to other documents I've published.  A previous e-mail that describes how to access these.  At the time of my writing this, it can be found at some of the following places:
+http://archive.is/FyoSb
+http://calcnerd256.dyndns.org:15211/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+https://raw.githubusercontent.com/calcnerd256/cas-data/master/data/md5%3D0d7177f4b08b7f2f81579a37073ac645
+http://web.archive.org/web/20191207153959/http://calcnerd256.dyndns.org:15235/cas/md5=0d7177f4b08b7f2f81579a37073ac645
+The short version of it is: if you see a long string of letters and numbers after the acronym "MD5", copy that long string and paste it after "http://calcnerd256.dyndns.org:15211/cas/md5=" into your address bar to visit the referenced document in your browser.
+Since that's kind of onerous, I'm going to make an effort to hyperlink these in the e-mails I send out to this msr.sigcf mailing list.  That's going to make them not quite match the published versions, which won't be links in the plaintext version and will be relative links in the HTML versions.  Previously, I didn't link them at all, because I hadn't considered what a pain it might be to have to try to use the clipboard to assemble those URLs on a phone.
+
+Maybe, in the future, I should send out the new-subscriber e-mail to each new subscriber instead of including it in the next issue of the newsletter.
+
+The last e-mail I sent out to this here mailing list is described by a text document with an MD5 of ad3ef70c12e02e8e3caf449924fc6427.
+
+It's the first firehose issue.  I sent MD5 7c70ce772e3fe709e99db80bac3118db to the mailing list for people who want to get more frequent updates and who don't mind reading my stream-of-consciousness prose.  I made an oversight when writing that one, so I sent a correction with an MD5 of abfd799f83810a67ed58683496d40f98.
+I noticed that the published fake-Lisp code with an MD5 of 6c4c8123ea1efc8851e333afece5ceba from a previous e-mail has bad whitespace.  I used the default settings in my editor and forgot to fix it before publishing.
+I chose a different compromise and have now published that.  It has an MD5 of e3ac6ac4e9970285c9ca7752665c92a6.  I'm not happy with this one, either, but at least it is consistent.
+
+I sent concierge over to the other computer and tested part of my double-proxy idea by writing an echo webserver and configuring concierge to use the echo server as its configurator, turning concierge into a weird echo server itself.  I told the firehose about it in an e-mail with an MD5 of 6bf69789ecce12cf943b88656adee979.
+
+I said I was going to talk about TDD.  I guess I should do that.
+I started drafting something to send to the firehose in hopes that I'd be able to refine it with their help into something that the rest of you might want to read.  I sent them an e-mail with an MD5 of c0dad8b213dd3fa646fa340da0278753 about what TDD is and why I'd rather use proofs than tests if possible.
+I wrote a wall of text, with an MD5 of 70a5d4cf940de6fe7a789757777097f8, that I sent to the firehose mailing list, about ways to cheat at TDD.  I'd like to turn it into something readable that I can send to the rest of you before I send out this week's digest tomorrow.
