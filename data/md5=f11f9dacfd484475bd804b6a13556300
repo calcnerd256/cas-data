@@ -1,0 +1,657 @@
+digraph {
+	rankdir="LR";
+	edge [color="blue"];
+	
+	greg [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="5">
+   A.D. 2019 December
+  </td>
+ </tr>
+ <tr>
+  <td>day</td>
+  <td>hour</td>
+  <td>minute</td>
+  <td>second</td>
+ </tr>
+ <tr>
+  <td rowspan="9">
+   5 R
+  </td>
+  <td port="y2019m12d5h6" colspan="3">
+   6
+  </td>
+ </tr>
+ <tr>
+  <td rowspan="2">20</td>
+  <td>3</td>
+  <td port="y2019m12d5h20m3s3">3</td>
+ </tr>
+ <tr>
+  <td port="y2019m12d5h20m26" colspan="2">26</td>
+ </tr>
+ <tr>
+  <td rowspan="2">
+   21
+  </td>
+  <td colspan="2" port="y2019m12d5h21m11">
+   11
+  </td>
+ </tr>
+ <tr>
+  <td>15</td>
+  <td port="y2019m12d5h21m15s48">48</td>
+ </tr>
+ <tr>
+  <td rowspan="2">22</td>
+  <td colspan="2" port="y2019m12d5h22m30">30</td>
+ </tr>
+ <tr>
+  <td colspan="2" port="y2019m12d5h22m37">37</td>
+ </tr>
+ <tr>
+  <td rowspan="2">23</td>
+  <td colspan="2" port="y2019m12d5h23m46">46</td>
+ </tr>
+ <tr>
+  <td>58</td>
+  <td port="y2019m12d5h23m58s32">32</td>
+ </tr>
+ <tr>
+  <td rowspan="3">6 F</td>
+  <td port="y2019m12d6h6" colspan="3">
+   6
+  </td>
+ </tr>
+ <tr>
+  <td>
+   14
+  </td>
+  <td colspan="2" port="y2019m12d6h14m59">
+   59
+  </td>
+ </tr>
+ <tr>
+  <td>
+   15
+  </td>
+  <td>
+   4
+  </td>
+  <td port="y2019m12d6h15m4s39">
+   39
+  </td>
+ </tr>
+ <tr>
+  <td rowspan="7">7 S</td>
+  <td rowspan="2">3</td>
+  <td colspan="2" port="y2019m12d7h3m43">
+   43
+  </td>
+ </tr>
+ <tr>
+  <td>46</td>
+  <td port="y2019m12d7h3m46s34">
+   34
+  </td>
+ </tr>
+ <tr>
+  <td colspan="3" port="y2019m12d7h6">
+   6
+  </td>
+ </tr>
+ <tr>
+  <td rowspan="2">
+   16
+  </td>
+  <td colspan="2" port="y2019m12d7h16m48">
+   48
+  </td>
+ </tr>
+ <tr>
+  <td>
+   51
+  </td>
+  <td port="y2019m12d7h16m51s44">
+   44
+  </td>
+ </tr>
+ <tr>
+  <td rowspan="2">
+   23
+  </td>
+  <td colspan="2" port="y2019m12d7h23m21">
+   21
+  </td>
+ </tr>
+ <tr>
+  <td>
+   24
+  </td>
+  <td port="y2019m12d7h23m24s23">
+   23
+  </td>
+ </tr>
+ <tr>
+  <td>8 U</td>
+  <td colspan="3" port="y2019m12d8h6">6</td>
+ </tr>
+</table>>];
+	
+	days [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="3">day</td>
+ </tr>
+ <tr>
+  <td>name</td>
+  <td>start</td>
+  <td>end</td>
+ </tr>
+ <tr>
+  <td port="d1">
+   Thursday
+  </td>
+  <td port="d1s">
+   W[R
+  </td>
+  <td port="d1e">
+   R)F
+  </td>
+ </tr>
+ <tr>
+  <td port="d2">
+   Friday
+  </td>
+  <td port="d2s">
+   R[F
+  </td>
+  <td port="d2e">
+   F)S
+  </td>
+ </tr>
+ <tr>
+  <td port="d3">
+   Saturday
+  </td>
+  <td port="d3s">
+   F[S
+  </td>
+  <td port="d3e">
+   S)U
+  </td>
+ </tr>
+</table>
+>];
+
+	minutes [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="2">minute</td>
+ </tr>
+ <tr>
+  <td>day</td>
+  <td>minute</td>
+ </tr>
+ <tr>
+  <td port="d1" rowspan="5">Thursday</td>
+  <td port="d1m1426">
+   14:26 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d1m1511">
+   15:11 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d1m1630">
+   16:30 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d1m1637">
+   16:37 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d1m1746">
+   17:46 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d2" rowspan="2">Friday</td>
+  <td port="d2m0859">
+   08:59 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d2m2143">
+   21:43 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d3" rowspan="2">Saturday</td>
+  <td port="d3m1048">
+   10:48 CST
+  </td>
+ </tr>
+ <tr>
+  <td port="d3m1721">
+   17:21 CST
+  </td>
+ </tr>
+</table>>];
+	
+	intervals [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="3">
+   interval boundary
+  </td>
+ </tr>
+ <tr>
+  <td>name</td>
+  <td>openness</td>
+  <td>time</td>
+ </tr>
+ <tr>
+  <td port="d1s">W[R</td>
+  <td port="d1so">[</td>
+  <td port="d1st">W|R</td>
+ </tr>
+ <tr>
+  <td port="d1e">R)F</td>
+  <td port="d1eo">)</td>
+  <td port="d1et">R|F</td>
+ </tr>
+ <tr>
+  <td port="d2s">R[F</td>
+  <td port="d2so">[</td>
+  <td port="d2st">R|F</td>
+ </tr>
+ <tr>
+  <td port="d2e">F)S</td>
+  <td port="d2eo">)</td>
+  <td port="d2et">F|S</td>
+ </tr>
+ <tr>
+  <td port="d3s">F[S</td>
+  <td port="d3so">[</td>
+  <td port="d3st">F|S</td>
+ </tr>
+ <tr>
+  <td port="d3e">S)U</td>
+  <td port="d3eo">)</td>
+  <td port="d3et">S|U</td>
+ </tr>
+</table>>];
+	openness [shape="plaintext" label=<
+<table>
+ <tr>
+  <td port="o">
+   opened
+  </td>
+ </tr>
+ <tr>
+  <td port="c">
+   closed
+  </td>
+ </tr>
+</table>>];
+
+	cas [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="7">
+   content-addressable storage
+  </td>
+ </tr>
+ <tr>
+  <td>algorithm</td>
+  <td colspan="2">digest</td>
+  <td>MIMEtype</td>
+  <td>published</td>
+  <td>sent</td>
+ </tr>
+ <tr>
+  <td rowspan="16">MD5</td>
+  <td rowspan="4">0</td>
+  <td port="m0081e6617d625091bb5a1698fb5cf8d4">
+   081e6617d625091bb5a1698fb5cf8d4
+  </td>
+  <td port="m00m">text/html</td>
+  <td port="m00p">03:43 UTC</td>
+  <td port="m00s">guerrilla storage</td>
+ </tr>
+ <tr>
+  <td port="m0516ace76131b95a7207546edf51e4e2">
+   516ace76131b95a7207546edf51e4e2
+  </td>
+  <td port="m05m">text/plain</td>
+  <td port="m05p">21:11 UTC</td>
+  <td port="m05s">new mailing list</td>
+ </tr>
+ <tr>
+  <td port="m0b5fcef85b8fecdeeb425634dc14c238">
+   b5fcef85b8fecdeeb425634dc14c238
+  </td>
+  <td port="m0bm">text/plain</td>
+  <td port="m0bp">03:43 UTC</td>
+  <td port="m0bs">guerrilla storage</td>
+ </tr>
+ <tr>
+  <td port="m0d7177f4b08b7f2f81579a37073ac645">
+   d7177f4b08b7f2f81579a37073ac645
+  </td>
+  <td port="m0dm">text/html</td>
+  <td port="m0dp">23:46 UTC</td>
+  <td port="m0ds">content-addressable storage</td>
+ </tr>
+ <tr>
+  <td rowspan="2">
+   2
+  </td>
+  <td port="m25bbab5c07fe62f2030d45567ed9849a">
+   5bbab5c07fe62f2030d45567ed9849a
+  </td>
+  <td port="m25m">text/html</td>
+  <td port="m25p">14:59 UTC</td>
+  <td port="m25s">service directory</td>
+ </tr>
+ <tr>
+  <td port="m27d1add0cdd37630ceb1f1a456f0be95">
+   7d1add0cdd37630ceb1f1a456f0be95
+  </td>
+  <td port="m27m">application/javascript</td>
+  <td port="m27p">14:59 UTC</td>
+  <td port="m27s">service directory</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td port="m34595f59d553480fe5a1ad8913e919e8">
+   4595f59d553480fe5a1ad8913e919e8
+  </td>
+  <td port="m34m">text/plain</td>
+  <td port="m34p">23:46 UTC</td>
+  <td port="m34s">content-addressable storage</td>
+ </tr>
+ <tr>
+  <td>
+   4
+  </td>
+  <td port="m49c2096c4c95307db1e603e4566a82cc">
+   9c2096c4c95307db1e603e4566a82cc
+  </td>
+  <td port="m49m">text/html</td>
+  <td port="m49p">16:48 UTC</td>
+  <td port="m49s">reverse proxy</td>
+ </tr>
+ <tr>
+  <td rowspan="2">7</td>
+  <td port="m7a7335d9e4a05243cf0efbbfdac245e3">
+   a7335d9e4a05243cf0efbbfdac245e3
+  </td>
+  <td port="m7am">application/javascript</td>
+  <td port="m7ap">14:59 UTC</td>
+  <td port="m7as">service directory</td>
+ </tr>
+ <tr>
+  <td port="m7fa1bc0919c3e84ddfd8bc28d62e01ab">
+   fa1bc0919c3e84ddfd8bc28d62e01ab
+  </td>
+  <td port="m7fm">text/plain</td>
+  <td port="m7fp">20:26 UTC</td>
+  <td port="m7fs">newsletter begin</td>
+ </tr>
+ <tr>
+  <td>8</td>
+  <td port="m88680187ed695de946fbdfc5a5ab217d">
+   8680187ed695de946fbdfc5a5ab217d
+  </td>
+  <td port="m88m">text/html</td>
+  <td port="m88p">22:37 UTC</td>
+  <td port="m88s">new mailing list</td>
+ </tr>
+ <tr>
+  <td rowspan="2">A</td>
+  <td port="ma49410041c48c4cf311b2c59851c878c">
+   49410041c48c4cf311b2c59851c878c
+  </td>
+  <td port="ma4m">text/plain</td>
+  <td port="ma4p">23:21 UTC</td>
+  <td port="ma4s">services calendar and static</td>
+ </tr>
+ <tr>
+  <td port="ma6472dcc08c049beca62d6ee1b201348">
+   6472dcc08c049beca62d6ee1b201348
+  </td>
+  <td port="ma6m">text/html</td>
+  <td port="ma6p">23:21 UTC</td>
+  <td port="ma6s">services calendar and static</td>
+ </tr>
+ <tr>
+  <td>B</td>
+  <td port="mb14e0d4b658c26c223b29bd58dba6ad6">
+   14e0d4b658c26c223b29bd58dba6ad6
+  </td>
+  <td port="mb1m">text/html</td>
+  <td port="mb1p">22:30 UTC</td>
+  <td port="mb1s">newsletter begin</td>
+ </tr>
+ <tr>
+  <td rowspan="2">
+   C
+  </td>
+  <td port="mc3ab479a5a38f497d048ba748955c180">
+   3ab479a5a38f497d048ba748955c180
+  </td>
+  <td port="mc3m">text/plain</td>
+  <td port="mc3p">16:48 UTC</td>
+  <td port="mc3s">reverse proxy</td>
+ </tr>
+ <tr>
+  <td port="mcef9302ad99e7ffbde660579c7fb962b">
+   ef9302ad99e7ffbde660579c7fb962b
+  </td>
+  <td port="mcem">text/plain</td>
+  <td port="mcep">14:59 UTC</td>
+  <td port="mces">service directory</td>
+ </tr>
+</table>>];
+
+	days:d1s->intervals:d1s;
+	days:d1e->intervals:d1e;
+	days:d2s->intervals:d2s;
+	days:d2e->intervals:d2e;
+	days:d3s->intervals:d3s;
+	days:d3e->intervals:d3e;
+	intervals:d1so->openness:c;
+	intervals:d1st->greg:y2019m12d5h6;
+	intervals:d1eo->openness:o;
+	intervals:d1et->greg:y2019m12d6h6;
+	intervals:d2so->openness:c;
+	intervals:d2st->greg:y2019m12d6h6;
+	intervals:d2eo->openness:o;
+	intervals:d2et->greg:y2019m12d7h6;
+	minutes:d2m0859->greg:y2019m12d6h14m59;
+	minutes:d2m2143->greg:y2019m12d7h3m43;
+	intervals:d3so->openness:c;
+	intervals:d3st->greg:y2019m12d7h6;
+	intervals:d3eo->openness:o;
+	intervals:d3et->greg:y2019m12d8h6;
+	minutes:d3m1048->greg:y2019m12d7h16m48;
+	minutes:d3m1721->greg:y2019m12d7h23m21;
+	minutes:d1m1426->greg:y2019m12d5h20m26;
+	minutes:d1m1511->greg:y2019m12d5h21m11;
+	minutes:d1m1630->greg:y2019m12d5h22m30;
+	minutes:d1m1637->greg:y2019m12d5h22m37;
+	minutes:d1m1746->greg:y2019m12d5h23m46;
+	cas:m00p->greg:y2019m12d7h3m43;
+	cas:m05p->greg:y2019m12d5h21m11;
+	cas:m0bp->greg:y2019m12d7h3m43;
+	cas:m0dp->greg:y2019m12d5h23m46;
+	cas:m25p->greg:y2019m12d6h14m59;
+	cas:m27p->greg:y2019m12d6h14m59;
+	cas:m34p->greg:y2019m12d5h23m46;
+	cas:m49p->greg:y2019m12d7h16m48;
+	cas:m7ap->greg:y2019m12d6h14m59;
+	cas:m7fp->greg:y2019m12d5h20m26;
+	cas:m88p->greg:y2019m12d5h22m37;
+	cas:ma4p->greg:y2019m12d7h23m21;
+	cas:ma6p->greg:y2019m12d7h23m21;
+	cas:mb1p->greg:y2019m12d5h22m30;
+	cas:mc3p->greg:y2019m12d7h16m48;
+	cas:mcep->greg:y2019m12d6h14m59;
+	
+	MIME [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="3">
+   MIME type
+  </td>
+ </tr>
+ <tr>
+  <td>major</td>
+  <td>minor</td>
+ </tr>
+ <tr>
+  <td rowspan="2">text</td>
+  <td port="plain">plain</td>
+ </tr>
+ <tr>
+  <td port="html">html</td>
+ </tr>
+ <tr>
+  <td>application</td>
+  <td port="js">javascript</td>
+ </tr>
+</table>>];
+	
+	cas:m05m->MIME:plain;
+	cas:m0bm->MIME:plain;
+	cas:m34m->MIME:plain;
+	cas:m7fm->MIME:plain;
+	cas:ma4m->MIME:plain;
+	cas:mc3m->MIME:plain;
+	cas:mcem->MIME:plain;
+	cas:m00m->MIME:html;
+	cas:m0dm->MIME:html;
+	cas:m25m->MIME:html;
+	cas:m49m->MIME:html;
+	cas:m88m->MIME:html;
+	cas:ma6m->MIME:html;
+	cas:mb1m->MIME:html;
+	cas:m27m->MIME:js;
+	cas:m7am->MIME:js;
+	
+	"mailing list" [shape="plaintext" label=<
+<table>
+ <tr>
+  <td colspan="3">
+   e-mail
+  </td>
+ </tr>
+ <tr>
+  <td>
+   list
+  </td>
+  <td>
+   subject
+  </td>
+  <td>
+   sent
+  </td>
+ </tr>
+ <tr>
+  <td>
+   crackpots
+  </td>
+  <td port="nml">
+   new mailing list
+  </td>
+  <td port="y2019m12d5h21m15s48">
+   21:15:48 UTC
+  </td>
+ </tr>
+ <tr>
+  <td rowspan="6">
+   sigcf
+  </td>
+  <td port="nlb">
+   newsletter begin
+  </td>
+  <td port="y2019m12d5h20m3s3">
+   20:03:03 UTC
+  </td>
+ </tr>
+ <tr>
+  <td port="cas">
+   content-addressable storage
+  </td>
+  <td port="y2019m12d5h23m58s32">
+   23:58:32 UTC
+  </td>
+ </tr>
+ <tr>
+  <td port="sd">
+   service directory
+  </td>
+  <td port="y2019m12d6h15m4s39">
+   15:04:39 UTC
+  </td>
+ </tr>
+ <tr>
+  <td port="gs">
+   guerrilla storage
+  </td>
+  <td port="y2019m12d7h3m46s34">
+   03:46:34 UTC
+  </td>
+ </tr>
+ <tr>
+  <td port="rp">
+   reverse proxy
+  </td>
+  <td port="y2019m12d7h16m51s44">
+   16:51:44 UTC
+  </td>
+ </tr>
+ <tr>
+  <td port="scas">
+   services calendar and static
+  </td>
+  <td port="y2019m12d7h23m24s23">
+   23:24:23 UTC
+  </td>
+ </tr>
+</table>>];
+
+	minutes:d1->days:d1;
+	minutes:d2->days:d2;
+	minutes:d3->days:d3;
+	"mailing list":y2019m12d5h21m15s48->greg:y2019m12d5h21m15s48;
+	cas:m05s->"mailing list":nml;
+	cas:m88s->"mailing list":nml;
+	"mailing list":y2019m12d5h20m3s3->greg:y2019m12d5h20m3s3;
+	cas:m7fs->"mailing list":nlb;
+	cas:mb1s->"mailing list":nlb;
+	"mailing list":y2019m12d5h23m58s32->greg:y2019m12d5h23m58s32;
+	cas:m0ds->"mailing list":cas;
+	cas:m34s->"mailing list":cas;
+	"mailing list":y2019m12d6h15m4s39->greg:y2019m12d6h15m4s39;
+	cas:m25s->"mailing list":sd;
+	cas:m27s->"mailing list":sd;
+	cas:m7as->"mailing list":sd;
+	cas:mces->"mailing list":sd;
+	"mailing list":y2019m12d7h3m46s34->greg:y2019m12d7h3m46s34;
+	cas:m00s->"mailing list":gs;
+	cas:m0bs->"mailing list":gs;
+	"mailing list":y2019m12d7h16m51s44->greg:y2019m12d7h16m51s44;
+	cas:m49s->"mailing list":rp;
+	cas:mc3s->"mailing list":rp;
+	"mailing list":y2019m12d7h23m24s23->greg:y2019m12d7h23m24s23;
+	cas:ma4s->"mailing list":scas;
+	cas:ma6s->"mailing list":scas;
+}

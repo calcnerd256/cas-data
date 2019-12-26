@@ -1,0 +1,10 @@
+I tried to make something out of the first three weeks of index (formerly "digest").
+I hand-crafted a file in the GraphViz "dot" language to describe the relationships described in the first of those three index files.
+I wasn't able to make anything satisfactory.
+The dot file has an MD5 of f11f9dacfd484475bd804b6a13556300.
+If I run `dot -Tsvg < ./md5=f11f9dacfd484475bd804b6a13556300`, I get an SVG (scalable vector graphics) file out with an MD5 of 5e673589a63eef16ac7b30dd509b84bb.
+It's too hard to read, and I had tried a bunch of other variants on it that were also too hard to read.
+
+Another annoyance: my automatic detection of MIME types mistakenly thinks that that .dot file is HTML because it contains a lot of HTML in it.
+When I get around to writing my own CAS instead of using default behavior from other things, then there won't be automatic MIMEtype detection, and I'll need to set these MIMEtypes explicitly somewhere.
+The index files that I had been calling "digest" are a place where I've been manually tracking the MIMEtypes of some content-addressable files, but I need to get to the point that I'm storing these in a machine-readable place, and I need my CAS to look in that place.
