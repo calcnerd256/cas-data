@@ -1,0 +1,45 @@
+Here's another week's publications.
+
+by day, minute:
+ [ /calendar/Gregorian/AD/2019/12/22/6/ , /calendar/Gregorian/AD/2019/12/23/6/ )
+  /calendar/Gregorian/AD/2019/12/22/13/59/
+   /cas/md5=885080daf9525c66c3e4f19b3160d492
+   /cas/md5=cde980e72734d0f5147113e20f0c73c9
+ [ /calendar/Gregorian/AD/2019/12/23/6/ , /calendar/Gregorian/AD/2019/12/24/6/ )
+ [ /calendar/Gregorian/AD/2019/12/24/6/ , /calendar/Gregorian/AD/2019/12/25/6/ )
+ [ /calendar/Gregorian/AD/2019/12/25/6/ , /calendar/Gregorian/AD/2019/12/26/6/ )
+ [ /calendar/Gregorian/AD/2019/12/26/6/ , /calendar/Gregorian/AD/2019/12/27/6/ )
+  /calendar/Gregorian/AD/2019/12/26/20/22/
+   /cas/md5=159be392eecbb25b8c9c43579cb03d18
+   /cas/md5=5e673589a63eef16ac7b30dd509b84bb
+   /cas/md5=f11f9dacfd484475bd804b6a13556300
+ [ /calendar/Gregorian/AD/2019/12/27/6/ , /calendar/Gregorian/AD/2019/12/28/6/ )
+ [ /calendar/Gregorian/AD/2019/12/28/6/ , /calendar/Gregorian/AD/2019/12/29/6/ )
+
+by MIME type:
+ text/plain
+  /cas/md5=159be392eecbb25b8c9c43579cb03d18
+  /cas/md5=885080daf9525c66c3e4f19b3160d492
+  /cas/md5=cde980e72734d0f5147113e20f0c73c9
+ text/vnd.graphviz
+  /cas/md5=f11f9dacfd484475bd804b6a13556300
+ image/svg+xml
+  /cas/md5=5e673589a63eef16ac7b30dd509b84bb
+
+by e-mail, file:
+ [msr.sigcf] digest
+  time
+   /calendar/Gregorian/AD/2019/12/22/14/4/24
+  body
+   /cas/md5=cde980e72734d0f5147113e20f0c73c9
+  digest
+   /cas/md5=885080daf9525c66c3e4f19b3160d492
+ [msr.firehose] graphviz of week 1
+  time
+   /calendar/Gregorian/AD/2019/12/26/20/23/58
+  body
+   /cas/md5=159be392eecbb25b8c9c43579cb03d18
+  week1.dot
+   /cas/md5=f11f9dacfd484475bd804b6a13556300
+  week1.svg
+   /cas/md5=5e673589a63eef16ac7b30dd509b84bb
