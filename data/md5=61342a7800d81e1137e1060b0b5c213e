@@ -1,0 +1,168 @@
+ function circle(ctx, x, y, r)
+ {
+  if(r < 0) r = -r;
+  ctx.arc(y,ctx.canvas.height - x,r, 0, Math.PI * 2, true);
+ }
+
+ function drawPseudoKissingCirclesWithBadInterface(ctx, num, inner, size, middle)
+ {
+  //num = Math.floor(num);
+  if(arguments.length < 5) middle = size;
+  //come back and refactor to use scaling, translation, and rotation transforms
+  ctx.beginPath();
+  circle(ctx, middle, middle, size);
+  ctx.stroke();
+  ctx.beginPath();
+  circle(ctx, middle, middle, size * inner);
+  ctx.stroke();
+  var outer = (1 - inner) / 2
+  for(var i = 0; i < num; i++) //here's where readability can win from elegant simplicity of transforms
+  {
+   ctx.beginPath()
+   var theta = Math.PI * 2 / num * i;
+   var radial_center = (inner + 1) / 2;
+   var x = middle + size * Math.cos(theta) * radial_center;
+   var y = middle - size * Math.sin(theta) * radial_center;
+   var radius = size * outer;
+   circle(ctx, x, y, radius);
+   var j = i ? (i - 1) : num;
+   var red = 255 - 255 * (j % 5) / 5;
+   j -= j % 5;
+   j /= 5;
+   var green = 255 - 255 * (j % 3) / 3;
+   j -= j % 3;
+   j /= 3;
+   var blue = 255 - 255 * (j % 2) / 2;
+   var alpha = 0.75;
+   if(i + 1 >= num) alpha *= num - i;
+   ctx.fillStyle = "rgba(" + [+red, +green, +blue, +alpha].join(", ") + ")";
+   ctx.fill()
+   ctx.stroke()
+
+   ctx.beginPath();
+   circle(ctx, x + 3 * radius / 8, y - 3 * radius / 8, 3 * radius / 8);
+   ctx.fillStyle = "rgba(255, 255, 255, .25)";
+   ctx.fill();
+  }
+ }
+
+ function kissingRatio(exteriorCardinality) // ratio of radii of inner circle to each of n outer circles
+ {
+  var theta = Math.PI / exteriorCardinality; // half the angle, in radians, of the arc each outer circle represents
+  var inner = 1 / Math.sin(theta) - 1; // cosecant * 1 + inner = 1 when outer is assumed to be one
+  return inner / (inner + 2); // inner + 2 * outer = 1, our desired outcome from figure 1 (forthcoming)
+ }
+
+ var size = 256*2.5;
+
+ function draw()
+ {
+  var canvas = document.getElementsByTagName("canvas").item(0);
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,size,size);
+  var time = new Date();
+
+  var s = time.getSeconds() + time.getMilliseconds() / 1000;
+  var m = time.getMinutes() + s / 60;
+  var h = time.getHours() + m / 60;
+  var day = time.getDate() + h / 24;
+  var month = time.getMonth();
+  var y = time.getYear() + 1900;
+  isLeapYear = false;
+  if(!(y % 4))
+   isLeapYear = true;
+  if(!(y % 100))
+   isLeapYear = false;
+  if(!(y % 400))
+   isLeapYear = true;
+  var daynominator = [
+   31,
+   28 + (isLeapYear ? 1 : 0),
+   31,
+   30,
+   31,
+   30,
+   31,
+   31,
+   30,
+   31,
+   30,
+   31
+  ][month];
+  month += day / daynominator;
+  function nest(x, n, r){
+   var k = kissingRatio(x);
+   drawPseudoKissingCirclesWithBadInterface(ctx, x, k, r, size / 2);
+   r *= k;
+   k = kissingRatio(n - x);
+   drawPseudoKissingCirclesWithBadInterface(ctx, n - x, k, r, size / 2);
+   r *= k;
+   return r;
+  }
+  var r = size / 2;
+  r = nest(s, 60, r);
+  r = nest(m, 60, r);
+  r = nest(h, 24, r);
+  r = nest(day, daynominator + 1, r);
+  r = nest(month, 12, r);
+  y += month / 12;
+  var decade = y / 10;
+  y %= 10;
+  var c = decade / 10;
+  decade %= 10;
+  r = nest(y, 10, r);
+  r = nest(decade, 10, r);
+  r = nest(c, 10, r);
+
+  document.title = (
+   function(d){
+    function twoDigits(n){
+     var str = "0" + n;
+     return str.substr(str.length - 2);
+    }
+    var t = "Hours Minutes Seconds".split(" ").map(
+     function(k){
+      return twoDigits(d["get" + k]());
+     }
+    ).join(":");
+    return t + " " + d;
+   }
+  )(new Date());
+ }
+
+function screenDims(){
+// https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
+// https://stackoverflow.com/a/16389226
+var objNode = document.createElement("div");
+objNode.style.width  = "100vw";
+objNode.style.height = "100vh";
+document.body.appendChild(objNode);
+var intViewportWidth  = objNode.offsetWidth;
+var intViewportHeight = objNode.offsetHeight;
+document.body.removeChild(objNode);
+return [intViewportWidth, intViewportHeight];
+}
+
+function keepDrawing(){
+ size = Math.min.apply(Math, screenDims());
+ var canv = document.getElementById("canv");
+ canv.width = size;
+ canv.height = size;
+ draw();
+ requestAnimationFrame(keepDrawing);
+}
+
+function init(){
+ size = Math.min(document.body.offsetWidth, document.body.offsetHeight);
+ var canv = document.createElement("canvas");
+ canv.width = size;
+ canv.height = size;
+ canv.id = "canv";
+ document.getElementsByTagName("body").item(0).appendChild(canv);
+
+ keepDrawing();
+ return true;
+}
+
+var started = false;
+document.onreadystatechange = function(){if(!started) started = init();}
