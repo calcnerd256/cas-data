@@ -1,0 +1,11 @@
+Now that the year is over, I can finalize the TSVs for the month of December.
+I already sent out two of them, but there are two more: one for the files published and one for the e-mails sent.
+The table of December e-mails has an MD5 of a2241e44a568eb2e5b173f5713812df7.
+December's published files have their information in a table with an MD5 of 6811b0376e0da8a565240475292da727.
+
+I'm working on a Python program to turn these tables into the index files that I'd been sending out weekly.
+Then I'll only need to maintain those TSVs on a monthly basis instead of hand-editing the index file each week.
+I have the program working, but I want to make it less ugly before I publish it.
+
+I also have another couple of programs for working with these TSVs, but I don't know whether it's worth sending either of them out.
+I'll look into each of them some more after I wrap up the aforementioned one that generates those index files.
