@@ -1,0 +1,7 @@
+I just noticed a typo in my welcome e-mail which has an MD5 of 11eae25e4277844e70aee40d7b34a254.
+It says "A previous e-mail that describes how to access these." when it should say "A previous e-mail that describes how to access these has an MD5 of 0d7177f4b08b7f2f81579a37073ac645." or "A previous e-mail describes how to access these.".
+I can either publish a new version or commit to sending out the version with the typo forever.
+I can't unpublish the typo version, because I've referenced it in a firehose e-mail.
+The typo is also present in an e-mail with an MD5 of f956c779da0418feed53fff9d6a8589e, because that's where it came from proximately.
+Most of the blurb came from an e-mail with an MD5 of 7c70ce772e3fe709e99db80bac3118db, but the typo doesn't appear to be in that one.
+The corrected version has an MD5 of a90f330510be74bb9b691cf8cece7107.
