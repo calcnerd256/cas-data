@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+
+
+from .calendar_uri import CalendarUri
+from .published_file import PublishedFile
+
+
+class NewsletterIssue(object):
+    def __init__(self, sent=None, **kwargs):
+        self.sent = sent
+        self.mailing_list = kwargs["mailing list"]
+        self.subject_line = kwargs["subject line"]
+
+    def __repr__(self):
+        return "%s" % [
+            "NewsletterIssue",
+            ["sent", self.sent],
+            ["mailing list", self.mailing_list],
+            ["subject line", self.subject_line],
+        ]
+
+    def in_days(self, days):
+        uri = CalendarUri(*self.sent.split("/"))
+        for day in days:
+            if day.maybe_contains(uri):
+                return True
+        return False
+
+    @classmethod
+    def order_by_sent(cls, issues, days):
+        sents = CalendarUri.sort_metamorphic(
+            *[
+                issue.sent
+                for issue
+                in issues
+                if issue.in_days(days)
+            ]
+        )
+        for sent in sents:
+            for issue in issues:
+                if issue.sent == sent:
+                    yield issue
+
+    def has_filename(self, files):
+        subject = "[%s] %s" % (self.mailing_list, self.subject_line)
+        for f in files:
+            if f.email == subject:
+                if f.filename:
+                    if "digest" != f.filename:
+                        return True
+        return False
+
+    def sent_slash(self, is_first_week=False):
+        trailing_slash = False
+        if is_first_week:
+            trailing_slash = True
+        else:
+            trailing_slash = "typos and digest" == self.subject_line
+        return ("%s/" if trailing_slash else "%s") % self.sent
+
+    def get_subject(self):
+        return "[%s] %s" % (self.mailing_list, self.subject_line)
+
+    def get_by_filenames(self, files, priority_filenames=None, priority_contents=None):
+        if priority_filenames is None:
+            priority_filenames = []
+        if priority_contents is None:
+            priority_contents = []
+        yield "time"
+        yield " %s" % self.sent
+        yield from PublishedFile.traverse_files(
+            [
+                (
+                    tuple(f.filename.split("/")),
+                    f,
+                )
+                for f
+                in PublishedFile.files_by_issue(files, self)
+            ],
+            priority_filenames,
+            priority_contents,
+        )

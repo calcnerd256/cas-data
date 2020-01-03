@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+
+
+from .util import (
+    list_minus,
+    list_sortuniq,
+)
+
+class CalendarUri(object):
+    def __init__(
+            self,
+            empty,
+            calendar,
+            gregorian,
+            era,
+            year=None,
+            month=None,
+            day=None,
+            hour=None,
+            minute=None,
+            second=None,
+            trailer=None,
+    ):
+        assert "" == empty
+        assert "calendar" == calendar
+        assert "Gregorian" == gregorian
+        assert era in ["AD", "BC"]
+        self.era = era
+
+        def intify(it):
+            try:
+                return int(it)
+            except ValueError:
+                return it
+            except TypeError:
+                return it
+
+        self.year = intify(year)
+        self.month = intify(month)
+        self.day = intify(day)
+        self.hour = intify(hour)
+        self.minute = intify(minute)
+        self.second = intify(second)
+        self.trailer = intify(trailer)
+
+    def strictly_less_than(self, other):
+        if self.era != other.era:
+            return "BC" == self.era
+
+        def non_int(it):
+            if it is None:
+                return True
+            if "" == it:
+                return True
+            return False
+
+        sy = self.year
+        oy = other.year
+        if non_int(sy):
+            return False
+        if non_int(oy):
+            return False
+        if "BC" == self.era:
+            sy = -sy
+            oy = -oy
+        if sy != oy:
+            return sy < oy
+
+        def compare_field(name):
+            s = getattr(self, name)
+            o = getattr(other, name)
+            if non_int(s):
+                return True, False
+            if non_int(o):
+                return True, False
+            if s != o:
+                return True, (s < o)
+            return False, None
+
+        certain, value = compare_field("month")
+        if certain: return value
+        certain, value = compare_field("day")
+        if certain: return value
+        certain, value = compare_field("hour")
+        if certain: return value
+        certain, value = compare_field("minute")
+        if certain: return value
+        certain, value = compare_field("second")
+        if certain: return value
+        return False
+
+    def __repr__(self):
+        return "%s" % [
+            "CalendarURI",
+            ["era", self.era],
+            ["year", self.year],
+            ["month", self.month],
+            ["day", self.day],
+            ["hour", self.hour],
+            ["minute", self.minute],
+            ["second", self.second],
+            ["trailer", self.trailer],
+        ]
+
+    def maybe_overlaps(self, beginning, ending):
+        if self.strictly_less_than(beginning):
+            return False
+        if ending.strictly_less_than(self):
+            return False
+        return True
+
+    @classmethod
+    def sort_some(cls, *uris):
+        if not uris:
+            return
+        pivot = uris[0]
+        rest = uris[1:]
+        smol = [u for u in rest if u.strictly_less_than(pivot)]
+        rest = list_minus(rest, smol)
+        big = [u for u in rest if pivot.strictly_less_than(u)]
+        incomparable = list_minus(rest, big)
+        yield from cls.sort_some(*smol)
+        yield pivot
+        yield from cls.sort_some(*incomparable)
+        yield from cls.sort_some(*big)
+
+    @classmethod
+    def sort_metamorphic(cls, *strings):
+        alist = [
+            (
+                cls(*s.split("/")),
+                s
+            )
+            for s
+            in list_sortuniq(strings)
+        ]
+        uris = {
+            k: v
+            for k,v
+            in alist
+        }
+        for key in cls.sort_some(*[u for u, s in alist]):
+            yield uris[key]

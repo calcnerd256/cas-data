@@ -1,0 +1,177 @@
+I keep wanting to further improve this Python helper for generating my index files, but if I keep doing adding more requirements, I'll never publish.
+I've split it into multiple files, so if I really want to make changes later, I can potentially make changes without replacing as much at a time.
+So it's time to publish.
+
+tsv.py
+ MD5 e24ac23b6e7f089e345e278b95723022
+ import
+  csv
+ export
+  tsv(filename)
+  tabdicts(table)
+  tsv_dicts(fn)
+ errata
+  no docstrings
+  argument "fn" in tsv_dicts() should be called "filename"
+  tabdicts implementation should use iter() and next() or something
+util.py
+ MD5 f989b62e9e5951e145244e76e3c3ee8d
+ import
+ export
+  list_minus(subtrahend, minuend)
+  list_sortuniq(xs)
+  prefer(prior, them)
+  sections_lines(*sections)
+ errata
+  no docstrings
+  argument "them" in prefer() should be called "xs"
+calendar_uri.py
+ MD5 aff6b47a5473d30015034ebc728bbbe7
+ import
+  .util.list_minus
+  .util.list_sortuniq
+ export
+  class CalendarUri(object)
+   __init__(self, empty, calendar, gregorian, era, year=None, month=None, day=None, hour=None, minute=None, second=None, trailer=None)
+   strictly_less_than(self, other)
+   __repr__(self)
+   maybe_overlaps(self, beginning, ending)
+   classmethod sort_some(cls, *uris)
+   classmethod sort_metamorphic(cls, *strings)
+ errata
+  no docstrings
+  not designed
+published_file.py
+ MD5 44ac2ecfb046baa8b67ce347ee42d0e1
+ import
+  .util.list_minus
+  .util.list_sortuniq
+  .util.prefer
+  .calendar_uri.CalendarUri
+ export
+  class PublishedFile(object)
+   __init__(self, content=None, published=None, filename=None, **kwargs)
+   __repr__(self)
+   in_day(self, day)
+   classmethod contents_published(cls, files, published_uri_string, typos=None)
+   classmethod contents_by_published(cls, files, publisheds, typos=None)
+   classmethod mimetypes_files(cls, files)
+   classmethod contents_mime(cls, files, mime, typos=None)
+   classmethod group_named(cls, pairs, priority_filenames=None)
+   classmethod traverse_files(cls, pairs, priority_filenames=None, priority_contents=None)
+   classmethod files_by_issue(cls, files, issue)
+ errata
+  no docstrings
+  not designed
+day_interval.py
+ MD5 4abfb36611193b5b953de84a27d480e2
+ import
+  .tsv.tsv_dicts
+  .util.list_sortuniq
+  .calendar_uri.CalendarUri
+  .published_file.PublishedFile
+ export
+  class DayInterval(object)
+   __init__(self, begin=None, end=None, **kwargs)
+   __repr__(self)
+   maybe_contains(self, calendar_uri)
+   classmethod week_days(cls, first_day, last_day, filename)
+   within_expected_range(self, target_era, this_month)
+   day_files(self, files)
+   classmethod day_files(cls, days, files)
+   printable_interval(self)
+   publication_times(self, files)
+   published_by_minute(self, files, typos=None)
+ errata
+  no docstrings
+  not designed
+newsletter_issue.py
+ MD5 cac32337d5f10c0fa81c222324ed3392
+ import
+  .calendar_uri.CalendarUri
+  .published_file.PublishedFile
+ export
+  class NewsletterIssue(object)
+   __init__(self, sent=None, **kwargs)
+   __repr__(self)
+   in_days(self, days)
+   classmethod order_by_sent(cls, issues, days)
+   has_filename(self, files)
+   sent_slash(self, is_first_week=False)
+   get_subject(self)
+   get_by_filenames(self, files, priority_filenames=None, priority_contents=None)
+ errata
+  no docstrings
+  not designed
+tagged_topic.py
+ MD5 93e0d5dc7b134a865eed342701b1215f
+ import
+ export
+  class TaggedTopic(object)
+  __init__(self, topic=None, **kwargs)
+  __repr__(self)
+  classmethod issue_topics(cls, topics, issue)
+  classmethod fold_case(cls, tag, forgetter)
+  classmethod sort_issue_topics(cls, topics, issue, typos=None)
+ errata
+  no docstrings
+  not designed
+index_report.py
+ MD5 95b0c9d435955e4ee10f5393d6549e0b
+ import
+  json
+  .tsv.tsv_dicts
+  .util.prefer
+  .util.sections_lines
+  .published_file.PublishedFile
+  .day_interval.DayInterval
+  .newsletter_issue.NewsletterIssue
+  .tagged_topic.TaggedTopic
+ export
+  class IndexReport(object)
+  __init__(self, filenames, summary, day_interval, this_month, errata=None)
+  days_within_expected_range(self, era)
+  errata(self)
+  is_first_week(self)
+  issues_ordered(self)
+  has_filename(self)
+  has_topics(self)
+  by_day(self)
+  by_mime(self)
+  by_email_file(self)
+  by_email(self)
+  topics_by_email(self)
+  index_sections(self)
+  print_lines(self)
+  classmethod main(cls, ignore, days_filename, issues_filename, blobs_filename, topics_filename, summary, first_day, last_day, year, month, errata_filename=None)
+ errata
+  no docstrings
+  not designed
+main.py
+ MD5 a8e8ca1b5498eb4f3f9ad364b9f71fcf
+ import
+  sys
+  .index_report.IndexReport
+ export
+  __main__ side effect
+ errata
+  Does this file even need to exist as its own module apart from __init__.py?
+install.sh
+ MD5 7617f970fb3393d81a975e95721de711
+ description
+  destructively builds the directory for the Python module that represents the program that this e-mail is about
+errata.json
+ MD5 37684e915d01ccf70912882d376f243c
+ description
+  the differences between the 2019 December index files and the ones that this program would generate
+2019December.sh
+ MD5 89ea1d98a3bf811cb86b41076ae8457b
+ description
+  tests that the program generates exact index files for the weeks of December 2019
+index.sh
+ MD5 424cc7ba6f5067fb49771869360afec3
+ description
+  semi-safely builds the program and tests it on 2019 December's data before running it on the current week's data
+
+To run the current week, I might do something like:
+bash ./md5=424cc7ba6f5067fb49771869360afec3 ../current_month_tsv/ days.tsv issue.tsv blob.tsv topics.tsv 2020 1 1 4

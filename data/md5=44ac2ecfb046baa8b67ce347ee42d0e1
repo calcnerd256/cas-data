@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+
+
+from .util import (
+    list_minus,
+    list_sortuniq,
+    prefer,
+)
+from .calendar_uri import CalendarUri
+
+
+class PublishedFile(object):
+    def __init__(self, content=None, published=None, filename=None, **kwargs):
+        self.content = content
+        self.published = published
+        self.mime = kwargs["MIME"]
+        self.email = kwargs["e-mail"]
+        self.filename = filename
+
+        self.published_uri = CalendarUri(*published.split("/"))
+
+    def __repr__(self):
+        return "%s" % [
+            "PublishedFile",
+            ["content", self.content],
+            ["published", self.published],
+            ["MIME", self.mime],
+            ["e-mail", self.email],
+            ["filename", self.filename],
+            ["published URI", self.published_uri],
+        ]
+
+    def in_day(self, day):
+        return day.maybe_contains(self.published_uri)
+
+    @classmethod
+    def contents_published(cls, files, published_uri_string, typos=None):
+        for f in files:
+            if f.published != published_uri_string:
+                continue
+            c = f.content
+            if typos is not None:
+                if c in typos:
+                    c = typos[c]
+            yield c
+
+    @classmethod
+    def contents_by_published(cls, files, publisheds, typos=None):
+        published_uri_strings = CalendarUri.sort_metamorphic(*publisheds)
+        for published_string in published_uri_strings:
+            contents = cls.contents_published(
+                files,
+                published_string,
+                typos
+            )
+            yield published_string, list(sorted(contents))
+
+    @classmethod
+    def mimetypes_files(cls, files):
+        majmins = [
+            m.split("/")
+            for m
+            in list_sortuniq(
+                [
+                    f.mime
+                    for f
+                    in files
+                ]
+            )
+        ]
+        for maj in prefer(["text", "application"], [maj for maj, minor in majmins]):
+            minors = [minor for match, minor in sorted(majmins) if match == maj]
+            if "text" == maj:
+                minors = prefer(["plain", "html"], list_sortuniq(minors))
+            for minor in minors:
+                yield maj, minor
+
+    @classmethod
+    def contents_mime(cls, files, mime, typos=None):
+        m = "%s/%s" % mime
+        for f in files:
+            if m != f.mime:
+                continue
+            c = f.content
+            if c in typos:
+                c = typos[c]
+            yield c
+
+    @classmethod
+    def group_named(cls, pairs, priority_filenames=None):
+        if priority_filenames is None:
+            priority_filenames = []
+        filenames = prefer(
+            priority_filenames,
+            list_sortuniq(
+                [
+                    name[0]
+                    for name, f
+                    in pairs
+                ]
+            )
+        )
+        for name in filenames:
+            matches = [
+                (n[1:], f)
+                for n,f
+                in pairs
+                if n[0] == name
+            ]
+            if matches:
+                yield name, matches
+
+    @classmethod
+    def traverse_files(cls, pairs, priority_filenames=None, priority_contents=None):
+        pairs = list(pairs)
+        if not pairs:
+            return
+        if priority_filenames is None:
+            priority_filenames = []
+        if priority_contents is None:
+            priority_contents = []
+        lines = [(n,f) for n,f in pairs if not n]
+        descent = list_minus(pairs, lines)
+        for n,f in lines:
+            yield f.content
+        for name, matches in cls.group_named(descent, priority_filenames):
+            result = prefer(
+                priority_contents,
+                cls.traverse_files(
+                    matches,
+                    priority_filenames,
+                    priority_contents,
+                )
+            )
+            if result:
+                yield name if name else "body"
+                for line in result:
+                    yield " %s" % line
+
+    @classmethod
+    def files_by_issue(cls, files, issue):
+        subject = issue.get_subject()
+        for f in files:
+            if f.email == subject:
+                yield f

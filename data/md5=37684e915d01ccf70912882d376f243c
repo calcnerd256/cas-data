@@ -1,0 +1,33 @@
+{
+    "typos": {
+        "/cas/md5=96cc20c6e5def0f9c6bd05656b239813": "/cas/md5=96cc20c6e5def0f9c6bd05656b239813   "
+    },
+    "topic_typos": [
+	["content-addressable storage", "subscription", "subscribtion"]
+    ],
+    "mime_preferences": [
+        "text/plain",
+        "text/html",
+        "application/javascript",
+        "text/x-lisp",
+        "application/x-lisp"
+    ],
+    "priority_filenames": [
+        "",
+        "previous.txt",
+        "draft.txt",
+        "proxy_implementation.txt",
+        "mailing_list.txt",
+        "errata.txt",
+        "draft",
+        "dead end",
+        "split",
+        "final",
+        "index",
+        "clock.js",
+        "clock.html"
+    ],
+    "priority_contents": [
+	"/cas/md5=582e56dab955c577637cf3bc0bb9e4af"
+    ]
+}

@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+
+
+import json
+from .tsv import tsv_dicts
+from .util import (
+    prefer,
+    sections_lines,
+)
+from .published_file import PublishedFile
+from .day_interval import DayInterval
+from .newsletter_issue import NewsletterIssue
+from .tagged_topic import TaggedTopic
+
+
+class IndexReport(object):
+    def __init__(self, filenames, summary, day_interval, this_month, errata=None):
+        self.filenames = filenames
+        self.summary = summary
+        self.day_interval = day_interval
+        self.this_month = this_month
+        self.error_patch = errata
+
+        issues, files, topics = [
+            list(map(lambda kwargs: cls(**kwargs), tsv_dicts(filenames[filename])))
+            for cls, filename
+            in [
+                (NewsletterIssue, "issues"),
+                (PublishedFile, "blobs"),
+                (TaggedTopic, "topics"),
+            ]
+        ]
+        self.issues = issues
+        self.files = files
+        self.topics = topics
+        self.days = days = list(
+            DayInterval.week_days(
+                *day_interval,
+                filenames["days"]
+            )
+        )
+
+    def days_within_expected_range(self, era):
+        for day in self.days:
+            if not day.within_expected_range(era, self.this_month):
+                return False
+        return True
+
+    def errata(self):
+        year, month = self.this_month
+        typos = {}
+        topic_typos = []
+        mime_preferences = []
+        priority_filenames = []
+        priority_contents = []
+        if self.error_patch is not None:
+            typos = self.error_patch["typos"]
+            topic_typos = self.error_patch["topic_typos"]
+            mime_preferences = [
+                tuple(mt.split("/"))
+                for mt
+                in self.error_patch["mime_preferences"]
+            ]
+            priority_filenames = self.error_patch["priority_filenames"]
+            priority_contents = self.error_patch["priority_contents"]
+        preferences = mime_preferences, priority_filenames, priority_contents
+        return typos, topic_typos, preferences
+
+    def is_first_week(self):
+        target = list(map(int, self.this_month)) + self.day_interval
+        return [2019, 12, 5, 7] == target
+
+    def issues_ordered(self):
+        return NewsletterIssue.order_by_sent(self.issues, self.days)
+
+    def has_filename(self):
+        if not hasattr(self, "issue_order"):
+            self.issue_order = list(self.issues_ordered())
+        for issue in self.issue_order:
+            if issue.has_filename(self.files):
+                return True
+        return False
+
+    def has_topics(self):
+        if not hasattr(self, "issue_order"):
+            self.issue_order = list(self.issues_ordered())
+        topic_typos = self.errata()[1]
+        for issue in self.issue_order:
+            ts = TaggedTopic.sort_issue_topics(
+                self.topics,
+                issue,
+                topic_typos
+            )
+            for t in ts:
+                return True
+        return False
+
+    def by_day(self):
+        typos = self.errata()[0]
+        for day in self.days:
+            yield "%s" % day.printable_interval()
+            for m, contents in day.published_by_minute(self.files, typos):
+                yield " %s" % m
+                for c in contents:
+                    yield "  %s" % c
+
+    def by_mime(self):
+        typos, topic_typos, preferences = self.errata()
+        mime_preferences = preferences[0]
+        mime_order = prefer(
+            mime_preferences,
+            PublishedFile.mimetypes_files(self.files),
+        )
+        for mime in mime_order:
+            m = "%s/%s" % mime
+            contents = list(
+                PublishedFile.contents_mime(
+                    [
+                        it
+                        for day
+                        in self.days
+                        for it
+                        in day.day_files(self.files)
+                    ],
+                    mime,
+                    typos,
+                )
+            )
+            if not contents:
+                continue
+            yield m
+            for c in sorted(contents):
+                yield " %s" % c
+
+    def by_email_file(self):
+        if not hasattr(self, "issue_order"):
+            self.issue_order = list(self.issues_ordered())
+        mime_preferences, priority_filenames, priority_contents = self.errata()[2]
+        for issue in self.issue_order:
+            yield "%s" % issue.get_subject()
+            lines = issue.get_by_filenames(
+                self.files,
+                priority_filenames,
+                priority_contents,
+            )
+            for line in lines:
+                yield " %s" % line
+
+    def by_email(self):
+        if not hasattr(self, "issue_order"):
+            self.issue_order = list(self.issues_ordered())
+        for issue in self.issue_order:
+            subject = issue.get_subject()
+            contents = [
+                issue.sent_slash(
+                    self.is_first_week()
+                )
+            ] + [
+                f.content
+                for f
+                in self.files
+                if f.email == subject
+            ]
+            yield subject
+            for c in contents:
+                yield " %s" % c
+
+    def topics_by_email(self):
+        if not hasattr(self, "issue_order"):
+            self.issue_order = list(self.issues_ordered())
+        topic_typos = self.errata()[1]
+        for issue in self.issue_order:
+            yield "%s" % issue.subject_line
+            them = TaggedTopic.sort_issue_topics(
+                self.topics,
+                issue,
+                topic_typos,
+            )
+            for topic in them:
+                yield " %s" % topic
+
+    def index_sections(self):
+        yield self.summary, []
+        yield "by day, minute:", self.by_day()
+        yield "by MIME type:", self.by_mime()
+        if self.has_filename():
+            yield "by e-mail, file:", self.by_email_file()
+        else:
+            yield "by e-mail:", self.by_email()
+        if self.has_topics():
+            yield "topics by e-mail:", self.topics_by_email()
+
+    def print_lines(self):
+        assert self.days_within_expected_range("AD")
+        for line in sections_lines(*self.index_sections()):
+            print(line)
+
+    @classmethod
+    def main(cls, ignore, days_filename, issues_filename, blobs_filename, topics_filename, summary, first_day, last_day, year, month, errata_filename=None):
+        errata = None
+        if errata_filename:
+            with open(errata_filename) as errata_json_stream:
+                errata = json.load(errata_json_stream)
+        filenames = {
+            "days": days_filename,
+            "issues": issues_filename,
+            "blobs": blobs_filename,
+            "topics": topics_filename,
+        }
+        day_interval = list(
+            map(
+                int,
+                [first_day, last_day]
+            )
+        )
+        this_month = [year, month]
+        return cls(filenames, summary, day_interval, this_month, errata).print_lines()

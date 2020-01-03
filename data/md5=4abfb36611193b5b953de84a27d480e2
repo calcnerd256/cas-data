@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+
+
+from .tsv import tsv_dicts
+from .util import list_sortuniq
+from .calendar_uri import CalendarUri
+from .published_file import PublishedFile
+
+
+class DayInterval(object):
+    def __init__(self, begin=None, end=None, **kwargs):
+        self.calendar_day = kwargs["calendar day"]
+        self.begin = begin
+        self.begin_openness = kwargs["begin openness"]
+        self.end = end
+        self.end_openness = kwargs["end openness"]
+
+        self.day_uri = CalendarUri(*self.calendar_day.split("/"))
+        self.begin_punctuation = "[" if self.begin_openness == "closed" else "("
+        self.end_punctuation = "]" if self.end_openness == "closed" else ")"
+        self.begin_uri = CalendarUri(*self.begin.split("/"))
+        self.end_uri = CalendarUri(*self.end.split("/"))
+
+    def __repr__(self):
+        return "%s" % (
+            [
+                "DayInterval",
+                ["calendar day", self.calendar_day],
+                ["begin", self.begin],
+                ["begin openness", self.begin_openness],
+                ["end", self.end],
+                ["end openness", self.end_openness],
+                ["day URI", self.day_uri],
+                ["begin punctuation", self.begin_punctuation],
+                ["end punctuation", self.end_punctuation],
+                ["begin URI", self.begin_uri],
+                ["end URI", self.end_uri],
+            ]
+        )
+
+    def maybe_contains(self, calendar_uri):
+        return calendar_uri.maybe_overlaps(self.begin_uri, self.end_uri)
+
+    @classmethod
+    def week_days(cls, first_day, last_day, filename):
+        for kwargs in tsv_dicts(filename):
+            day = cls(**kwargs)
+            if first_day <= day.day_uri.day:
+                if last_day >= day.day_uri.day:
+                    yield day
+
+    def within_expected_range(self, target_era, this_month):
+        uri = self.day_uri
+        if target_era != uri.era: return False
+        if list(map(int, this_month)) != [uri.year, uri.month]: return False
+        if "" != uri.hour: return False
+        return True
+
+    def day_files(self, files):
+        for f in files:
+            if f.in_day(self):
+                yield f
+
+    @classmethod
+    def days_files(cls, days, files):
+        files = list(files)
+        for day in days:
+            yield (
+                day,
+                day.day_files(files)
+            )
+
+    def printable_interval(self):
+        return "%s %s , %s %s" % (
+            self.begin_punctuation,
+            self.begin,
+            self.end,
+            self.end_punctuation,
+        )
+
+    def publication_times(self, files):
+        return list_sortuniq(
+            [
+                f.published
+                for f
+                in self.day_files(files)
+            ]
+        )
+
+    def published_by_minute(self, files, typos=None):
+        return PublishedFile.contents_by_published(
+            files,
+            self.publication_times(files),
+            typos
+        )

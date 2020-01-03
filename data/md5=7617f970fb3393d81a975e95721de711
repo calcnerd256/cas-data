@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+mkdir digest
+mv "./md5=d41d8cd98f00b204e9800998ecf8427e" digest/__init__.py
+mv "./md5=e24ac23b6e7f089e345e278b95723022" digest/tsv.py
+mv "./md5=f989b62e9e5951e145244e76e3c3ee8d" digest/util.py
+mv "./md5=aff6b47a5473d30015034ebc728bbbe7" digest/calendar_uri.py
+mv "./md5=44ac2ecfb046baa8b67ce347ee42d0e1" digest/published_file.py
+mv "./md5=4abfb36611193b5b953de84a27d480e2" digest/day_interval.py
+mv "./md5=cac32337d5f10c0fa81c222324ed3392" digest/newsletter_issue.py
+mv "./md5=93e0d5dc7b134a865eed342701b1215f" digest/tagged_topic.py
+mv "./md5=95b0c9d435955e4ee10f5393d6549e0b" digest/index_report.py
+mv "./md5=a8e8ca1b5498eb4f3f9ad364b9f71fcf" digest/main.py

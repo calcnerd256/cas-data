@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+
+def list_minus(subtrahend, minuend):
+    # preserves order and cardinality
+    difference = set(subtrahend) - set(minuend)
+    return [s for s in subtrahend if s in difference]
+
+
+def list_sortuniq(xs):
+    return list(sorted(set(xs)))
+
+
+def prefer(prior, them):
+    prior = list(prior)
+    them = list(them)
+    omit = list_minus(prior, them)
+    best = list_minus(prior, omit)
+    rest = list_minus(them, best)
+    return best + rest
+
+def sections_lines(*sections):
+    is_first = True
+    for name, lines in sections:
+        if not is_first:
+            yield ""
+        is_first = False
+        yield name
+        for line in lines:
+            yield " %s" % line

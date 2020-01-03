@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+
+
+class TaggedTopic(object):
+    def __init__(self, topic=None, **kwargs):
+        self.topic = topic
+        self.email = kwargs["e-mail"]
+
+    def __repr__(self):
+        return "%s" % [
+            "TaggedTopic",
+            ["topic", self.topic],
+            ["e-mail", self.email],
+        ]
+
+    @classmethod
+    def issue_topics(cls, topics, issue):
+        subject = issue.get_subject()
+        for tag in topics:
+            if tag.email == subject:
+                yield tag.topic
+
+    @classmethod
+    def fold_case(cls, tag, forgetter):
+        for c in tag:
+            if c in forgetter:
+                yield forgetter[c]
+
+    @classmethod
+    def sort_issue_topics(cls, topics, issue, typos=None):
+        if typos is None:
+            typos = []
+        letters = {
+            l: l.lower()
+            for l
+            in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        }
+        sort_key = {
+            tuple(cls.fold_case(tag, letters)): tag
+            for tag
+            in cls.issue_topics(topics, issue)
+        }
+        for email, right, wrong in typos:
+            if email == issue.subject_line:
+                key = tuple(cls.fold_case(right, letters))
+                sort_key[key] = wrong
+        for key in sorted(sort_key.keys()):
+            yield sort_key[key]
