@@ -1,0 +1,6 @@
+var readFormOneField = require("navscrib/Message/readFormOneField").readFormOneField;
+function readIndexForm(req, res, callback){
+	return readFormOneField("id", req, res, callback);
+}
+
+module.exports.readIndexForm = readIndexForm;

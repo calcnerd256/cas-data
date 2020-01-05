@@ -1,0 +1,9 @@
+function initMessage(self, messages, name){
+	self.name = name;
+	self.outlinks = [];
+	self.inlinks = [];
+	self.index = messages.length;
+	messages.push(self);
+}
+
+module.exports.init = initMessage;

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+
+mv "./md5=c9f5aeeca3ad37bf2aa006139b935f0a" "./sha256-87083882cc6015984eb0411a99d3981817f5dc5c90ba24f0940420c5548d82de.js"
+mv "./md5=de3f5080bd50ecd0f5e81ba0cd1d9d67" "./serve.js"
+mv "./md5=765f26fc8c461212cb3d573cecb4e561" "./db.json"
+
+mkdir node_modules
+mkdir node_modules/navscrib
+mkdir node_modules/navscrib/webserver
+mv "./md5=ce643dbc662d5b537a22698a13b0160d" ./node_modules/navscrib/webserver/badMethod.js
+mv "./md5=2516a5b0b5ca8f4c159c78957fd7fa3b" ./node_modules/navscrib/webserver/client.js
+mv "./md5=0c1c86d7549de7b12a8a524870fc1abf" ./node_modules/navscrib/webserver/notFound.js
+mv "./md5=ff2821dda1be70754e8a40bc6c6fa6fb" ./node_modules/navscrib/webserver/respondOkay.js
+mv "./md5=fe075b262ffe2bae5b55e2221564ab2c" ./node_modules/navscrib/webserver/server.js
+mv "./md5=5cf414709c686042a88a98118d60ff74" ./node_modules/navscrib/webserver/soakPostForm.js
+mkdir node_modules/navscrib/Message
+mv "./md5=3a3a1508f91a72356402b2cece882a7b" ./node_modules/navscrib/Message/addLink.js
+mv "./md5=6774993216b9df736c7f2d659f3187f4" ./node_modules/navscrib/Message/canReach.js
+mv "./md5=a266bafd867c86f95f8fbd6ed7951e49" ./node_modules/navscrib/Message/getBacklinks.js
+mv "./md5=f8c0337add6c1f34ff9f015898c46555" ./node_modules/navscrib/Message/handleCreate.js
+mv "./md5=34f4db624175f195d7b32a5b654f0b9a" ./node_modules/navscrib/Message/handlePost.js
+mv "./md5=62ef53f5f4c41a69edfe874d543bde48" ./node_modules/navscrib/Message/index.js
+mv "./md5=0f3fabbe2e736a052e8e263588606f29" ./node_modules/navscrib/Message/init.js
+mv "./md5=6f4cc058c0099ddff736938381d1442d" ./node_modules/navscrib/Message/reachable.js
+mv "./md5=d4db43e4c8e8cfafe0e807eee301d8a3" ./node_modules/navscrib/Message/readFormOneField.js
+mv "./md5=e5152e7614e47b62439778a811f58f0f" ./node_modules/navscrib/Message/readIndexForm.js
+mv "./md5=55d0654ed2d9bbeeb8395707dd9e2a0c" ./node_modules/navscrib/Message/readNameForm.js
+mv "./md5=0328ac56423cd8e23edbc2c99b4decb8" ./node_modules/navscrib/Message/respondGet.js
+mv "./md5=d0541c1c441194890f5e48536ff39718" ./node_modules/navscrib/Message/respond.js
+mv "./md5=ae0d55e223889f02555dfb0b1d542eeb" ./node_modules/navscrib/Message/respondSave.js

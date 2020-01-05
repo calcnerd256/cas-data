@@ -1,0 +1,6 @@
+var readFormOneField = require("navscrib/Message/readFormOneField").readFormOneField;
+function readNameForm(req, res, callback){
+    return readFormOneField("name", req, res, callback);
+}
+
+module.exports.readNameForm = readNameForm;

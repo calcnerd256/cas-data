@@ -1,0 +1,41 @@
+var Message = require("navscrib/Message").Message;
+var initServer = require("navscrib/webserver/server").init;
+
+var port = (
+	function(defaultValue, argv, n, argp, arg){
+		if(
+			argp(
+				argv,
+				n
+			)
+		)
+			return arg(
+				argv,
+				n
+			);
+		return defaultValue;
+	}
+)(
+	8081,
+	process.argv,
+	2,
+	function(argv, n){
+		return n < argv.length;
+	},
+	function(argv, n){
+		return +(
+			argv[
+				n
+			]
+		);
+	}
+);
+
+Message.init(
+    function(){
+	return initServer(port);
+    },
+    function(error){
+	console.error(error);
+    }
+);

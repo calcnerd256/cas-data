@@ -1,0 +1,80 @@
+var fs = require("fs");
+
+var initMessage = require("navscrib/Message/init").init;
+var getMessageBacklinks = require("navscrib/Message/getBacklinks").getBacklinks;
+var reachableMessages = require("navscrib/Message/reachable").reachable;
+var canMessageReach = require("navscrib/Message/canReach").canReach;
+var respond = require("navscrib/Message/respond").respond;
+var addMessageLink = require("navscrib/Message/addLink").addLink;
+
+
+function Message(name){
+	this.init(name);
+}
+Message.prototype.init = function(name){
+	return initMessage(this, Message.messages, name);
+};
+Message.messages = [];
+Message.prototype.getBacklinks = function(){
+	return getMessageBacklinks(this);
+};
+Message.prototype.reachable = function(exclude, cache){
+	return reachableMessages(this, exclude, cache);
+};
+Message.prototype.canReach = function(other, cache){
+	return canMessageReach(this, other, cache);
+};
+Message.saveLock = {
+	saving: false,
+	toSave: false
+};
+Message.dbFilename = "./db.json";
+Message.prototype.respond = function(req, res, path){
+	return respond(
+		this,
+		req,
+		res,
+		path,
+		Message.dbFilename,
+		Message.saveLock,
+		Message.messages
+	);
+}
+Message.hydrate = function(swizz){
+	var that = this;
+	this.messages = [];
+	var result = swizz.map(
+		function(xs){
+			return new that(xs[0]);
+		}
+	);
+	this.messages = [];
+	swizz.map(
+		function(xs, i){
+			xs.slice(1).map(
+				function(j){
+					return addMessageLink(
+						result[i],
+						result[j]
+					);
+				}
+			);
+		}
+	);
+	return result;
+};
+Message.init = function(callback, errback){
+	if(!errback) errback = function(){};
+	var that = this;
+	return fs.readFile(
+		this.dbFilename,
+		function(err, data){
+			if(err) return errback(err);
+			that.messages = that.hydrate(JSON.parse(data));
+			return callback();
+		}
+	);
+};
+
+
+module.exports.Message = Message;

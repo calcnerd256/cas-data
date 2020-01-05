@@ -1,0 +1,44 @@
+function soakStream(stream, callback){
+	var chunks = [];
+	stream.on(
+		"data",
+		[].push.bind(chunks)
+	);
+	stream.on(
+		"end",
+		function(){
+			return callback(
+				chunks.join("")
+			);
+		}
+	);
+}
+function soakPostForm(request, callback){
+	function soakback(body){
+		var formdata = {};
+		body.split("&").map(
+			function(kv){
+				var tokens = kv.split("=");
+				var k = tokens.shift();
+				return [
+					k,
+					tokens.join("=")
+				].map(
+					function(s){
+						return s.split("+").map(
+							decodeURIComponent
+						).join(" ");
+					}
+				);
+			}
+		).map(
+			function(kv){
+				formdata[kv[0]] = kv[1];
+			}
+		);
+		return callback(formdata);
+	}
+	return soakStream(request, soakback);
+}
+
+module.exports.soakPostForm = soakPostForm;

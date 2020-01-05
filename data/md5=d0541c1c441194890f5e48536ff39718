@@ -1,0 +1,22 @@
+var respondMessageGet = require("navscrib/Message/respondGet").respondGet;
+var handleMessagePost = require("navscrib/Message/handlePost").handlePost;
+var badMethod = require("navscrib/webserver/badMethod").badMethod;
+
+function respond(self, req, res, path, filename, saveLock, messages){
+	var m = req.method.toUpperCase();
+	if("GET" == m)
+		return respondMessageGet(self, req, res);
+	if("POST" == m)
+		return handleMessagePost(
+			self,
+			req,
+			res,
+			path,
+			filename,
+			saveLock,
+			messages
+		);
+	return badMethod(res, ["GET", "POST"]);
+}
+
+module.exports.respond = respond;

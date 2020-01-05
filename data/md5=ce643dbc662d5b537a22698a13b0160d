@@ -1,0 +1,13 @@
+function badMethod(response, allow){
+	response.writeHead(
+		405,
+		"Method Not Allowed",
+		{
+			"Content-Type": "text/plain",
+			"Allow": allow.join(", ")
+		}
+	);
+	response.end("That resource does not support that method.");
+}
+
+module.exports.badMethod = badMethod;

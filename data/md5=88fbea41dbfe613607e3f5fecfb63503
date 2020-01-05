@@ -1,0 +1,19 @@
+I wrote a little Python script to convert from the TSV files that generate the index files into the JSON file that navscrib uses as a database.
+But I haven't published navscrib yet.
+So now I need to do that before it makes any sense to publish that converter.
+Navscrib is a notetaking program I wrote for myself.
+It doesn't have a very good name, because naming this is hard.
+It's the successor to another one called scribnav.
+I like it because I can build nodes for notes easily and hyperlink them to each other, and it gives me backlinks so I can traverse from a note to any note that links to it.
+I wrote it in a hurry; and, although I've revised it a few times, but I haven't made it into something I can be proud of.
+The latest changes were to split it from one big file into several small ones.
+
+MD5 e0121db646c7bd103f3344cc1c81fcff destructively installs navscrib.
+MD5 b09f7d705fc000404a9c15fbcf18c613 creates a safe-ish temporary environment in which to run that, runs the installation, and launches navscrib.
+It is invoked like this:
+bash ./md5=b09f7d705fc000404a9c15fbcf18c613 8080
+Then press enter to exit when you're done, or else it won't clean up the environment.
+
+I'm not asking anyone to run navscrib or even suggesting that it's fit for any purpose; I'm just explaining how to run the version I'm publishing if anyone wants to.
+
+After I send this out, I'll continue working on publishing that little Python script that generates a navscrib database for my TSVs.

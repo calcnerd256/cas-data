@@ -1,0 +1,14 @@
+function getMessageBacklinks(self){
+	self.inlinks = self.inlinks.filter(
+		function(candidate){
+			return candidate.outlinks.filter(
+				function(link){
+					return link == self;
+				}
+			).length;
+		}
+	);
+	return self.inlinks;
+}
+
+module.exports.getBacklinks = getMessageBacklinks;

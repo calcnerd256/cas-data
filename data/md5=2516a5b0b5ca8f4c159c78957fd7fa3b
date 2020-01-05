@@ -1,0 +1,261 @@
+function isNumeric(str){
+ return "" + +str == str;
+}
+function last(xs){
+ return xs[xs.length - 1];
+}
+function beforeReady(){
+ $(
+  function(){
+   $("ul#roots li").map(
+    function(){
+     var span = $(this).find("span.shortname");
+     $(this).find("a").map(
+      function(){
+       var id = last(this.href.split("/").filter(isNumeric));
+       $(this).click(
+        function(){
+         visit(id);
+         return false;
+        }
+       );
+       get(id, function(it){span.text(it.name);});
+      }
+     );
+    }
+   );
+  }
+ );
+}
+function create(parentId, childName, callback){
+ return $.post(
+  "/" + +parentId + "/create",
+  {name: childName},
+  callback
+ );
+}
+function rename(id, name, callback){
+ return $.post(
+  "/" + +id + "/rename",
+  {name: name},
+  callback
+  );
+}
+function add(parentId, childId, callback){
+ return $.post(
+  "/" + +parentId + "/add",
+  {id: childId},
+  callback
+ );
+}
+function remove(parentId, childId, callback){
+ return $.post(
+  "/" + +parentId + "/remove",
+  {id: childId},
+  callback
+ );
+}
+function get(id, callback){
+ return $.get("/" + +id, callback);
+}
+function makeAnchor(parent, text, action, fragment){
+ if(!fragment) fragment = "";
+ var result = document.createElement("a");
+ $(result).text(text);
+ result.href = "#" + fragment;
+ $(result).click(function(){action(); return false;});
+ $(parent)[0].appendChild(result);
+ return result;
+}
+function preview(other){
+ $("#preview").html($(other).html()).find("a").map(
+  function(){this.removeAttribute("href");}
+ );
+}
+function visit(id){
+ var existing = $("li#page_" + +id);
+ if(existing.length) return preview(existing);
+ var result = document.createElement("li");
+ result.id = "page_" + +id;
+ $("ul#visitations")[0].appendChild(result);
+ function dismiss(){
+  result.parentNode.removeChild(result);
+ }
+ function anchor(fn){
+  makeAnchor(result, fn.name, fn, fn.name + +id);
+ }
+ anchor(dismiss);
+ var name = document.createElement("div");
+ name.className = "name";
+ result.appendChild(name);
+ $(name).text(+id);
+ function liLink(link, removable){
+  var li = document.createElement("li");
+  $(
+   makeAnchor(li, +link, function(){visit(+link)}, "visit" + +link)
+  ).hover(
+   function(){
+    visit(+link);
+   }
+  );
+  var span = document.createElement("span");
+  li.appendChild(span);
+  get(+link, function(it){$(span).text(": " + it.name);});
+  if(removable){
+   li.appendChild(document.createTextNode(" "));
+   makeAnchor(
+    li,
+    "remove",
+    function(){remove(+id, +link, refresh);},
+    "remove" + +link + "from" + +id
+   );
+  }
+  return li;
+ }
+ var evalButton = document.createElement("div");
+ function refresh(){
+  return get(
+   id,
+   function(it){
+    $(name).text(+id + ": " + it.name);
+    $(outlinks).html(
+     it.links.map(
+      function(link){
+       return liLink(link, true);
+      }
+     )
+    );
+    $(inlinks).html(
+     it.backlinks.map(
+      function(backlink){
+       return liLink(backlink, false);
+      }
+     )
+    );
+    preview(result);
+    if("/*!*/" == it.name.substr(0, 5))
+     $(evalButton).html(
+      (
+       function(a){
+        a.href = "#eval" + +id;
+        $(a).click(
+         function(){
+          eval(it.name);
+          return false;
+         }
+        );
+        $(a).text("eval");
+        return a;
+       }
+      )(document.createElement("a"))
+     );
+   }
+  );
+ }
+ anchor(
+  function rename(){
+   var text = document.createElement("input");
+   var submit = document.createElement("input");
+   submit.type = "submit";
+   submit.value = "save";
+   var cancel = document.createElement("input");
+   cancel.type = "submit";
+   cancel.value = "cancel";
+   $(name).after(text);
+   $(text).after(submit);
+   $(submit).after(cancel);
+   function done(){
+    text.parentNode.removeChild(text);
+    submit.parentNode.removeChild(submit);
+    cancel.parentNode.removeChild(cancel);
+    if(arguments.length) refresh();
+   }
+   $(submit).click(
+    function(){
+     window.rename(+id, text.value, done);
+     return false;
+    }
+   );
+   $(cancel).click(function(){done(); return false;});
+   $(text).focus();
+  }
+ );
+ var outlinks = document.createElement("ul");
+ result.appendChild(outlinks);
+ anchor(refresh);
+ var inlinks = document.createElement("ul");
+ result.appendChild(inlinks);
+ anchor(
+  function add(){
+   var text = document.createElement("input");
+   result.appendChild(text);
+   var cancel = document.createElement("input");
+   cancel.type = "submit";
+   cancel.value = "cancel";
+   $(text).after(cancel);
+   var select = document.createElement("select");
+   var save = document.createElement("input");
+   save.type = "submit";
+   save.value = "add";
+   function drop(){
+    text.parentNode.removeChild(text);
+    cancel.parentNode.removeChild(cancel);
+    select.parentNode.removeChild(select);
+    save.parentNode.removeChild(save);
+    if(arguments.length) refresh();
+   }
+   $(cancel).click(function(){drop(); return false;});
+   var bag = [].slice.call(
+    $("ul#visitations li div.name").map(
+     function(){
+      return +($(this).text().split(":")[0]);
+     }
+    )
+   );
+   var newOne = document.createElement("option");
+   newOne.value = "new";
+   $(newOne).html("create new&hellip;");
+   $(select).html(
+    [newOne].concat(
+     bag.map(
+      function(index){
+       var option = document.createElement("option");
+       option.value = +index;
+       $(option).text($("li#page_" + +index + " div.name").text());
+       return option;
+      }
+     )
+    )
+   );
+   select.value = "new";
+   $(cancel).after(select);
+   $(select).after(save);
+   $(save).click(
+    function(){
+     if("new" == select.value)
+      create(+id, text.value, drop);
+     else
+      window.add(+id, +(select.value), drop);
+     return false;
+    }
+   );
+   $(text).focus();
+  }
+ );
+ result.appendChild(evalButton);
+ refresh();
+ result.className = "visitation";
+}
+
+
+module.exports.isNumeric = isNumeric;
+module.exports.last = last;
+module.exports.beforeReady = beforeReady;
+module.exports.create = create;
+module.exports.rename = rename;
+module.exports.add = add;
+module.exports.remove = remove;
+module.exports.get = get;
+module.exports.makeAnchor = makeAnchor;
+module.exports.preview = preview;
+module.exports.visit = visit;

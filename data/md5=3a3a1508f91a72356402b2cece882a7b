@@ -1,0 +1,6 @@
+function addMessageLink(self, other){
+	self.outlinks.push(other);
+	other.inlinks.push(self);
+}
+
+module.exports.addLink = addMessageLink;

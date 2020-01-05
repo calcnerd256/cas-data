@@ -1,0 +1,18 @@
+function reachableMessages(self, exclude, cache){
+	if(cache)
+		if(self.index in cache)
+			return cache[self.index];
+	if(!exclude) exclude = {};
+	if(self.index in exclude) return [];
+	exclude[self.index] = self.index;
+	return [].concat.apply(
+		self.outlinks,
+		self.outlinks.map(
+			function(link){
+				return reachableMessages(link, exclude);
+			}
+		)
+	);
+}
+
+module.exports.reachable = reachableMessages;

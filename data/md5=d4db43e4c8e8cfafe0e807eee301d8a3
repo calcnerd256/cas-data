@@ -1,0 +1,22 @@
+var soakPostForm = require("navscrib/webserver/soakPostForm").soakPostForm;
+function readFormOneField(fieldName, req, res, callback){
+	return soakPostForm(
+		req,
+		function(form){
+			if(fieldName in form)
+				return callback(form[fieldName], form);
+			res.writeHead(
+				422,
+				"unprocessable form data",
+				{
+					"Content-Type": "text/plain"
+				}
+			);
+			return res.end(
+				"Form lacks \"" + fieldName + "\" field.\r\n"
+			);
+		}
+	);
+}
+
+module.exports.readFormOneField = readFormOneField;

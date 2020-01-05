@@ -1,0 +1,71 @@
+var fs = require("fs");
+
+var respondOkay = require("navscrib/webserver/respondOkay").respondOkay;
+
+
+function serialabilifyMessage(self){
+	return [self.name].concat(
+		self.outlinks.map(
+			function(link){
+				return link.index;
+			}
+		)
+	);
+}
+
+function serializeMessages(messages){
+	return JSON.stringify(
+		messages.map(serialabilifyMessage),
+		null,
+		"\t"
+	);
+}
+
+function save(filename, saveLock, messages, callback, errorback){
+	if(saveLock.saving){
+		saveLock.toSave = true;
+		return errorback("saving");
+	}
+	saveLock.saving = true;
+	saveLock.toSave = false;
+	return fs.writeFile(
+		filename,
+		serializeMessages(messages),
+		function(error){
+			saveLock.saving = false;
+			if(error) return errorback(error);
+			if(saveLock.toSave)
+				return save(
+					filename,
+					saveLock,
+					messages,
+					callback,
+					errorback
+				);
+			return callback();
+		}
+	);
+}
+
+function respondMessageSave(filename, saveLock, messages, res, mimetype, body){
+	return save(
+		filename,
+		saveLock,
+		messages,
+		function(){
+			return respondOkay(res, mimetype, body);
+		},
+		function(){
+			res.writeHead(
+				500,
+				"server error",
+				{
+					"Content-Type": "text/plain"
+				}
+			);
+			return res.end("Oops!");
+		}
+	);
+}
+
+module.exports.respondSave = respondMessageSave;

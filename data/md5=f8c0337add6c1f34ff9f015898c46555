@@ -1,0 +1,27 @@
+var libMessage = require("navscrib/Message");
+var readNameForm = require("navscrib/Message/readNameForm").readNameForm;
+var addMessageLink = require("navscrib/Message/addLink").addLink;
+var respondMessageSave = require("navscrib/Message/respondSave").respondSave;
+
+
+function handleMessageCreate(self, req, res, filename, saveLock, messages){
+	var Message = libMessage.Message;
+	return readNameForm(
+		req,
+		res,
+		function(name, form){
+			var msg = new Message(name);
+			addMessageLink(self, msg);
+			return respondMessageSave(
+				filename,
+				saveLock,
+				messages,
+				res,
+				"application/json",
+				(+(msg.index))
+			);
+		}
+	);
+}
+
+module.exports.handleCreate = handleMessageCreate;

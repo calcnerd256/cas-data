@@ -1,0 +1,14 @@
+function respondOkay(response, contentType, body){
+	response.writeHead(
+		200,
+		"OK",
+		{
+			"Content-Type": contentType
+		}
+	);
+	return response.end(
+		"" + body
+	);
+}
+
+module.exports.respondOkay = respondOkay;

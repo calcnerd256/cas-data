@@ -1,0 +1,12 @@
+function notFound(response){
+	response.writeHead(
+		404,
+		"Not Found",
+		{
+			"Content-Type": "text/plain"
+		}
+	);
+	response.end("Not found.");
+}
+
+module.exports.notFound = notFound;

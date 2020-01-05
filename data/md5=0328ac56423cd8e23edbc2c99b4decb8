@@ -1,0 +1,21 @@
+var respondOkay = require("navscrib/webserver/respondOkay").respondOkay;
+
+function getIndex(msg){
+	return msg.index;
+}
+
+function respondMessageGet(self, req, res){
+	return respondOkay(
+		res,
+		"application/json",
+		JSON.stringify(
+			{
+				name: self.name,
+				links: self.outlinks.map(getIndex),
+				backlinks: self.getBacklinks().map(getIndex)
+			}
+		)
+	);
+}
+
+module.exports.respondGet = respondMessageGet;

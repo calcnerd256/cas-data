@@ -1,0 +1,14 @@
+function canMessageReach(self, other, cache){
+	return !!(
+		self.reachable(
+			{},
+			cache
+		).filter(
+			function(candidate){
+				return candidate == other;
+			}
+		).length
+	);
+}
+
+module.exports.canReach = canMessageReach;

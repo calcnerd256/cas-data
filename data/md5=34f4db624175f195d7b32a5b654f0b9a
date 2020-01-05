@@ -1,0 +1,86 @@
+var respondMessageSave = require("navscrib/Message/respondSave").respondSave;
+var readIndexForm = require("navscrib/Message/readIndexForm").readIndexForm;
+var addMessageLink = require("navscrib/Message/addLink").addLink;
+
+var readNameForm = require("navscrib/Message/readNameForm").readNameForm;
+//var respondMessageSave = require("navscrib/Message/respondSave").respondSave;
+function handleMessageRename(self, req, res, filename, saveLock, messages){
+    return readNameForm(
+	req,
+	res,
+	function(name, form){
+	    self.name = name;
+	    return respondMessageSave(
+		filename,
+		saveLock,
+		messages,
+		res,
+		"text/plain",
+		"renamed"
+	    );
+	}
+    );
+}
+//var readIndexForm = require("navscrib/Message/readIndexForm").readIndexForm;
+//var respondMessageSave = require("navscrib/Message/respondSave").respondSave;
+//var addMessageLink = require("navscrib/Message/addLink").addLink;
+function handleMessageAdd(self, req, res, filename, saveLock, messages){
+    return readIndexForm(
+	req,
+	res,
+	function(index, form){
+	    var msg = messages[index];
+	    addMessageLink(self, msg);
+	    return respondMessageSave(
+		filename,
+		saveLock,
+		messages,
+		res,
+		"text/plain",
+		"added"
+	    );
+	}
+    );
+}
+//var readIndexForm = require("navscrib/Message/readIndexForm").readIndexForm;
+//var respondMessageSave = require("navscrib/Message/respondSave").respondSave;
+function removeMessageLink(self, other){
+	self.outlinks = self.outlinks.filter(
+		function(link){
+			return link != other;
+		}
+	);
+}
+function handleMessageRemove(self, req, res, filename, saveLock, messages){
+    return readIndexForm(
+	req,
+	res,
+	function(index, form){
+	    var msg = messages[index];
+	    removeMessageLink(self, msg);
+	    return respondMessageSave(
+		filename,
+		saveLock,
+		messages,
+		res,
+		"text/plain",
+		"removed"
+	    );
+	}
+    );
+}
+var notFound = require("navscrib/webserver/notFound").notFound;
+var handleMessageCreate = require("navscrib/Message/handleCreate").handleCreate;
+function handleMessagePost(self, req, res, path, filename, saveLock, messages){
+    if("create" == path[0])
+	return handleMessageCreate(self, req, res, filename, saveLock, messages);
+    if("rename" == path[0])
+	return handleMessageRename(self, req, res, filename, saveLock, messages);
+    if("add" == path[0])
+	return handleMessageAdd(self, req, res, filename, saveLock, messages);
+    if("remove" == path[0])
+	return handleMessageRemove(self, req, res, filename, saveLock, messages);
+    return notFound(res);
+}
+
+module.exports.handlePost = handleMessagePost;
