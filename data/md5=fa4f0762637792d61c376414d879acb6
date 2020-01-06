@@ -1,0 +1,190 @@
+import json
+from .tsv import (
+    tsv,
+    tabdicts,
+    tsv_dicts,
+)
+
+
+days = []
+issues = []
+files = []
+topics = []
+
+def uniq(key, dicts):
+    return sorted(set([record[key] for record in dicts]))
+
+mailing_lists = []
+mimetypes = []
+
+pages = []
+class Page(object):
+    def __init__(self, name):
+        self.name = name
+        self.pages = []
+        self.number = len(pages)
+        pages.append(self)
+
+    def append(self, other):
+        self.pages.append(other)
+
+    def has(self, other):
+        return other in self.pages
+
+    def to_navscrib_json(self):
+        yield self.name
+        links = (link.number for link in self.pages)
+        yield from sorted(set(links))
+
+
+top_page = Page("digest")
+mailinglist_page = Page("mailing lists")
+top_page.append(mailinglist_page)
+calendar_page = Page("calendar")
+top_page.append(calendar_page)
+mime_page = Page("MIME types")
+top_page.append(mime_page)
+
+class MimePage(Page):
+    def __init__(self, major):
+        super().__init__(major)
+        minors = [
+            minor
+            for maj, minor
+            in mimetypes
+            if major == maj
+        ]
+        for minor in minors:
+            p = Page("%s/%s" % (major, minor))
+            self.append(p)
+
+def ensure_page(name, d):
+    if name not in d:
+        d[name] = Page(name)
+    return d[name]
+
+
+cas = {}
+def ensure_cas(addr):
+    return ensure_page(addr, cas)
+
+
+day_pages = {}
+def ensure_day(path):
+    day = ensure_page(path, day_pages)
+    if not calendar_page.has(day):
+        calendar_page.append(day)
+    return day
+
+
+time_pages = {}
+def ensure_time(path):
+    return ensure_page(path, time_pages)
+
+
+def page_in_day(page_name, to_hour):
+    page = ensure_time(page_name)
+    hour_path = page_name.split("/")[:-to_hour]
+    day_number = int(hour_path[-2])
+    if int(hour_path[-1]) < 6:
+        day_number -= 1
+    day_path = "/".join(hour_path[:-2] + ["%d" % day_number, ""])
+    ensure_day(day_path).append(page)
+    return page
+
+
+email_pages = {}
+class IssuePage(Page):
+    def __init__(self, issue):
+        super().__init__(issue["subject line"])
+        self.issue = issue
+        self.append(page_in_day(issue["sent"], 2))
+        self.long_name = "[%s] %s" % (issue["mailing list"], self.name)
+        email_pages[self.long_name] = self
+        email_files = [
+            f
+            for f
+            in files
+            if self.long_name == f["e-mail"]
+        ]
+        for f in email_files:
+            ensure_cas(f["content"]).append(self)
+
+
+class MailingListPage(Page):
+    def __init__(self, mailing_list):
+        super().__init__(mailing_list)
+        self.issues = [
+            issue
+            for issue
+            in issues
+            if issue["mailing list"] == self.name
+        ]
+        for issue in self.issues:
+            self.append(IssuePage(issue))
+
+
+class TopicPage(Page):
+    def __init__(self, topic):
+        super().__init__(topic)
+        if topic.startswith("/"):
+            if topic.startswith("/cas"):
+                self.append(ensure_cas(topic))
+            if topic in mailing_lists:
+                for p in mailinglist_page.pages:
+                    if p.name == topic:
+                        self.append(p)
+
+
+def main(ignore, days_filename, issues_filename, blobs_filename, topics_filename):
+    global days, issues, files, topics, mailing_lists, mimetypes
+    days = list(tsv_dicts(days_filename))
+    issues = list(tsv_dicts(issues_filename))
+    files = list(tsv_dicts(blobs_filename))
+    topics = list(tsv_dicts(topics_filename))
+    mailing_lists = list(uniq("mailing list", issues))
+    mimetypes = [m.split("/") for m in uniq("MIME", files)]
+    for major in sorted(set([major for major, minor in mimetypes])):
+        mime_page.append(MimePage(major))
+
+    for day in days:
+        page = ensure_day(day["calendar day"])
+        page.append(Page(day["begin"]))
+
+    for mailing_list in mailing_lists:
+        mailinglist_page.append(MailingListPage(mailing_list))
+
+    for f in files:
+        page = ensure_cas(f["content"])
+        page_in_day(f["published"], 2).append(page)
+
+    for maj in mime_page.pages:
+        for minor in maj.pages:
+            for f in files:
+                if f["MIME"] == minor.name:
+                    minor.append(ensure_cas(f["content"]))
+
+    topic_pages = {}
+    for topic in sorted(set([rec["topic"] for rec in topics])):
+        topic_pages[topic] = TopicPage(topic)
+
+    for rec in topics:
+        email_pages[
+            rec["e-mail"]
+        ].append(
+            topic_pages[
+                rec["topic"]
+            ]
+        )
+
+    result = [
+        list(page.to_navscrib_json())
+        for page
+        in pages
+    ]
+    print(json.dumps(list(result), indent="\t"))
+
+
+if "__main__" == __name__:
+    import sys
+    main(*sys.argv)

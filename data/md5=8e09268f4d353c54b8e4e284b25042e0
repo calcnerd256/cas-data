@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+mkdir to_navscrib
+mv "./md5=d41d8cd98f00b204e9800998ecf8427e" "./to_navscrib/__init__.py"
+mv "./md5=e24ac23b6e7f089e345e278b95723022" "./to_navscrib/tsv.py"
+mv "./md5=fa4f0762637792d61c376414d879acb6" "./to_navscrib/main.py"
