@@ -1,0 +1,9 @@
+I was planning to write the aggregating configurator I described in an e-mail with an MD5 of ccaa13b3af167a1b01f14e29e52dc7b3.
+I started writing it for a use case where a service knows where it wants all of its URIs to graft into the main proxy.
+As I went about implementing it, I wrote a simpler configurator that only handles the use case I was dealing with.
+Now I don't feel like writing the more-complicated one.
+Maybe some other time.
+With the way it works now, I can happily churn out new services and immediately use them without having to think too hard about how to integrate things.
+So I'm going to do some of that.
+Maybe static files are next, and then maybe a smarter CAS after that, perhaps with a distinction between public and private files and a distinction between disk-backed files and generated ones.
+We'll see.
