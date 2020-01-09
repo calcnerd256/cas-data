@@ -1,0 +1,12 @@
+I had some fun writing self-grafting services yesterday.
+When I wrote the one for static files, it worked, but the proxy was wrong.
+Concierge's implementation had a defect in it.
+I was able to fix it without changing the lisp-like source code.
+I had taken a shortcut that assumed that concatenating strings would work with binary files.
+Fixing that in a hurry made the design of that implementation even worse than it already was, and it reminded me how bad it is.
+
+The script I run at log-in time to make all these webservers available also has a flaw in it, but I don't know exactly what's wrong.
+It's not too hard to work around it, so I'm just leaving it alone for now.
+
+But I'm having a lot of fun not having to think about how to make these webservers talk to each other.
+Next, I'll want to continue from static files to CAS.
