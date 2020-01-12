@@ -1,0 +1,73 @@
+Here's what I published this last week.
+
+by day, minute:
+ [ /calendar/Gregorian/AD/2020/1/5/6/ , /calendar/Gregorian/AD/2020/1/6/6/ )
+  /calendar/Gregorian/AD/2020/1/5/13/54/
+   /cas/md5=0f41d7900715f99129485dacc1130693
+   /cas/md5=b4c530b56935dcf6a869975bc17370a5
+  /calendar/Gregorian/AD/2020/1/5/15/59/
+   /cas/md5=ee296b475a22b57a4ada0f30d99f273c
+ [ /calendar/Gregorian/AD/2020/1/6/6/ , /calendar/Gregorian/AD/2020/1/7/6/ )
+  /calendar/Gregorian/AD/2020/1/6/15/22/
+   /cas/md5=8e09268f4d353c54b8e4e284b25042e0
+   /cas/md5=e83ce29039f9d38d062af5fcca5ce8f1
+   /cas/md5=f73c64708b1a1638ff26106f60f5963f
+   /cas/md5=fa4f0762637792d61c376414d879acb6
+ [ /calendar/Gregorian/AD/2020/1/7/6/ , /calendar/Gregorian/AD/2020/1/8/6/ )
+  /calendar/Gregorian/AD/2020/1/7/21/36/
+   /cas/md5=11b0068ea519e1d33b94334dd730c41f
+ [ /calendar/Gregorian/AD/2020/1/8/6/ , /calendar/Gregorian/AD/2020/1/9/6/ )
+ [ /calendar/Gregorian/AD/2020/1/9/6/ , /calendar/Gregorian/AD/2020/1/10/6/ )
+  /calendar/Gregorian/AD/2020/1/9/12/0/
+   /cas/md5=9f7694452e636c114be0506a28c6dc65
+ [ /calendar/Gregorian/AD/2020/1/10/6/ , /calendar/Gregorian/AD/2020/1/11/6/ )
+ [ /calendar/Gregorian/AD/2020/1/11/6/ , /calendar/Gregorian/AD/2020/1/12/6/ )
+
+by MIME type:
+ text/plain
+  /cas/md5=0f41d7900715f99129485dacc1130693
+  /cas/md5=11b0068ea519e1d33b94334dd730c41f
+  /cas/md5=9f7694452e636c114be0506a28c6dc65
+  /cas/md5=b4c530b56935dcf6a869975bc17370a5
+  /cas/md5=e83ce29039f9d38d062af5fcca5ce8f1
+  /cas/md5=ee296b475a22b57a4ada0f30d99f273c
+ text/x-python
+  /cas/md5=fa4f0762637792d61c376414d879acb6
+ text/x-shellscript
+  /cas/md5=8e09268f4d353c54b8e4e284b25042e0
+  /cas/md5=f73c64708b1a1638ff26106f60f5963f
+
+by e-mail, file:
+ [msr.sigcf] index of partial week
+  time
+   /calendar/Gregorian/AD/2020/1/5/13/58/45
+  body
+   /cas/md5=b4c530b56935dcf6a869975bc17370a5
+  index
+   /cas/md5=0f41d7900715f99129485dacc1130693
+ [msr.firehose] another typo
+  time
+   /calendar/Gregorian/AD/2020/1/5/16/0/53
+  body
+   /cas/md5=ee296b475a22b57a4ada0f30d99f273c
+ [msr.firehose] TSV to navscrib
+  time
+   /calendar/Gregorian/AD/2020/1/6/15/23/45
+  body
+   /cas/md5=e83ce29039f9d38d062af5fcca5ce8f1
+  install.bash
+   /cas/md5=8e09268f4d353c54b8e4e284b25042e0
+  main.py
+   /cas/md5=fa4f0762637792d61c376414d879acb6
+  run.bash
+   /cas/md5=f73c64708b1a1638ff26106f60f5963f
+ [msr.firehose] self-grafting services
+  time
+   /calendar/Gregorian/AD/2020/1/7/21/38/9
+  body
+   /cas/md5=11b0068ea519e1d33b94334dd730c41f
+ [msr.firehose] defect in concierge
+  time
+   /calendar/Gregorian/AD/2020/1/9/12/2/13
+  body
+   /cas/md5=9f7694452e636c114be0506a28c6dc65
