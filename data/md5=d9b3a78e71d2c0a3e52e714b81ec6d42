@@ -1,0 +1,27 @@
+Here's what I published that week.
+
+by day, minute:
+ [ /calendar/Gregorian/AD/2020/1/12/6/ , /calendar/Gregorian/AD/2020/1/13/6/ )
+  /calendar/Gregorian/AD/2020/1/12/15/25/
+   /cas/md5=29ce40f347ea7df6e810db8c443ef5b4
+   /cas/md5=e994d96708fd7a8a486b31cb22651643
+ [ /calendar/Gregorian/AD/2020/1/13/6/ , /calendar/Gregorian/AD/2020/1/14/6/ )
+ [ /calendar/Gregorian/AD/2020/1/14/6/ , /calendar/Gregorian/AD/2020/1/15/6/ )
+ [ /calendar/Gregorian/AD/2020/1/15/6/ , /calendar/Gregorian/AD/2020/1/16/6/ )
+ [ /calendar/Gregorian/AD/2020/1/16/6/ , /calendar/Gregorian/AD/2020/1/17/6/ )
+ [ /calendar/Gregorian/AD/2020/1/17/6/ , /calendar/Gregorian/AD/2020/1/18/6/ )
+ [ /calendar/Gregorian/AD/2020/1/18/6/ , /calendar/Gregorian/AD/2020/1/19/6/ )
+
+by MIME type:
+ text/plain
+  /cas/md5=29ce40f347ea7df6e810db8c443ef5b4
+  /cas/md5=e994d96708fd7a8a486b31cb22651643
+
+by e-mail, file:
+ [msr.sigcf] weekly index
+  time
+   /calendar/Gregorian/AD/2020/1/12/15/29/52
+  body
+   /cas/md5=e994d96708fd7a8a486b31cb22651643
+  index
+   /cas/md5=29ce40f347ea7df6e810db8c443ef5b4

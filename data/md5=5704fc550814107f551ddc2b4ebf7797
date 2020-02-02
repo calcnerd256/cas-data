@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+
+THIS_YEAR="2020"
+THIS_MONTH="1"
+WEEK_START="1"
+WEEK_END="4"
+
+
+mkdir ../tmp || exit 1
+
+cp "./md5=0080ce24a2d97cea0b9bca122230e789" \
+   "./md5=0f41d7900715f99129485dacc1130693" \
+   "./md5=29ce40f347ea7df6e810db8c443ef5b4" \
+   "./md5=37684e915d01ccf70912882d376f243c" \
+   "./md5=3ccfad21058bba4fdf56e328e55e490d" \
+   "./md5=44ac2ecfb046baa8b67ce347ee42d0e1" \
+   "./md5=459db232911e9001a927e691d3f85161" \
+   "./md5=4abfb36611193b5b953de84a27d480e2" \
+   "./md5=58bb96400d875129a0e83148134fcbd2" \
+   "./md5=6811b0376e0da8a565240475292da727" \
+   "./md5=7617f970fb3393d81a975e95721de711" \
+   "./md5=885080daf9525c66c3e4f19b3160d492" \
+   "./md5=89ea1d98a3bf811cb86b41076ae8457b" \
+   "./md5=89fbd28b079f07444028e4ca3267ab26" \
+   "./md5=93e0d5dc7b134a865eed342701b1215f" \
+   "./md5=95b0c9d435955e4ee10f5393d6549e0b" \
+   "./md5=9b8648392a478a2a82aaf0093ba41578" \
+   "./md5=a2241e44a568eb2e5b173f5713812df7" \
+   "./md5=a8e8ca1b5498eb4f3f9ad364b9f71fcf" \
+   "./md5=aff6b47a5473d30015034ebc728bbbe7" \
+   "./md5=cac32337d5f10c0fa81c222324ed3392" \
+   "./md5=d41d8cd98f00b204e9800998ecf8427e" \
+   "./md5=d9b3a78e71d2c0a3e52e714b81ec6d42" \
+   "./md5=d9d4d6652af0dba57b9265f538668ad2" \
+   "./md5=e04d6781db9c507641eafe4af60eec9c" \
+   "./md5=e24ac23b6e7f089e345e278b95723022" \
+   "./md5=f3bf56252657268fa076f2024a05aef8" \
+   "./md5=f989b62e9e5951e145244e76e3c3ee8d" \
+   "./md5=fcce9b26ebe166127951359b36297bd7" \
+   ../tmp/
+
+pushd ../tmp/ > /dev/null
+
+mv "./md5=7617f970fb3393d81a975e95721de711" ./install.sh
+mv "./md5=89ea1d98a3bf811cb86b41076ae8457b" ./2019December.sh
+chmod +x \
+      ./install.sh \
+      ./2019December.sh \
+      
+./install.sh
+./2019December.sh
+
+python3 -m digest.main \
+	"./md5=d9d4d6652af0dba57b9265f538668ad2" \
+	"./md5=0080ce24a2d97cea0b9bca122230e789" \
+	"./md5=459db232911e9001a927e691d3f85161" \
+	"./md5=89fbd28b079f07444028e4ca3267ab26" \
+	"This is a partial week beginning the new year." \
+	1 \
+	4 \
+	2020 \
+	1 \
+	| diff - "./md5=0f41d7900715f99129485dacc1130693" || exit 1
+
+python3 -m digest.main \
+	"./md5=d9d4d6652af0dba57b9265f538668ad2" \
+	"./md5=0080ce24a2d97cea0b9bca122230e789" \
+	"./md5=459db232911e9001a927e691d3f85161" \
+	"./md5=89fbd28b079f07444028e4ca3267ab26" \
+	"Here's what I published this last week." \
+	5 \
+	11 \
+	2020 \
+	1 \
+    | diff - "./md5=29ce40f347ea7df6e810db8c443ef5b4" || exit 1
+
+python3 -m digest.main \
+	"./md5=d9d4d6652af0dba57b9265f538668ad2" \
+	"./md5=0080ce24a2d97cea0b9bca122230e789" \
+	"./md5=459db232911e9001a927e691d3f85161" \
+	"./md5=89fbd28b079f07444028e4ca3267ab26" \
+	"Here's what I published that week." \
+	12 \
+	18 \
+	2020 \
+	1 \
+    | diff - "./md5=d9b3a78e71d2c0a3e52e714b81ec6d42" || exit 1
+
+python3 -m digest.main \
+	"./md5=d9d4d6652af0dba57b9265f538668ad2" \
+	"./md5=0080ce24a2d97cea0b9bca122230e789" \
+	"./md5=459db232911e9001a927e691d3f85161" \
+	"./md5=89fbd28b079f07444028e4ca3267ab26" \
+	"Here's what I'm working on for this week." \
+	26 \
+	31 \
+	2020 \
+	1 \
+	> ./index.txt
+
+md5sum ./index.txt
+cat ./index.txt
+
+popd > /dev/null
+
+rm -r ../tmp/
